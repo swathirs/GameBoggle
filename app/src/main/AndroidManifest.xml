@@ -16,7 +16,8 @@
             </intent-filter>
         </activity>
         <activity android:name=".SecondScreen" />
-        <activity android:name=".HelpScreen"></activity>
+        <activity android:name=".HelpScreen" />
+        <activity android:name=".ThirdScreen"></activity>
     </application>
 
 </manifest>
