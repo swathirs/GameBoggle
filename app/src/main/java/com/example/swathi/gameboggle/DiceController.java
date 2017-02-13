@@ -25,6 +25,7 @@ public class DiceController {
 
         for(int i = 0; i < 16; ++i){
             selection = rand.nextInt(total);
+            //for(int j = 0; j < 6; ++j) System.out.print(dice.get(selection).get(j)); System.out.print('\n'); //debugging
             face = rand.nextInt(6);
             temp.add(dice.get(selection).get(face));
             dice.remove(selection);
