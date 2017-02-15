@@ -1,6 +1,7 @@
 package com.example.swathi.gameboggle;
 
 import java.util.ArrayList;
+import android.util.Log;
 /**
  * Created by John on 2/10/2017.
  */
@@ -21,7 +22,7 @@ public class ValidWords {
     {
         total = 0;
         difficulty = 0;
-        maxLength = 7;
+        maxLength = 5;
     }
 
     //Initializes ValidWords for a specific board
@@ -30,17 +31,22 @@ public class ValidWords {
         tempBoard = new String[4][4];
         visited = new boolean[4][4];
         this.difficulty = difficulty;
+        //Board is i = 0 ... 3 horizontally, j = 0 ... 3 from top to bottom.  [0][0] is top left, [3][0] is top right
         for (int i = 0; i < 4; i++)
         {
             for (int j = 0; j < 4; j++)
             {
                 visited[i][j] = false;
-                tempBoard[i][j] = squares.get((i*4) + j);
+                tempBoard[i][j] = squares.get(i + (j*4));
             }
         }
         total = 0;
-        maxLength = 7;
+        maxLength = 5;
         validList = (ArrayList<WordNode>[]) new ArrayList[26];
+        for (int j = 0; j < 26; j++)
+        {
+            validList[j] = new ArrayList<WordNode>();
+        }
         this.findAllWords();
     }
 
@@ -74,16 +80,17 @@ public class ValidWords {
         {
             for (int j = 0; j < 4; j++)
             {
-                findWords(tempBoard[i][j], i, j, 1);
+                //findWords(tempBoard[i][j], i, j, 1);
+                findWords("", i, j, 0);
             }
         }
     }
 
     //performs the actually depth-first-search for the findAllWords() function
-    private void findWords(String oldString, int x, int y, int wordLength)
+    private void findWords(String oldString, int x, int y, int oldWordLength)
     {
         //This check will be removed once checkPrefix exists.  without checkPrefix checking the board will take too long so this statement limits it
-        if (wordLength > maxLength)
+        if (oldWordLength + 1 > maxLength)
             return;
         //First check to make sure the recursive function is safe to call
         //checks that the function is searching within the bounds of the board
@@ -107,18 +114,32 @@ public class ValidWords {
         {
             for (int j = -1; j < 2; j++)
             {
-                findWords(newString, x+i, y+j, wordLength + 1);
+                findWords(newString, x+i, y+j, oldWordLength + 1);
             }
         }
 
         //At this point the program is on the way back from the depth-first-search, so now check that the current word is ok.
         /*
-        if (dictionary.checkWord(newString)
+        if (oldWordLength > 1)
         {
-            if addValidWord(newString)
-                total ++;
+            if (dictionary.checkWord(newString)
+            {
+                if addValidWord(newString)
+                    total ++;
+            }
         }
         */
+
+        //TESTING CODE: adds all strings without checking with dictionary
+        //if newString is 3 letters long then wordLength will equal 2
+        /*
+        if (oldWordLength > 1)
+        {
+            addValidWord(newString);
+            total++;
+        }
+        */
+
         visited[x][y] = false;
 
         return;

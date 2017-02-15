@@ -1,6 +1,7 @@
 package com.example.swathi.gameboggle;
 
 import java.util.ArrayList;
+import android.util.Log;
 
 /**
  * Created by John on 2/10/2017.
@@ -10,7 +11,6 @@ import java.util.ArrayList;
 public class Board {
     private DiceController roller;
     private ArrayList<String> squares;
-    private ValidWords validList;
 
     public Board() {
         roller = new DiceController();
@@ -19,8 +19,6 @@ public class Board {
 
     public boolean genBoardArrangement() {
         squares = roller.genBoard();
-
-        validList = new ValidWords(squares, 1);
 
         return true;
     }

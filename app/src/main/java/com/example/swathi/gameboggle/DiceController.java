@@ -17,6 +17,7 @@ public class DiceController {
     public ArrayList<String> genBoard(){
         ArrayList<String> temp = new ArrayList<String>();
         for(int i = 0; i < 16; ++i) temp.add("A");
+
         return temp;
     }
 }
