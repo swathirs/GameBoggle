@@ -40,6 +40,13 @@ public class Dictionary {
 
                 InputStreamReader tmp = new InputStreamReader(in);
                 BufferedReader reader = new BufferedReader(tmp);
+                String str;
+           /* while ((str = reader.readLine()) != null) {
+
+                     //   ValidWords logic
+
+
+            } */
 
 
             reader.close();
