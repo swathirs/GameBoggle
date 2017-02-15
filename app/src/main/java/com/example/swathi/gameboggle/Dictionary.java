@@ -32,7 +32,7 @@ public class Dictionary {
     private int LoadWordsFile() {
 
         try {
-            InputStream in = context.getResources().openRawResource(context.getResources().getIdentifier("words", "raw", context.getPackageName()));
+            InputStream in = context.getResources().openRawResource(context.getResources().getIdentifier("dictionary", "raw", context.getPackageName()));
             /*InputStream inputStream = context.getResources().openRawResource(R.raw.bbwords);
             //BufferedReader buffReader = new BufferedReader(new FileReader(BBValidWordsFile));
             BufferedReader buffReader = new BufferedReader(new InputStreamReader(inputStream));*/
