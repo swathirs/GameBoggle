@@ -45,7 +45,7 @@ public class Dictionary {
             reader.close();
 
         } catch (IOException e) {
-            Log.e("LoadWordsFile():", "Exception occurred while trying to open the valid words file. \n");
+            Log.e("LoadWordsFile():", "Exception occurred while trying to open the dictionary file. \n");
             //e.printStackTrace();
             return -1;
         }
