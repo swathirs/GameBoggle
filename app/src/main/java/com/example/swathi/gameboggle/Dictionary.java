@@ -33,8 +33,8 @@ public class Dictionary {
 
         try {
             InputStream in = context.getResources().openRawResource(context.getResources().getIdentifier("dictionary", "raw", context.getPackageName()));
-            /*InputStream inputStream = context.getResources().openRawResource(R.raw.bbwords);
-            //BufferedReader buffReader = new BufferedReader(new FileReader(BBValidWordsFile));
+            /*InputStream inputStream = context.getResources().openRawResource(R.raw.dictionary);
+            //BufferedReader buffReader = new BufferedReader(new FileReader(dictionary));
             BufferedReader buffReader = new BufferedReader(new InputStreamReader(inputStream));*/
 
 
