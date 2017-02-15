@@ -1,6 +1,7 @@
 package com.example.swathi.gameboggle;
 
 import java.util.ArrayList;
+import android.util.Log;
 
 /**
  * Created by John on 2/10/2017.
@@ -18,6 +19,7 @@ public class Board {
 
     public boolean genBoardArrangement() {
         squares = roller.genBoard();
+
         return true;
     }
 
