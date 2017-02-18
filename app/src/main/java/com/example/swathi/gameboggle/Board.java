@@ -13,18 +13,18 @@ import android.util.Log;
 public class Board {
     private DiceController roller;
     private ArrayList<String> squares;
-    //MY CHANGES
+    //Matt CHANGES
     private Context context;
     private ValidWords validWords;
     private Dictionary dictionary;
-    //END MY CHANGES
+    //END Matt CHANGES
 
     public Board() {
         roller = new DiceController();
         squares = null;
     }
 
-    //MY CHANGES
+    //Matt CHANGES
     public Board(Context context)
     {
         roller = new DiceController();
@@ -33,24 +33,27 @@ public class Board {
         this.context = context;
         dictionary = new Dictionary(this.context);
     }
-    //END MY CHANGES
+    //END Matt CHANGES
 
     public boolean genBoardArrangement() {
         squares = roller.genBoard();
 
-        //MY CHANGES
+        //Matt CHANGES
         validWords = new ValidWords(squares, 1, dictionary);
         while (!validWords.checkValidBoard())
         {
             validWords = new ValidWords(squares, 1, dictionary);
         }
+        //Uncomment this code to see the list of valid words on the board
+        /*
         ArrayList<String> temp = null;
         temp = validWords.getValidWords();
         for (int i = 0; i < temp.size(); i++)
         {
             Log.d("wordList", temp.get(i));
         }
-        //END MY CHANGES
+        //END Matt CHANGES
+        */
 
         return true;
     }

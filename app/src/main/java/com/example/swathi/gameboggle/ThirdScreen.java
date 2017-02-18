@@ -12,9 +12,7 @@ import java.util.ArrayList;
 
 public class ThirdScreen extends AppCompatActivity {
     // the third screen holds the boggle game board
-    //MY CHANGES
     Board board = null;//new Board(getApplicationContext());
-    //END MY CHANGES
     ArrayList<String> letters;
     Button currButton;
 

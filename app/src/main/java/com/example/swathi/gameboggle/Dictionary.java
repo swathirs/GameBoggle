@@ -21,7 +21,7 @@ import java.lang.Character;
 import android.util.Log;
 
 
-public class Dictionary implements Parcelable{
+public class Dictionary{
     private Context context;
     private TrieNode root;
 
@@ -122,31 +122,5 @@ public class Dictionary implements Parcelable{
 
         return true;
     }
-
-    @Override
-    public int describeContents() {
-        return 0;
-    }
-
-    @Override
-    public void writeToParcel(Parcel out, int flags){
-        out.writeTypedObject(root, 1);
-    }
-
-    public static final Parcelable.Creator<Dictionary> CREATOR = new Parcelable.Creator<Dictionary>(){
-        public Dictionary createFromParcel(Parcel in){
-            return new Dictionary(in);
-        }
-
-        public Dictionary[] newArray(int size){
-            return new Dictionary[size];
-        }
-    };
-
-    private Dictionary(Parcel in){
-        root = in.readTypedObject(TrieNode.CREATOR);
-    }
-
-
 }
 
