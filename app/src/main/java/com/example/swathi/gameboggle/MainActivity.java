@@ -8,7 +8,7 @@ import android.view.View;
 import android.widget.Button;
 
 public class MainActivity extends AppCompatActivity {
-    Button singlePlayerButton, multiPlayerButton, helpButton;
+    Button singlePlayerButton, multiPlayerButton, helpButton, highScoresButton;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -25,6 +25,7 @@ public class MainActivity extends AppCompatActivity {
         singlePlayerButton = (Button) findViewById(R.id.buttonSinglePlayerId);
         multiPlayerButton = (Button) findViewById(R.id.buttonMultiPlayerId);
         helpButton = (Button) findViewById(R.id.buttonHelpId);
+        highScoresButton = (Button) findViewById(R.id.buttonHighScoresId);
 
         singlePlayerButton.setOnClickListener(new View.OnClickListener() {
 
@@ -56,5 +57,16 @@ public class MainActivity extends AppCompatActivity {
             }
 
         });
+        highScoresButton.setOnClickListener(new View.OnClickListener() {
+
+            @Override
+            public void onClick(View arg0) {
+
+                Intent intent = new Intent(context, HighScores.class);
+                startActivity(intent);
+            }
+
+        });
+
     }
 }

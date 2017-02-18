@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:orientation="vertical"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent"
+              android:id="@+id/activity_high_scores"
+              android:background="@drawable/alpha4">
+
+    <TextView
+        android:text="Easy"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_marginLeft="27dp"
+        android:layout_marginStart="27dp"
+        android:layout_marginTop="53dp"
+        android:textSize="20sp"
+        android:id="@+id/textViewEasyScoresId"
+    />
+
+    <TextView
+        android:text="Normal"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/textViewEasyScoresId"
+        android:layout_alignLeft="@+id/textViewEasyScoresId"
+        android:layout_alignStart="@+id/textViewEasyScoresId"
+        android:layout_marginTop="93dp"
+        android:textSize="20sp"
+
+        android:id="@+id/textView6"/>
+
+    <TextView
+        android:text="Difficult"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/textView6"
+        android:layout_alignLeft="@+id/textView6"
+        android:layout_alignStart="@+id/textView6"
+        android:layout_marginTop="101dp"
+        android:textSize="20sp"
+
+        android:id="@+id/textView7"/>
+
+    <TextView
+        android:text="Rank   |   Name   |   Score   "
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="17dp"
+        android:id="@+id/textView8"
+        android:layout_below="@+id/textViewEasyScoresId"
+        android:layout_alignLeft="@+id/textViewEasyScoresId"
+        android:layout_alignStart="@+id/textViewEasyScoresId"
+        android:textSize="16sp"
+        />
+
+</RelativeLayout>
