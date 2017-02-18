@@ -50,12 +50,10 @@ public class Dictionary implements Parcelable{
                 BufferedReader reader = new BufferedReader(tmp);
                 String str;
                 while ((str = reader.readLine()) != null) {
-
                      this.addWord(str);
-
-
                 }
-            am.close();
+
+            //am.close();
             reader.close();
 
         } catch (IOException e) {

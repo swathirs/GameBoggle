@@ -187,7 +187,7 @@ public class ValidWords {
             return false;
         char firstLetter = aWord.charAt(0);
         //index will be 0 if char == A, 1 if char == B and so on
-        int index = firstLetter - 65;
+        int index = firstLetter - 97;
         WordNode temp = null;
 
         //This loop checks all words that start with firstLetter to see if the word already exists
@@ -200,7 +200,7 @@ public class ValidWords {
         }
 
         temp = new WordNode(aWord);
-        validList[firstLetter - 65].add(temp);
+        validList[firstLetter - 97].add(temp);
 
         return true;
     }
@@ -211,7 +211,7 @@ public class ValidWords {
         if (aWord.length() < 1)
             return 0;
         char firstLetter = aWord.charAt(0);
-        int index = firstLetter - 65;
+        int index = firstLetter - 97;
         WordNode temp = null;
 
         for (int i = 0; i < validList[index].size(); i++)
