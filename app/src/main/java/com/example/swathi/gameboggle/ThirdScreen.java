@@ -12,7 +12,7 @@ import java.util.ArrayList;
 
 public class ThirdScreen extends AppCompatActivity {
     // the third screen holds the boggle game board
-    Board board = new Board();
+    Board board = null;//new Board(getApplicationContext());
     ArrayList<String> letters;
     Button currButton;
 
@@ -27,6 +27,7 @@ public class ThirdScreen extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_third_screen);
+        board = new Board(getApplicationContext());
 
         // fields used by SHAKE DETECTOR
         mSensorManager = (SensorManager) getSystemService(SENSOR_SERVICE);  //get sensor management service, cast as SensorManager
