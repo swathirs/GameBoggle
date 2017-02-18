@@ -21,107 +21,227 @@ public class ThirdScreen extends AppCompatActivity {
     TextView wordDisplay;
     int difficulty;
 
+    public void setButtons(boolean [] list){
+        findViewById(R.id.button1).setClickable(list[0]);
+        findViewById(R.id.button2).setClickable(list[1]);
+        findViewById(R.id.button3).setClickable(list[2]);
+        findViewById(R.id.button4).setClickable(list[3]);
+        findViewById(R.id.button5).setClickable(list[4]);
+        findViewById(R.id.button6).setClickable(list[5]);
+        findViewById(R.id.button7).setClickable(list[6]);
+        findViewById(R.id.button8).setClickable(list[7]);
+        findViewById(R.id.button9).setClickable(list[8]);
+        findViewById(R.id.button10).setClickable(list[9]);
+        findViewById(R.id.button11).setClickable(list[10]);
+        findViewById(R.id.button12).setClickable(list[11]);
+        findViewById(R.id.button13).setClickable(list[12]);
+        findViewById(R.id.button14).setClickable(list[13]);
+        findViewById(R.id.button15).setClickable(list[14]);
+        findViewById(R.id.button16).setClickable(list[15]);
+    }
+
     public void pressSubmit(View view){
         //board.checkWord(currWord);  //TODO: find out why this line crashes
         currWord = "";
         wordDisplay = (TextView) findViewById(R.id.Entry);
         wordDisplay.setText(currWord);
+        boolean [] list =
+                        {true, true, true, true,
+                        true, true, true, true,
+                        true, true, true, true,
+                        true, true, true, true};
+        setButtons(list);
     }
 
     public void press1(View view){
         currWord = currWord + letters.get(0);
         wordDisplay = (TextView) findViewById(R.id.Entry);
         wordDisplay.setText(currWord);
+        boolean [] list = {false, true, false, false,
+                           true, true, false, false,
+                           false, false, false, false,
+                           false, false, false, false};
+        setButtons(list);
     }
 
     public void press2(View view){
         currWord = currWord + letters.get(1);
         wordDisplay = (TextView) findViewById(R.id.Entry);
         wordDisplay.setText(currWord);
+        boolean [] list = {true, false, true, false,
+                           true, true, true, false,
+                           false, false, false, false,
+                           false, false, false, false};
+        setButtons(list);
     }
 
     public void press3(View view){
         currWord = currWord + letters.get(2);
         wordDisplay = (TextView) findViewById(R.id.Entry);
         wordDisplay.setText(currWord);
+        boolean [] list =
+                {false, true, false, true,
+                false, true, true, true,
+                false, false, false, false,
+                false, false, false, false};
+        setButtons(list);
     }
 
     public void press4(View view){
         currWord = currWord + letters.get(3);
         wordDisplay = (TextView) findViewById(R.id.Entry);
         wordDisplay.setText(currWord);
+        boolean [] list =
+                        {false, false, true, false,
+                        false, false, true, true,
+                        false, false, false, false,
+                        false, false, false, false};
+        setButtons(list);
     }
 
     public void press5(View view){
         currWord = currWord + letters.get(4);
         wordDisplay = (TextView) findViewById(R.id.Entry);
         wordDisplay.setText(currWord);
+        boolean [] list =
+                        {true, true, false, false,
+                        false, true, false, false,
+                        true, true, false, false,
+                        false, false, false, false};
+        setButtons(list);
     }
 
     public void press6(View view){
         currWord = currWord + letters.get(5);
         wordDisplay = (TextView) findViewById(R.id.Entry);
         wordDisplay.setText(currWord);
+        boolean [] list =
+                       {true, true, true, false,
+                        true, false, true, false,
+                        true, true, true, false,
+                        false, false, false, false};
+        setButtons(list);
     }
 
     public void press7(View view){
         currWord = currWord + letters.get(6);
         wordDisplay = (TextView) findViewById(R.id.Entry);
         wordDisplay.setText(currWord);
+        boolean [] list =
+                       {false, true, true, true,
+                        false, true, false, true,
+                        false, true, true, true,
+                        false, false, false, false};
+        setButtons(list);
     }
 
     public void press8(View view){
         currWord = currWord + letters.get(7);
         wordDisplay = (TextView) findViewById(R.id.Entry);
         wordDisplay.setText(currWord);
+        boolean [] list =
+                        {false, false, true, true,
+                        false, false, true, false,
+                        false, false, true, true,
+                        false, false, false, false};
+        setButtons(list);
     }
 
     public void press9(View view){
         currWord = currWord + letters.get(8);
         wordDisplay = (TextView) findViewById(R.id.Entry);
         wordDisplay.setText(currWord);
+        boolean [] list =
+                        {false, false, false, false,
+                        true, true, false, false,
+                        false, true, false, false,
+                        true, true, false, false,};
+        setButtons(list);
     }
 
     public void press10(View view){
         currWord = currWord + letters.get(9);
         wordDisplay = (TextView) findViewById(R.id.Entry);
         wordDisplay.setText(currWord);
+        boolean [] list =
+                      {false, false, false, false,
+                        true, true, true, false,
+                        true, false, true, false,
+                        true, true, true, false,
+                        };
+        setButtons(list);
     }
 
     public void press11(View view){
         currWord = currWord + letters.get(10);
         wordDisplay = (TextView) findViewById(R.id.Entry);
         wordDisplay.setText(currWord);
+        boolean [] list =
+                        {false, false, false, false,
+                        false, true, true, true,
+                        false, true, false, true,
+                        false, true, true, true};
+        setButtons(list);
     }
 
     public void press12(View view){
         currWord = currWord + letters.get(11);
         wordDisplay = (TextView) findViewById(R.id.Entry);
         wordDisplay.setText(currWord);
+        boolean [] list =
+                        {false, false, false, false,
+                        false, false, true, true,
+                        false, false, true, false,
+                        false, false, true, true};
+        setButtons(list);
     }
 
     public void press13(View view){
         currWord = currWord + letters.get(12);
         wordDisplay = (TextView) findViewById(R.id.Entry);
         wordDisplay.setText(currWord);
+        boolean [] list =
+                        {false, false, false, false,
+                        false, false, false, false,
+                        true, true, false, false,
+                        false, true, false, false};
+        setButtons(list);
     }
 
     public void press14(View view){
         currWord = currWord + letters.get(13);
         wordDisplay = (TextView) findViewById(R.id.Entry);
         wordDisplay.setText(currWord);
+        boolean [] list =
+                        {false, false, false, false,
+                        false, false, false, false,
+                        true, true, true, false,
+                        true, false, true, false};
+        setButtons(list);
     }
 
     public void press15(View view){
         currWord = currWord + letters.get(14);
         wordDisplay = (TextView) findViewById(R.id.Entry);
         wordDisplay.setText(currWord);
+        boolean [] list =
+                        {false, false, false, false,
+                        false, false, false, false,
+                        false, true, true, true,
+                        false, true, false, true};
+        setButtons(list);
     }
 
     public void press16(View view){
         currWord = currWord + letters.get(15);
         wordDisplay = (TextView) findViewById(R.id.Entry);
         wordDisplay.setText(currWord);
+        boolean [] list =
+                        {false, false, false, false,
+                        false, false, false, false,
+                        false, false, true, true,
+                        false, false, true, false};
+        setButtons(list);
     }
 
     // Fields specific for the shake detector feature
