@@ -4,6 +4,9 @@ package com.example.swathi.gameboggle;
  * Created by John on 2/10/2017.
  */
 
+import android.content.res.AssetManager;
+import android.os.Parcel;
+import android.os.Parcelable;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.content.Context;
@@ -15,9 +18,10 @@ import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.util.*;
 import java.lang.Character;
+import android.util.Log;
 
 
-public class Dictionary {
+public class Dictionary implements Parcelable{
     private Context context;
     private TrieNode root;
 
@@ -25,7 +29,6 @@ public class Dictionary {
         this.context = context;
 
         root = new TrieNode(false);
-
         if(LoadWordsFile() == -1){
             System.out.println("Could not find file 'dictionary.txt'.");
             return;
@@ -36,11 +39,12 @@ public class Dictionary {
     private int LoadWordsFile() {
 
         try {
-            InputStream in = context.getResources().openRawResource(context.getResources().getIdentifier("dictionary", "raw", context.getPackageName()));
+            //InputStream in = context.getResources().openRawResource(context.getResources().getIdentifier("dictionary", "raw", context.getPackageName()));
+            AssetManager am = context.getAssets();
+            InputStream in = am.open("dictionary.txt");
             /*InputStream inputStream = context.getResources().openRawResource(R.raw.dictionary);
             //BufferedReader buffReader = new BufferedReader(new FileReader(dictionary));
             BufferedReader buffReader = new BufferedReader(new InputStreamReader(inputStream));*/
-
 
                 InputStreamReader tmp = new InputStreamReader(in);
                 BufferedReader reader = new BufferedReader(tmp);
@@ -51,8 +55,7 @@ public class Dictionary {
 
 
                 }
-
-
+            am.close();
             reader.close();
 
         } catch (IOException e) {
@@ -122,63 +125,30 @@ public class Dictionary {
         return true;
     }
 
-    private class TrieNode
-    {
-        private TrieNode next[];
-        private boolean isWord;
-        //private char letter;
+    @Override
+    public int describeContents() {
+        return 0;
+    }
 
-        TrieNode()
-        {
-            next = new TrieNode[26];
-            for (int i = 0; i < 26; i++)
-            {
-                next[i] = null;
-            }
-            isWord = false;
-            //letter = ' ';
+    @Override
+    public void writeToParcel(Parcel out, int flags){
+        out.writeTypedObject(root, 1);
+    }
+
+    public static final Parcelable.Creator<Dictionary> CREATOR = new Parcelable.Creator<Dictionary>(){
+        public Dictionary createFromParcel(Parcel in){
+            return new Dictionary(in);
         }
 
-        TrieNode(boolean isWord)
-        {
-            next = new TrieNode[26];
-            for (int i = 0; i < 26; i++)
-            {
-                next[i] = null;
-            }
-            this.isWord = isWord;
-            //this.letter = letter;
+        public Dictionary[] newArray(int size){
+            return new Dictionary[size];
         }
+    };
 
-        public boolean addChild(char letter)
-        {
-            char lowercase = Character.toLowerCase(letter);
-            if (this.next[lowercase] != null)
-                return false;
-            this.next[lowercase] = new TrieNode();
-            return true;
-        }
-
-        public TrieNode traverseChar(char letter)
-        {
-            return this.next[Character.toLowerCase(letter) - 97];
-        }
-
-        public TrieNode traverseIndex(int index)
-        {
-            return this.next[index];
-        }
-
-        public boolean isWord()
-        {
-            return this.isWord;
-        }
-
-        public void markWord(boolean isWord)
-        {
-            this.isWord = isWord;
-        }
+    private Dictionary(Parcel in){
+        root = in.readTypedObject(TrieNode.CREATOR);
     }
 
 
 }
+
