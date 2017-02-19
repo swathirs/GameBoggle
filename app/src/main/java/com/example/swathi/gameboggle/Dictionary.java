@@ -1,8 +1,5 @@
 package com.example.swathi.gameboggle;
 
-/**
- * Created by John on 2/10/2017.
- */
 
 import android.content.res.AssetManager;
 import android.os.Parcel;
@@ -25,6 +22,7 @@ public class Dictionary{
     private Context context;
     private TrieNode root;
 
+
     public Dictionary(Context context) {
         this.context = context;
 
@@ -36,6 +34,9 @@ public class Dictionary{
 
     }
 
+
+    // Reads words from the 'dictionary.txt' file in assets, calls addWords() to add word to data structure.
+    // Returns 0 for success, else -1. Log.e on error.
     private int LoadWordsFile() {
 
         try {
@@ -64,6 +65,8 @@ public class Dictionary{
         return 0;
     }
 
+
+    // Adds a word to the Trie data structure
     private void addWord(String word)
     {
         char letter = ' ';
@@ -83,6 +86,8 @@ public class Dictionary{
         currentNode.markWord(true);
     }
 
+
+    // isWord will take in a string and return true if that string is a word in the dictioanry
     public boolean isWord(String word)
     {
         char letter = ' ';
@@ -103,6 +108,7 @@ public class Dictionary{
         return currentNode.isWord();
     }
 
+    // isPrefix will return true if there are any words starting with the passed in string
     public boolean isPrefix(String word)
     {
         char letter = ' ';
