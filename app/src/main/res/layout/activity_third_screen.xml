@@ -31,7 +31,8 @@
         android:textSize="@dimen/abc_text_size_display_1_material"
         android:layout_below="@+id/textView"
         android:layout_toLeftOf="@+id/SolveButton"
-        android:layout_toStartOf="@+id/SolveButton" />
+        android:layout_toStartOf="@+id/SolveButton"
+        android:onClick="press1" />
 
     <Button
 
@@ -44,7 +45,8 @@
         android:textStyle="bold"
         android:layout_alignTop="@+id/button1"
         android:layout_alignLeft="@+id/SolveButton"
-        android:layout_alignStart="@+id/SolveButton" />
+        android:layout_alignStart="@+id/SolveButton"
+        android:onClick="press2" />
 
     <Button
 
@@ -57,7 +59,8 @@
         android:textColor="#fffdff0b"
         android:layout_above="@+id/button7"
         android:layout_toRightOf="@+id/button2"
-        android:layout_toEndOf="@+id/button2" />
+        android:layout_toEndOf="@+id/button2"
+        android:onClick="press3" />
 
     <Button
 
@@ -70,7 +73,8 @@
         android:textStyle="bold"
         android:layout_below="@+id/textViewShake2Start"
         android:layout_toRightOf="@+id/button3"
-        android:layout_toEndOf="@+id/button3" />
+        android:layout_toEndOf="@+id/button3"
+        android:onClick="press4" />
 
     <Button
 
@@ -83,7 +87,8 @@
         android:background="@drawable/buttonnoselectborder"
         android:textStyle="bold"
         android:textColor="#fffdff0b"
-        android:textSize="@dimen/abc_text_size_display_1_material" />
+        android:textSize="@dimen/abc_text_size_display_1_material"
+        android:onClick="press5" />
 
     <Button
 
@@ -96,7 +101,8 @@
         android:background="@drawable/buttonnoselectborder"
         android:textSize="@dimen/abc_text_size_display_1_material"
         android:textColor="#fffdff0b"
-        android:textStyle="bold" />
+        android:textStyle="bold"
+        android:onClick="press6" />
 
     <Button
 
@@ -109,7 +115,8 @@
         android:background="@drawable/buttonnoselectborder"
         android:textStyle="bold"
         android:textSize="@dimen/abc_text_size_display_1_material"
-        android:textColor="#fffdff0b" />
+        android:textColor="#fffdff0b"
+        android:onClick="press7" />
 
     <Button
 
@@ -122,7 +129,8 @@
         android:background="@drawable/buttonnoselectborder"
         android:textStyle="bold"
         android:textColor="#fffdff0b"
-        android:textSize="@dimen/abc_text_size_display_1_material" />
+        android:textSize="@dimen/abc_text_size_display_1_material"
+        android:onClick="press8" />
 
     <Button
 
@@ -135,7 +143,8 @@
         android:background="@drawable/buttonnoselectborder"
         android:textStyle="bold"
         android:textSize="@dimen/abc_text_size_display_1_material"
-        android:textColor="#fffdff0b" />
+        android:textColor="#fffdff0b"
+        android:onClick="press9" />
 
     <Button
 
@@ -148,7 +157,8 @@
         android:background="@drawable/buttonnoselectborder"
         android:textStyle="bold"
         android:textSize="@dimen/abc_text_size_display_1_material"
-        android:textColor="#fffdff0b" />
+        android:textColor="#fffdff0b"
+        android:onClick="press10" />
 
     <Button
 
@@ -161,7 +171,8 @@
         android:background="@drawable/buttonnoselectborder"
         android:textStyle="bold"
         android:textSize="@dimen/abc_text_size_display_1_material"
-        android:textColor="#fffdff0b" />
+        android:textColor="#fffdff0b"
+        android:onClick="press11" />
 
     <Button
 
@@ -174,7 +185,8 @@
         android:background="@drawable/buttonnoselectborder"
         android:textStyle="bold"
         android:textSize="@dimen/abc_text_size_display_1_material"
-        android:textColor="#fffdff0b" />
+        android:textColor="#fffdff0b"
+        android:onClick="press12" />
 
     <Button
 
@@ -187,7 +199,8 @@
         android:background="@drawable/buttonnoselectborder"
         android:textStyle="bold"
         android:textSize="@dimen/abc_text_size_display_1_material"
-        android:textColor="#fffdff0b" />
+        android:textColor="#fffdff0b"
+        android:onClick="press13" />
 
     <Button
 
@@ -200,7 +213,8 @@
         android:background="@drawable/buttonnoselectborder"
         android:textStyle="bold"
         android:textSize="@dimen/abc_text_size_display_1_material"
-        android:textColor="#fffdff0b" />
+        android:textColor="#fffdff0b"
+        android:onClick="press14" />
 
     <Button
 
@@ -213,7 +227,8 @@
         android:background="@drawable/buttonnoselectborder"
         android:textStyle="bold"
         android:textSize="@dimen/abc_text_size_display_1_material"
-        android:textColor="#fffdff0b" />
+        android:textColor="#fffdff0b"
+        android:onClick="press15" />
 
     <Button
 
@@ -226,7 +241,8 @@
         android:background="@drawable/buttonnoselectborder"
         android:textStyle="bold"
         android:textSize="@dimen/abc_text_size_display_1_material"
-        android:textColor="#fffdff0b" />
+        android:textColor="#fffdff0b"
+        android:onClick="press16" />
 
     <TextView
         android:layout_width="wrap_content"
@@ -283,8 +299,8 @@
         android:textStyle="bold"
         android:textSize="@dimen/abc_text_size_body_1_material"
         android:textColor="#f4fbfd24"
-        android:layout_alignBaseline="@+id/Entry"
-        android:layout_alignBottom="@+id/Entry"
-        android:layout_centerHorizontal="true" />
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:onClick="pressSubmit"/>
 
 </RelativeLayout>

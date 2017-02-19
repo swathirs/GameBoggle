@@ -17,6 +17,7 @@ public class ValidWords {
     private int total;
     private int maxLength;//This variable is used to limit words to a specified length.  not meant for final version
 
+
     //default constructor, assumed it won't be used
     public ValidWords()
     {
