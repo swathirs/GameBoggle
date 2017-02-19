@@ -17,16 +17,20 @@ public class ValidWords {
     private int total;
     private int maxLength;//This variable is used to limit words to a specified length.  not meant for final version
 
+    //Dictionary
+    private Dictionary dictionary;
+
     //default constructor, assumed it won't be used
     public ValidWords()
     {
         total = 0;
         difficulty = 0;
-        maxLength = 5;
+        maxLength = 16;
+        dictionary = null;
     }
 
     //Initializes ValidWords for a specific board
-    public ValidWords(ArrayList<String> squares, int difficulty)
+    public ValidWords(ArrayList<String> squares, int difficulty, Dictionary dictionary)
     {
         tempBoard = new String[4][4];
         visited = new boolean[4][4];
@@ -41,12 +45,14 @@ public class ValidWords {
             }
         }
         total = 0;
-        maxLength = 5;
+        maxLength = 16;
         validList = (ArrayList<WordNode>[]) new ArrayList[26];
         for (int j = 0; j < 26; j++)
         {
             validList[j] = new ArrayList<WordNode>();
         }
+
+        this.dictionary = dictionary;
         this.findAllWords();
     }
 
@@ -55,15 +61,15 @@ public class ValidWords {
     {
         switch (difficulty)
         {
-            case 0:             //easy
+            case 1:             //easy
                 if (total < 2)
                     return false;
                 break;
-            case 1:             //normal
+            case 2:             //normal
                 if (total < 5)
                     return false;
                 break;
-            case 2:             //difficult
+            case 3:             //difficult
                 if (total < 7)
                     return false;
                 break;
@@ -102,12 +108,13 @@ public class ValidWords {
 
         //Create a new string and do the next step in the depth-first-search
         String newString = oldString.concat(tempBoard[x][y]);
-        /*
+
+
         //This line will increase the speed by a lot
         //without this line then, for example, the algorithm will check all possible strings that start with azq, even though no real words start with that (I think)
-        if (!dictionary.checkPrefix(newString))
+        if (!dictionary.isPrefix(newString))
             return;
-         */
+
         visited[x][y] = true;
 
         for (int i = -1; i < 2; i++)
@@ -119,16 +126,16 @@ public class ValidWords {
         }
 
         //At this point the program is on the way back from the depth-first-search, so now check that the current word is ok.
-        /*
+
         if (oldWordLength > 1)
         {
-            if (dictionary.checkWord(newString)
+            if (dictionary.isWord(newString))
             {
-                if addValidWord(newString)
+                if (addValidWord(newString))
                     total ++;
             }
         }
-        */
+
 
         //TESTING CODE: adds all strings without checking with dictionary
         //if newString is 3 letters long then wordLength will equal 2
@@ -180,7 +187,7 @@ public class ValidWords {
             return false;
         char firstLetter = aWord.charAt(0);
         //index will be 0 if char == A, 1 if char == B and so on
-        int index = firstLetter - 65;
+        int index = firstLetter - 97;
         WordNode temp = null;
 
         //This loop checks all words that start with firstLetter to see if the word already exists
@@ -193,7 +200,7 @@ public class ValidWords {
         }
 
         temp = new WordNode(aWord);
-        validList[firstLetter - 65].add(temp);
+        validList[firstLetter - 97].add(temp);
 
         return true;
     }
@@ -204,7 +211,7 @@ public class ValidWords {
         if (aWord.length() < 1)
             return 0;
         char firstLetter = aWord.charAt(0);
-        int index = firstLetter - 65;
+        int index = firstLetter - 97;
         WordNode temp = null;
 
         for (int i = 0; i < validList[index].size(); i++)
