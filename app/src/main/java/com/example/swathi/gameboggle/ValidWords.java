@@ -61,15 +61,15 @@ public class ValidWords {
     {
         switch (difficulty)
         {
-            case 0:             //easy
+            case 1:             //easy
                 if (total < 2)
                     return false;
                 break;
-            case 1:             //normal
+            case 2:             //normal
                 if (total < 5)
                     return false;
                 break;
-            case 2:             //difficult
+            case 3:             //difficult
                 if (total < 7)
                     return false;
                 break;
