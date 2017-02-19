@@ -325,8 +325,6 @@ public class ThirdScreen extends AppCompatActivity {
                 Log.d("ShakeDetector", "Shake Detected!");
             }
         });
-
-
     }
 
     public class CountDownTimerActivity extends CountDownTimer {
