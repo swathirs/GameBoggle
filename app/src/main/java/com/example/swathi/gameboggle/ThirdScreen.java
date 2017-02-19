@@ -321,7 +321,6 @@ public class ThirdScreen extends AppCompatActivity {
                     currButton = (Button) findViewById(R.id.button16);
                     currButton.setText(letters.get(15));
                 }
-
                 Log.d("ShakeDetector", "Shake Detected!");
             }
         });
