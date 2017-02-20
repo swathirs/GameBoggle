@@ -26,6 +26,7 @@ public class ThirdScreen extends AppCompatActivity {
     int difficulty;
 
     public TextView textView;
+    public TextView timeRemainingText;
     private CountDownTimer countDownTimer;
     private final long startTime = 60 * 1000;
     private final long interval = 1 * 1000;
