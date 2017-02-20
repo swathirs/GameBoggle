@@ -1,8 +1,10 @@
 package com.example.swathi.gameboggle;
 
+import android.content.Intent;
 import android.hardware.Sensor;
 import android.hardware.SensorManager;
 import android.os.Bundle;
+import android.os.Handler;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
@@ -10,6 +12,8 @@ import android.widget.Button;
 import android.widget.TextView;
 
 import java.util.ArrayList;
+
+import android.os.CountDownTimer;
 
 
 public class ThirdScreen extends AppCompatActivity {
@@ -20,6 +24,11 @@ public class ThirdScreen extends AppCompatActivity {
     String currWord = "";
     TextView wordDisplay;
     int difficulty;
+
+    public TextView textView;
+    private CountDownTimer countDownTimer;
+    private final long startTime = 60 * 1000;
+    private final long interval = 1 * 1000;
 
     public void setButtons(boolean [] list){
         findViewById(R.id.button1).setClickable(list[0]);
@@ -257,6 +266,13 @@ public class ThirdScreen extends AppCompatActivity {
         setContentView(R.layout.activity_third_screen);
         board = new Board(getApplicationContext());
 
+        textView = (TextView) findViewById(R.id.textView_Timer);
+        countDownTimer = new CountDownTimerActivity(startTime, interval);
+        textView.setText(textView.getText() + String.valueOf(startTime / 1000));
+        textView.setVisibility(View.VISIBLE);
+
+
+
         // fields used by SHAKE DETECTOR
         mSensorManager = (SensorManager) getSystemService(SENSOR_SERVICE);  //get sensor management service, cast as SensorManager
         mAccelerometer = mSensorManager.getDefaultSensor(Sensor.TYPE_ACCELEROMETER); //get accelerometer from the sensor manager
@@ -268,6 +284,7 @@ public class ThirdScreen extends AppCompatActivity {
 
                 //TODO   add code here...
                 //TODO   generate the board on shake...
+                countDownTimer.start();
                 if(letters == null){
                     board.genBoardArrangement(difficulty);
                     letters = board.getSquares();
@@ -305,12 +322,36 @@ public class ThirdScreen extends AppCompatActivity {
                     currButton = (Button) findViewById(R.id.button16);
                     currButton.setText(letters.get(15));
                 }
-
                 Log.d("ShakeDetector", "Shake Detected!");
             }
         });
+    }
+
+    public class CountDownTimerActivity extends CountDownTimer {
+        public CountDownTimerActivity(long startTime, long interval) {
+            super(startTime, interval);
+        }
+
+        @Override
+        public void onFinish() {
+            textView.setText("Time's up!");
 
 
+
+            new Handler().postDelayed(new Runnable() {
+                public void run() {
+                    Intent i = new Intent(ThirdScreen.this, HighScores.class);
+                    startActivity(i);
+
+                    finish();
+                }
+            }, 0);
+        }
+
+        @Override
+        public void onTick(long millisUntilFinished) {
+            textView.setText("" + millisUntilFinished/1000);
+        }
     }
 
 
@@ -334,6 +375,8 @@ public class ThirdScreen extends AppCompatActivity {
         mSensorManager.unregisterListener(mShakeDetector);
 
     }
+
+
 
 
 
