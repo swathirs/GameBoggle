@@ -14,4 +14,7 @@
     <string name="boggle">Boggle</string>
     <string name="multiplayer">Multiplayer</string>
     <string name="single_player">Single Player</string>
+    <string name="Easy">Easy</string>
+    <string name="Normal">Normal</string>
+    <string name="Difficult">Difficult</string>
 </resources>

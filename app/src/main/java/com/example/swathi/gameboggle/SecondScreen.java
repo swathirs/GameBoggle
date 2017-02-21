@@ -8,6 +8,8 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.RadioButton;
+import android.widget.RadioGroup;
 import android.widget.Spinner;
 import android.widget.Toast;
 
@@ -16,27 +18,15 @@ import java.util.List;
 
 public class SecondScreen extends AppCompatActivity implements AdapterView.OnItemSelectedListener {
     Button submitButton;
-
+    private RadioButton radioDifficultyButton;
+    private RadioGroup radioDifficultyLevelGroup;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_second_screen);
 
-        addListenerOnButton();
-
-        // Spinner element
-        Spinner difficultyLevelSpinner = (Spinner) findViewById(R.id.spinnerDifficultyId);
         Spinner roundsSpinner = (Spinner) findViewById(R.id.spinnerRoundsId);
-
-        // Spinner click listener
-        difficultyLevelSpinner.setOnItemSelectedListener((AdapterView.OnItemSelectedListener) this);
         roundsSpinner.setOnItemSelectedListener((AdapterView.OnItemSelectedListener) this);
-
-        // Spinner Drop down elements
-        List<String> categories = new ArrayList<String>();
-        categories.add("Easy");
-        categories.add("Normal");
-        categories.add("Difficult");
 
         List<String> roundsCategories = new ArrayList<String>();
         roundsCategories.add("1");
@@ -45,49 +35,47 @@ public class SecondScreen extends AppCompatActivity implements AdapterView.OnIte
         roundsCategories.add("4");
         roundsCategories.add("5");
 
-
         // Creating adapter for spinner
-        ArrayAdapter<String> dataAdapter1 = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, categories);
         ArrayAdapter<String> dataAdapter2 = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, roundsCategories);
 
-        // Drop down layout style - l
-        // ist view with radio button
-        dataAdapter1.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        // Drop down layout style - list view with radio button
         dataAdapter2.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
 
         // attaching data adapter to spinner
-        difficultyLevelSpinner.setAdapter(dataAdapter1);
         roundsSpinner.setAdapter(dataAdapter2);
     }
 
+
     @Override
     public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-        // On selecting a spinner item
-        String item = parent.getItemAtPosition(position).toString();
-
-        // Showing selected spinner item
-        Toast.makeText(parent.getContext(), "Selected: " + item, Toast.LENGTH_LONG).show();
-    }
-    public void onNothingSelected(AdapterView<?> arg0) {
-        // TODO Auto-generated method stub
-    }
-
-    public void addListenerOnButton() {
-
         final Context context = this;
-
+        radioDifficultyLevelGroup = (RadioGroup) findViewById(R.id.radioDifficultyLevelID);
+        // On selecting a spinner item
+        final String item = parent.getItemAtPosition(position).toString();
         submitButton = (Button) findViewById(R.id.buttonSubmitSecScreenId);
-
         submitButton.setOnClickListener(new View.OnClickListener() {
 
             @Override
             public void onClick(View arg0) {
 
+
+                int selectedId = radioDifficultyLevelGroup.getCheckedRadioButtonId();
+                radioDifficultyButton = (RadioButton) findViewById(selectedId);
+
                 Intent intent = new Intent(context, ThirdScreen.class);
+                intent.putExtra("noOfRounds",item);
+                intent.putExtra("difficultyLevel", String.valueOf(selectedId));
+
                 startActivity(intent);
             }
 
         });
+
+
     }
+    public void onNothingSelected(AdapterView<?> arg0) {
+        // TODO Auto-generated method stub
+    }
+
 }
 
