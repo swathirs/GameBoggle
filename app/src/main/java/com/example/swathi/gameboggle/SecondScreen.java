@@ -18,8 +18,9 @@ import java.util.List;
 
 public class SecondScreen extends AppCompatActivity implements AdapterView.OnItemSelectedListener {
     Button submitButton;
-    private RadioButton radioDifficultyButton;
-    private RadioGroup radioDifficultyLevelGroup;
+    RadioButton radioDifficultyButton;
+    RadioGroup radioDifficultyLevelGroup;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
