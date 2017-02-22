@@ -18,7 +18,8 @@
         <activity android:name=".SecondScreen" />
         <activity android:name=".HelpScreen" />
         <activity android:name=".ThirdScreen" />
-        <activity android:name=".HighScores"/>
+        <activity android:name=".HighScores" />
+        <activity android:name=".p2p_game"></activity>
     </application>
 
 </manifest>
