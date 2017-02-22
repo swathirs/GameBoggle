@@ -336,8 +336,6 @@ public class ThirdScreen extends AppCompatActivity {
         public void onFinish() {
             textView.setText("Time's up!");
 
-
-
             new Handler().postDelayed(new Runnable() {
                 public void run() {
                     Intent i = new Intent(ThirdScreen.this, HighScores.class);
