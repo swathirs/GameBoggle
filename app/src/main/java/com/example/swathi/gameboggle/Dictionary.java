@@ -80,7 +80,8 @@ public class Dictionary{
     }
 
 
-    // isWord will take in a string and return true if that string is a word in the dictionary
+
+    // isWord will take in a string and return true if that string is a word in the dictioanry
     public boolean isWord(String word)
     {
         char letter = ' ';

@@ -47,11 +47,6 @@ public class InstrumentedDictionaryTest {
     }
 
 
-    /*@Test
-    public void isWord_nullWord_ReturnsFalse() {  assertFalse(aDictionary.isWord(null)); }
-    // isWord needs a string, crashes on null input*/
-
-
     // TESTS 2: isPrefix
     // isPrefix will return true if there are any words starting with the passed in string
 
@@ -95,6 +90,5 @@ public class InstrumentedDictionaryTest {
     public void isPre_long_NotValidPlural_ReturnsFalse() {
         assertFalse(aDictionary.isPrefix("zitheristsz"));
     }
-
 
 }
