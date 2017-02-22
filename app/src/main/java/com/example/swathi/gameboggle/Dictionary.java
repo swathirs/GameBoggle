@@ -1,21 +1,14 @@
 package com.example.swathi.gameboggle;
 
 
-import android.content.res.AssetManager;
-import android.os.Parcel;
-import android.os.Parcelable;
-import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
 import android.content.Context;
+import android.content.res.AssetManager;
 import android.util.Log;
 
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
-import java.util.*;
-import java.lang.Character;
-import android.util.Log;
 
 
 public class Dictionary{
@@ -87,7 +80,7 @@ public class Dictionary{
     }
 
 
-    // isWord will take in a string and return true if that string is a word in the dictioanry
+    // isWord will take in a string and return true if that string is a word in the dictionary
     public boolean isWord(String word)
     {
         char letter = ' ';

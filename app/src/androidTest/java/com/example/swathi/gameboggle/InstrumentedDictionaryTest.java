@@ -6,8 +6,10 @@ import android.support.test.runner.AndroidJUnit4;
 
 import org.junit.Before;
 import org.junit.Test;
-import static org.junit.Assert.*;
 import org.junit.runner.RunWith;
+
+import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertTrue;
 
 
 
@@ -24,6 +26,8 @@ public class InstrumentedDictionaryTest {
         aDictionary = new Dictionary(appContext);
     }
 
+    // TESTS 1:  isWord
+    // isWord will take in a string and return true if that string is a word in the dictionary
 
     @Test
     public void isWord_validWord_ReturnsTrue() {
@@ -44,8 +48,53 @@ public class InstrumentedDictionaryTest {
 
 
     /*@Test
-    public void isWord_nullWord_ReturnsFalse() {
-        assertFalse(aDictionary.isWord(null));
+    public void isWord_nullWord_ReturnsFalse() {  assertFalse(aDictionary.isWord(null)); }
+    // isWord needs a string, crashes on null input*/
+
+
+    // TESTS 2: isPrefix
+    // isPrefix will return true if there are any words starting with the passed in string
+
+    @Test
+    public void isPre_validPre_short_ReturnsTrue() {
+        assertTrue(aDictionary.isPrefix("ab"));
     }
-    isWord needs a string, crashes on null input*/
+
+    @Test
+    public void isPre_validPre_full_ReturnsTrue() {
+        assertTrue(aDictionary.isPrefix("year"));
+    }
+
+    @Test
+    public void isPre_inValidPre_ReturnsFalse() {
+        assertFalse(aDictionary.isPrefix("zx"));
+    }
+
+    @Test
+    public void isPre_empty_ReturnsTrue() {
+        assertTrue(aDictionary.isPrefix(""));
+    }
+
+    @Test
+    public void isPre_oneChar_ReturnsTrue() {
+        assertTrue(aDictionary.isPrefix("x"));
+    }
+
+    @Test
+    public void isPre_long_hasPlural_ReturnsTrue() {
+        assertTrue(aDictionary.isPrefix("zitherist"));
+    }
+
+    @Test
+    public void isPre_long_isThePlural_ReturnsTrue() {
+        assertTrue(aDictionary.isPrefix("zitherists"));
+    }
+
+
+    @Test
+    public void isPre_long_NotValidPlural_ReturnsFalse() {
+        assertFalse(aDictionary.isPrefix("zitheristsz"));
+    }
+
+
 }
