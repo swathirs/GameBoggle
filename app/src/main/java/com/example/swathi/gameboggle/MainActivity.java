@@ -21,6 +21,8 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void addListenerOnButton() {
+        final int roundNumber = 1;
+        final int roundScore = 0;
 
         final Context context = this;
 
@@ -34,7 +36,9 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View arg0) {
 
-                Intent intent = new Intent(context, SecondScreen.class);
+                Intent intent = new Intent(context, ThirdScreen.class);
+                intent.putExtra("RoundNumber", roundNumber );
+                intent.putExtra("RoundScore", roundScore );
                 startActivity(intent);
             }
 
@@ -45,6 +49,8 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View arg0) {
 
                 Intent intent = new Intent(context, MainActivity.class);
+                intent.putExtra("RoundNumber", roundNumber );
+                intent.putExtra("RoundScore", roundScore );
                 startActivity(intent);
             }
 
@@ -72,3 +78,36 @@ public class MainActivity extends AppCompatActivity {
 
     }
 }
+
+/*
+  Button current_button= (Button) v;
+        //current_button.setText("Pressed!");
+        int Round = 1;
+        int Score = 0;
+        switch(v.getId()){
+
+            case R.id.button_single:
+                Intent singleIntent = new Intent(v.getContext(), SinglePlayer.class);
+                singleIntent.putExtra("Round",Round);
+                singleIntent.putExtra("Score",Score);
+                startActivity(singleIntent);
+                break;
+            case R.id.button_double:
+                Intent doubleIntent = new Intent(v.getContext(), SetUpServerClient.class);
+                doubleIntent.putExtra("Round",Round);
+                doubleIntent.putExtra("Score",Score);
+                doubleIntent.putExtra("Mode",BBDoubleBasicMode);
+                startActivity(doubleIntent);
+                break;
+            case R.id.button_doubleCT:
+                //NumPlayers = 2;
+                Intent doubleCTIntent = new Intent(v.getContext(), SetUpServerClient.class);
+                doubleCTIntent.putExtra("Round",Round);
+                doubleCTIntent.putExtra("Score",Score);
+                doubleCTIntent.putExtra("Mode",BBDoubleCutMode);
+                startActivity(doubleCTIntent);
+                break;
+            default:
+
+        }
+*/

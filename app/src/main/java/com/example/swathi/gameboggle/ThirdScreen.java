@@ -338,7 +338,7 @@ public class ThirdScreen extends AppCompatActivity {
 
             new Handler().postDelayed(new Runnable() {
                 public void run() {
-                    Intent i = new Intent(ThirdScreen.this, HighScores.class);
+                    Intent i = new Intent(ThirdScreen.this, ScoreScreen.class);
                     startActivity(i);
 
                     finish();
