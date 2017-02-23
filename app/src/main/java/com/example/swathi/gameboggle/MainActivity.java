@@ -23,6 +23,7 @@ public class MainActivity extends AppCompatActivity {
     public void addListenerOnButton() {
         final int roundNumber = 1;
         final int roundScore = 0;
+        final int difficulty = 1; //1 for Easy; 2 for Normal; 3 for Difficult
 
         final Context context = this;
 
@@ -39,6 +40,7 @@ public class MainActivity extends AppCompatActivity {
                 Intent intent = new Intent(context, ThirdScreen.class);
                 intent.putExtra("RoundNumber", roundNumber );
                 intent.putExtra("RoundScore", roundScore );
+                intent.putExtra("Difficulty", difficulty );
                 startActivity(intent);
             }
 
@@ -51,6 +53,7 @@ public class MainActivity extends AppCompatActivity {
                 Intent intent = new Intent(context, MainActivity.class);
                 intent.putExtra("RoundNumber", roundNumber );
                 intent.putExtra("RoundScore", roundScore );
+                intent.putExtra("Difficulty", difficulty );
                 startActivity(intent);
             }
 

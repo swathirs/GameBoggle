@@ -24,8 +24,14 @@ public class ThirdScreen extends AppCompatActivity {
     String currWord = "";
     TextView wordDisplay;
     int difficulty;
+    int roundScore = 0;
+    int roundNumber = 1;
+
 
     public TextView textView;
+
+
+
     private CountDownTimer countDownTimer;
     private final long startTime = 60 * 1000;
     private final long interval = 1 * 1000;
@@ -50,16 +56,19 @@ public class ThirdScreen extends AppCompatActivity {
     }
 
     public void pressSubmit(View view){
-        //board.checkWord(currWord);  //TODO: find out why this line crashes
+        board.checkWord(currWord);  //TODO: find out why this line crashes
         currWord = "";
         wordDisplay = (TextView) findViewById(R.id.Entry);
         wordDisplay.setText(currWord);
+        wordDisplay.setVisibility(View.VISIBLE);
+
         boolean [] list =
                         {true, true, true, true,
                         true, true, true, true,
                         true, true, true, true,
                         true, true, true, true};
         setButtons(list);
+
     }
 
     public void press1(View view){
@@ -261,7 +270,13 @@ public class ThirdScreen extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         letters = null;
-        difficulty = 3; //TODO: get difficulty from screen 2
+        //difficulty = 3; //TODO: get difficulty from screen 2
+
+        roundNumber = getIntent().getExtras().getInt("RoundNumber");//Obtained from MainActivity
+        roundScore= getIntent().getExtras().getInt("RoundScore");//Obtained from MainActivity
+        difficulty= getIntent().getExtras().getInt("Difficulty");//Obtained from MainActivity
+
+
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_third_screen);
         board = new Board(getApplicationContext());

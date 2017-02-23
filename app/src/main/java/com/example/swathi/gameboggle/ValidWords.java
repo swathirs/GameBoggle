@@ -1,12 +1,17 @@
 package com.example.swathi.gameboggle;
 
 import java.util.ArrayList;
+
+import android.app.Activity;
+import android.content.Context;
 import android.util.Log;
+import android.widget.Toast;
+
 /**
  * Created by John on 2/10/2017.
  */
 
-public class ValidWords {
+public class ValidWords extends Activity{
     //
     private int difficulty;
     private ArrayList<WordNode> validList[];
@@ -206,10 +211,22 @@ public class ValidWords {
     }
 
     //return 0 for not found, 1 for found and already used, 2 for found and not already found
+    //return -1 if aWord.length() < 3
     public int checkWord(String aWord)
     {
-        if (aWord.length() < 1)
-            return 0;
+      /*  Context context = getApplicationContext();
+        CharSequence text = "Word must be at least 3 characters long!";
+        int duration = Toast.LENGTH_SHORT;*/ // TODO: Check why these lines cause  a crash
+
+
+       // if (aWord.length() < 1)
+        if (aWord.length() < 3)
+        {
+           // Toast toast = Toast.makeText(context, text, duration);
+           // toast.show();
+            return -1;
+        }
+
         char firstLetter = aWord.charAt(0);
         int index = firstLetter - 97;
         WordNode temp = null;
