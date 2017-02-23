@@ -29,7 +29,7 @@ public class ThirdScreen extends AppCompatActivity {
 
 
     public TextView textView;
-
+    public TextView roundScoreTextView;
 
 
     private CountDownTimer countDownTimer;
@@ -272,20 +272,23 @@ public class ThirdScreen extends AppCompatActivity {
         letters = null;
         //difficulty = 3; //TODO: get difficulty from screen 2
 
-        roundNumber = getIntent().getExtras().getInt("RoundNumber");//Obtained from MainActivity
-        roundScore= getIntent().getExtras().getInt("RoundScore");//Obtained from MainActivity
-        difficulty= getIntent().getExtras().getInt("Difficulty");//Obtained from MainActivity
 
 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_third_screen);
         board = new Board(getApplicationContext());
 
+        roundNumber = getIntent().getExtras().getInt("RoundNumber");//Obtained from MainActivity
+        roundScore= getIntent().getExtras().getInt("RoundScore");//Obtained from MainActivity
+        difficulty= getIntent().getExtras().getInt("Difficulty");//Obtained from MainActivity
+
         textView = (TextView) findViewById(R.id.textView_Timer);
         countDownTimer = new CountDownTimerActivity(startTime, interval);
         textView.setText(textView.getText() + String.valueOf(startTime / 1000));
         textView.setVisibility(View.VISIBLE);
 
+        roundScoreTextView = (TextView)findViewById(R.id.tvRoundScoreID);
+        roundScoreTextView.setText(Integer.toString(roundScore));
 
 
         // fields used by SHAKE DETECTOR

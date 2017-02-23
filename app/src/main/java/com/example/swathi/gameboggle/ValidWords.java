@@ -214,16 +214,8 @@ public class ValidWords extends Activity{
     //return -1 if aWord.length() < 3
     public int checkWord(String aWord)
     {
-      /*  Context context = getApplicationContext();
-        CharSequence text = "Word must be at least 3 characters long!";
-        int duration = Toast.LENGTH_SHORT;*/ // TODO: Check why these lines cause  a crash
-
-
-       // if (aWord.length() < 1)
         if (aWord.length() < 3)
         {
-           // Toast toast = Toast.makeText(context, text, duration);
-           // toast.show();
             return -1;
         }
 
