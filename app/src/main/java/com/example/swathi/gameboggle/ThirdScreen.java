@@ -392,6 +392,13 @@ public class ThirdScreen extends AppCompatActivity {
 
     }
 
+    void setScore(int score)
+    {
+        TextView scoretxt = (TextView) findViewById(R.id.tvRoundScoreID);
+        scoretxt.setText(Integer.toString(score));
+
+    }
+
 
 
 
