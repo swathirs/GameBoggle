@@ -50,23 +50,29 @@ public class Board extends Activity {
         return squares;
     }
 
-    public void checkWord(String aWord){
+    public boolean checkWord(String aWord){
         //return valid.checkWord(aWord);
 
         int result = valid.checkWord(aWord);
         if(result == -1){
             Toast.makeText(context.getApplicationContext(), "Word must be at least 3 characters long!", Toast.LENGTH_SHORT).show();
-            //return;
-
+            return false;
         }
         if(result == 1){
             Toast.makeText(context.getApplicationContext(), "You've already submitted this word!", Toast.LENGTH_SHORT).show();
-           // return;
+            return false;
         }
          if(result == 0){
             Toast.makeText(context.getApplicationContext(), "Word not found in the dictionary!", Toast.LENGTH_SHORT).show();
-           // return;
+           return false;
         }
-        return;
+        return true;
     }
+
+    public ArrayList<String> foundWords(){
+        return valid.getFoundWords();
+
+    }
+
+
 }

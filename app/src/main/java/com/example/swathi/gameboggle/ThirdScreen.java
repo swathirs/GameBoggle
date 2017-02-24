@@ -6,6 +6,7 @@ import android.hardware.SensorManager;
 import android.os.Bundle;
 import android.os.Handler;
 import android.support.v7.app.AppCompatActivity;
+import android.text.method.ScrollingMovementMethod;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
@@ -23,6 +24,10 @@ public class ThirdScreen extends AppCompatActivity {
     Button currButton;
     String currWord = "";
     TextView wordDisplay;
+
+    public ArrayList<String> fetchFoundWords;
+    public ValidWords valid;
+
     int difficulty;
     int roundScore = 0;
     int roundNumber = 1;
@@ -56,18 +61,29 @@ public class ThirdScreen extends AppCompatActivity {
     }
 
     public void pressSubmit(View view){
-        board.checkWord(currWord);  //TODO: find out why this line crashes
+
+        boolean dictReturn;
+
+        dictReturn= board.checkWord(currWord);  //TODO: find out why this line crashes
+        if(dictReturn){
+
+
+                roundScore = roundScore + 1;
+                setScore(roundScore);
+        }
         currWord = "";
         wordDisplay = (TextView) findViewById(R.id.Entry);
+        wordDisplay.setMovementMethod(new ScrollingMovementMethod());
         wordDisplay.setText(currWord);
         wordDisplay.setVisibility(View.VISIBLE);
-
         boolean [] list =
                         {true, true, true, true,
                         true, true, true, true,
                         true, true, true, true,
                         true, true, true, true};
         setButtons(list);
+
+
 
     }
 
@@ -272,8 +288,6 @@ public class ThirdScreen extends AppCompatActivity {
         letters = null;
         //difficulty = 3; //TODO: get difficulty from screen 2
 
-
-
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_third_screen);
         board = new Board(getApplicationContext());
@@ -343,6 +357,8 @@ public class ThirdScreen extends AppCompatActivity {
                 Log.d("ShakeDetector", "Shake Detected!");
             }
         });
+
+
     }
 
     public class CountDownTimerActivity extends CountDownTimer {
@@ -357,6 +373,8 @@ public class ThirdScreen extends AppCompatActivity {
             new Handler().postDelayed(new Runnable() {
                 public void run() {
                     Intent i = new Intent(ThirdScreen.this, ScoreScreen.class);
+                    i.putExtra("RoundScoreFromThirdScreen", roundScore);
+
                     startActivity(i);
 
                     finish();

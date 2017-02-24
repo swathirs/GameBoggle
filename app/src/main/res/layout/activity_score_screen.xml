@@ -7,7 +7,7 @@
     tools:context="com.example.swathi.gameboggle.ScoreScreen">
 
 
-    <TextView
+  <!--  <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceLarge"
@@ -31,7 +31,7 @@
         android:textStyle="bold"
         android:layout_marginLeft="14dp"
         android:layout_marginStart="14dp"
-        android:id="@+id/tvRoundNumberID" />
+        android:id="@+id/tvRoundNumberID" /> -->
 
     <TextView
         android:layout_width="wrap_content"
@@ -50,10 +50,14 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceLarge"
-        android:layout_alignBottom="@+id/tvScore"
         android:textColor="#ffbcaa0d"
         android:textStyle="bold"
-        android:id="@+id/tvScoreForThisRoundID" />
+        android:id="@+id/tvScoreForThisRoundID"
+        android:layout_toRightOf="@+id/tvScore"
+        android:layout_toEndOf="@+id/tvScore"
+        android:layout_marginLeft="14dp"
+        android:layout_marginStart="14dp"
+        android:layout_alignBottom="@+id/tvScore" />
 
     <TextView
         android:text=""
@@ -68,7 +72,7 @@
         android:textStyle="bold"/>
 
     <TextView
-        android:text="Other possible words:"
+        android:text="All possible words:"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@+id/tvPlayersCorrectWords"
@@ -93,7 +97,7 @@
         style="?android:attr/buttonStyleSmall"
         android:layout_width="120dp"
         android:layout_height="40dp"
-        android:text="Next Round"
+        android:text="Play again"
         android:id="@+id/btnNextRoundID"
         android:clickable="true"
         android:textColor="#f4fbfd24"
@@ -119,7 +123,7 @@
         style="?android:attr/buttonStyleSmall"
         android:layout_width="80dp"
         android:layout_height="40dp"
-        android:text="End Game"
+        android:text="Quit"
         android:id="@+id/btnEndGameID"
         android:clickable="true"
         android:textColor="#f4fbfd24"
@@ -127,6 +131,15 @@
         android:layout_alignParentBottom="true"
         android:layout_alignParentRight="true"
         android:layout_alignParentEnd="true" />
+
+    <TextView
+        android:text=""
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/tvYGC"
+        android:layout_toEndOf="@+id/tvPlayersCorrectWords"
+        android:id="@+id/textViewFoundWordsID"
+        android:layout_toRightOf="@+id/tvPlayersCorrectWords" />
 
 
 </RelativeLayout>

@@ -253,4 +253,21 @@ public class ValidWords extends Activity{
 
         return temp;
     }
+
+    public ArrayList<String> getFoundWords()
+    {
+        ArrayList<String> temp = new ArrayList<String>();
+
+        for (int i = 0; i < 26; i++)
+        {
+            for (int j = 0; j < validList[i].size(); j++)
+            {
+                if (validList[i].get(j).isFound())
+                    temp.add(validList[i].get(j).getWord());
+            }
+        }
+
+        return temp;
+    }
+
 }
