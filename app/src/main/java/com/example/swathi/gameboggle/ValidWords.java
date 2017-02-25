@@ -254,6 +254,8 @@ public class ValidWords extends Activity{
         return temp;
     }
 
+    //Returns the words found by the player
+
     public ArrayList<String> getFoundWords()
     {
         ArrayList<String> temp = new ArrayList<String>();
@@ -270,4 +272,4 @@ public class ValidWords extends Activity{
         return temp;
     }
 
-}
+
