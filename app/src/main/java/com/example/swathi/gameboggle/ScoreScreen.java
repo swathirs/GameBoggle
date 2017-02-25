@@ -42,7 +42,6 @@ public class ScoreScreen extends AppCompatActivity {
         fetchValidWordsList = new ArrayList<String>();
         fetchValidWordsList = (ArrayList<String>) getIntent().getSerializableExtra("ValidWordsFromThirdScreen");
          allValidWordsListText.setText(fetchValidWordsList.toString());
-
         addListenerOnButton();
     }
 
