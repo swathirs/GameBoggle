@@ -26,6 +26,7 @@ public class ThirdScreen extends AppCompatActivity {
     TextView wordDisplay;
 
     public ArrayList<String> fetchFoundWords;
+    public ArrayList<String> fetchValidWords;
     public ValidWords valid;
 
     int difficulty;
@@ -66,8 +67,6 @@ public class ThirdScreen extends AppCompatActivity {
 
         dictReturn= board.checkWord(currWord);  //TODO: find out why this line crashes
         if(dictReturn){
-
-
                 roundScore = roundScore + 1;
                 setScore(roundScore);
         }
@@ -82,9 +81,6 @@ public class ThirdScreen extends AppCompatActivity {
                         true, true, true, true,
                         true, true, true, true};
         setButtons(list);
-
-
-
     }
 
     public void press1(View view){
@@ -374,6 +370,21 @@ public class ThirdScreen extends AppCompatActivity {
                 public void run() {
                     Intent i = new Intent(ThirdScreen.this, ScoreScreen.class);
                     i.putExtra("RoundScoreFromThirdScreen", roundScore);
+
+                    fetchFoundWords = new ArrayList<String>();
+                    fetchFoundWords = board.foundWords();
+                    i.putExtra("FoundWordsFromThirdScreen", fetchFoundWords);
+
+                    fetchValidWords = new ArrayList<String>();
+                    fetchValidWords = board.validWords();
+                    i.putExtra("ValidWordsFromThirdScreen", fetchValidWords);
+
+                    for (int j =0; j < fetchFoundWords.size(); j++) {
+                        Log.d("FoundWords", fetchFoundWords.get(j));
+                    }
+                    for (int j =0; j < fetchValidWords.size(); j++) {
+                        Log.d("ValidWords", fetchValidWords.get(j));
+                    }
 
                     startActivity(i);
 

@@ -18,8 +18,8 @@ public class ScoreScreen extends AppCompatActivity {
 
     public ValidWords valid;
     public Board board;
-    public TextView foundWordsText;
-    public ArrayList<String> fetchFoundWords;
+    public TextView foundWordsText, allValidWordsListText;
+    public ArrayList<String> fetchFoundWordsList, fetchValidWordsList;
     int roundScore = 0;
     public TextView roundScoreDisp;
     Button nextGameButton, endGameButton;
@@ -33,11 +33,18 @@ public class ScoreScreen extends AppCompatActivity {
         roundScoreDisp = (TextView) findViewById(R.id.tvScoreForThisRoundID);
         roundScoreDisp.setText(Integer.toString(roundScore));
 
-        fetchFoundWords = new ArrayList<String>();
-        //  fetchFoundWords = valid.getFoundWords(); TODO: check why this line crashes
+        foundWordsText = (TextView)findViewById(R.id.textViewFoundWordsID);
+        fetchFoundWordsList = new ArrayList<String>();
+        fetchFoundWordsList = (ArrayList<String>) getIntent().getSerializableExtra("FoundWordsFromThirdScreen");
+        foundWordsText.setText(fetchFoundWordsList.toString());
+
+        allValidWordsListText = (TextView)findViewById(R.id. tvListOfPossibleWordsID);
+        fetchValidWordsList = new ArrayList<String>();
+        fetchValidWordsList = (ArrayList<String>) getIntent().getSerializableExtra("ValidWordsFromThirdScreen");
+         allValidWordsListText.setText(fetchValidWordsList.toString());
+
         addListenerOnButton();
     }
-
 
     public void addListenerOnButton() {
 

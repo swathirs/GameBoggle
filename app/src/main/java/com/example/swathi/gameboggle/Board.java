@@ -20,6 +20,9 @@ public class Board extends Activity {
     private Dictionary dictionary;
     private ValidWords valid;
 
+    private ArrayList<String> foundWordsList;
+    private ArrayList<String> validWordsList;
+
     public Board() {
         roller = new DiceController();
         squares = null;
@@ -63,14 +66,23 @@ public class Board extends Activity {
             return false;
         }
          if(result == 0){
-            Toast.makeText(context.getApplicationContext(), "Word not found in the dictionary!", Toast.LENGTH_SHORT).show();
+            Toast.makeText(context.getApplicationContext(), "Word is not found in the dictionary!", Toast.LENGTH_SHORT).show();
            return false;
         }
         return true;
     }
 
     public ArrayList<String> foundWords(){
-        return valid.getFoundWords();
+        foundWordsList = new ArrayList<String>();
+        foundWordsList = valid.getFoundWords();
+        return foundWordsList;
+
+    }
+
+    public ArrayList<String> validWords(){
+        validWordsList = new ArrayList<String>();
+        validWordsList = valid.getValidWords();
+        return validWordsList;
 
     }
 
