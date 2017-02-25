@@ -16,6 +16,7 @@ import java.util.List;
 
 public class SecondScreen extends AppCompatActivity implements AdapterView.OnItemSelectedListener {
     Button submitButton;
+    Button multiButton;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -27,10 +28,12 @@ public class SecondScreen extends AppCompatActivity implements AdapterView.OnIte
         // Spinner element
         Spinner difficultyLevelSpinner = (Spinner) findViewById(R.id.spinnerDifficultyId);
         Spinner roundsSpinner = (Spinner) findViewById(R.id.spinnerRoundsId);
+        Spinner multiSpinner = (Spinner) findViewById(R.id.spinnerMultiId);
 
         // Spinner click listener
         difficultyLevelSpinner.setOnItemSelectedListener((AdapterView.OnItemSelectedListener) this);
         roundsSpinner.setOnItemSelectedListener((AdapterView.OnItemSelectedListener) this);
+        multiSpinner.setOnItemSelectedListener((AdapterView.OnItemSelectedListener) this);
 
         // Spinner Drop down elements
         List<String> categories = new ArrayList<String>();
@@ -45,19 +48,26 @@ public class SecondScreen extends AppCompatActivity implements AdapterView.OnIte
         roundsCategories.add("4");
         roundsCategories.add("5");
 
+        List<String> multiCategories = new ArrayList<String>();
+        multiCategories.add("Basic");
+        multiCategories.add("Cutthroat");
+
 
         // Creating adapter for spinner
         ArrayAdapter<String> dataAdapter1 = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, categories);
         ArrayAdapter<String> dataAdapter2 = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, roundsCategories);
+        ArrayAdapter<String> dataAdapter3 = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, multiCategories);
 
         // Drop down layout style - l
         // ist view with radio button
         dataAdapter1.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         dataAdapter2.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        dataAdapter3.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
 
         // attaching data adapter to spinner
         difficultyLevelSpinner.setAdapter(dataAdapter1);
         roundsSpinner.setAdapter(dataAdapter2);
+        multiSpinner.setAdapter(dataAdapter3);
     }
 
     @Override
@@ -84,6 +94,19 @@ public class SecondScreen extends AppCompatActivity implements AdapterView.OnIte
             public void onClick(View arg0) {
 
                 Intent intent = new Intent(context, ThirdScreen.class);
+                startActivity(intent);
+            }
+
+        });
+
+        multiButton = (Button) findViewById(R.id.multiButtonSubmitSecScreenId);
+
+        submitButton.setOnClickListener(new View.OnClickListener() {
+
+            @Override
+            public void onClick(View arg0) {
+
+                Intent intent = new Intent(context, p2p_game.class);
                 startActivity(intent);
             }
 

@@ -50,7 +50,7 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View arg0) {
 
-                Intent intent = new Intent(context, MainActivity.class);
+                Intent intent = new Intent(context, p2p_game.class);
                 intent.putExtra("RoundNumber", roundNumber );
                 intent.putExtra("RoundScore", roundScore );
                 intent.putExtra("Difficulty", difficulty );

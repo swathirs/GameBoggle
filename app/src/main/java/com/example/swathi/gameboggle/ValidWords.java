@@ -271,5 +271,6 @@ public class ValidWords extends Activity{
 
         return temp;
     }
+}
 
 
