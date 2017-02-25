@@ -30,6 +30,7 @@
         <activity android:name=".ThirdScreen" />
         <activity android:name=".HighScores" />
         <activity android:name=".p2p_game"></activity>
+        <activity android:name=".ScoreScreen"></activity>
     </application>
 
 </manifest>
