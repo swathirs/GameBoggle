@@ -6,6 +6,7 @@ import android.hardware.SensorManager;
 import android.os.Bundle;
 import android.os.Handler;
 import android.support.v7.app.AppCompatActivity;
+import android.text.method.ScrollingMovementMethod;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
@@ -23,9 +24,20 @@ public class ThirdScreen extends AppCompatActivity {
     Button currButton;
     String currWord = "";
     TextView wordDisplay;
+
+    public ArrayList<String> fetchFoundWords;
+    public ArrayList<String> fetchValidWords;
+    public ValidWords valid;
+
     int difficulty;
+    int roundScore = 0;
+    int roundNumber = 1;
+
 
     public TextView textView;
+    public TextView roundScoreTextView;
+
+
     private CountDownTimer countDownTimer;
     private final long startTime = 60 * 1000;
     private final long interval = 1 * 1000;
@@ -50,10 +62,19 @@ public class ThirdScreen extends AppCompatActivity {
     }
 
     public void pressSubmit(View view){
-        //board.checkWord(currWord);  //TODO: find out why this line crashes
+
+        boolean dictReturn;
+
+        dictReturn= board.checkWord(currWord);  //TODO: find out why this line crashes
+        if(dictReturn){
+                roundScore = roundScore + 1;
+                setScore(roundScore);
+        }
         currWord = "";
         wordDisplay = (TextView) findViewById(R.id.Entry);
+        wordDisplay.setMovementMethod(new ScrollingMovementMethod());
         wordDisplay.setText(currWord);
+        wordDisplay.setVisibility(View.VISIBLE);
         boolean [] list =
                         {true, true, true, true,
                         true, true, true, true,
@@ -261,16 +282,23 @@ public class ThirdScreen extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         letters = null;
-        difficulty = 3; //TODO: get difficulty from screen 2
+        //difficulty = 3; //TODO: get difficulty from screen 2
+
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_third_screen);
         board = new Board(getApplicationContext());
+
+        roundNumber = getIntent().getExtras().getInt("RoundNumber");//Obtained from MainActivity
+        roundScore= getIntent().getExtras().getInt("RoundScore");//Obtained from MainActivity
+        difficulty= getIntent().getExtras().getInt("Difficulty");//Obtained from MainActivity
 
         textView = (TextView) findViewById(R.id.textView_Timer);
         countDownTimer = new CountDownTimerActivity(startTime, interval);
         textView.setText(textView.getText() + String.valueOf(startTime / 1000));
         textView.setVisibility(View.VISIBLE);
 
+        roundScoreTextView = (TextView)findViewById(R.id.tvRoundScoreID);
+        roundScoreTextView.setText(Integer.toString(roundScore));
 
 
         // fields used by SHAKE DETECTOR
@@ -325,6 +353,8 @@ public class ThirdScreen extends AppCompatActivity {
                 Log.d("ShakeDetector", "Shake Detected!");
             }
         });
+
+
     }
 
     public class CountDownTimerActivity extends CountDownTimer {
@@ -336,11 +366,26 @@ public class ThirdScreen extends AppCompatActivity {
         public void onFinish() {
             textView.setText("Time's up!");
 
-
-
             new Handler().postDelayed(new Runnable() {
                 public void run() {
-                    Intent i = new Intent(ThirdScreen.this, HighScores.class);
+                    Intent i = new Intent(ThirdScreen.this, ScoreScreen.class);
+                    i.putExtra("RoundScoreFromThirdScreen", roundScore);
+
+                    fetchFoundWords = new ArrayList<String>();
+                    fetchFoundWords = board.foundWords();
+                    i.putExtra("FoundWordsFromThirdScreen", fetchFoundWords);
+
+                    fetchValidWords = new ArrayList<String>();
+                    fetchValidWords = board.validWords();
+                    i.putExtra("ValidWordsFromThirdScreen", fetchValidWords);
+
+                    for (int j =0; j < fetchFoundWords.size(); j++) {
+                        Log.d("FoundWords", fetchFoundWords.get(j));
+                    }
+                    for (int j =0; j < fetchValidWords.size(); j++) {
+                        Log.d("ValidWords", fetchValidWords.get(j));
+                    }
+
                     startActivity(i);
 
                     finish();
@@ -373,6 +418,13 @@ public class ThirdScreen extends AppCompatActivity {
         super.onPause();
         // ...need unregister SHAKE DETECTOR to stop listening to System Sensor when app is paused
         mSensorManager.unregisterListener(mShakeDetector);
+
+    }
+
+    void setScore(int score)
+    {
+        TextView scoretxt = (TextView) findViewById(R.id.tvRoundScoreID);
+        scoretxt.setText(Integer.toString(score));
 
     }
 
