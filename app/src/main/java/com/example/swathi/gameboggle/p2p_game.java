@@ -3,6 +3,7 @@ package com.example.swathi.gameboggle;
 import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
+import android.net.wifi.p2p.WifiP2pInfo;
 import android.net.wifi.p2p.WifiP2pManager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -12,6 +13,7 @@ import android.widget.Button;
 
 public class p2p_game extends AppCompatActivity {
     Button search;
+    Button connect;
 
     private final IntentFilter intentFilter = new IntentFilter();
     WifiP2pManager.Channel mChannel;
@@ -45,6 +47,8 @@ public class p2p_game extends AppCompatActivity {
         mIntentFilter.addAction(WifiP2pManager.WIFI_P2P_PEERS_CHANGED_ACTION);
         mIntentFilter.addAction(WifiP2pManager.WIFI_P2P_CONNECTION_CHANGED_ACTION);
         mIntentFilter.addAction(WifiP2pManager.WIFI_P2P_THIS_DEVICE_CHANGED_ACTION);
+
+        addListenerOnButton();
     }
 
 
@@ -63,6 +67,26 @@ public class p2p_game extends AppCompatActivity {
     }
 
     public void addListenerOnButton() {
+        connect = (Button) findViewById(R.id.connect);
+
+        connect.setOnClickListener(new View.OnClickListener(){
+
+            @Override
+            public void onClick(View arg0){
+
+                Log.d("p2p", "Connection start.");
+
+                mReceiver.connect();
+
+                /*mManager.requestConnectionInfo(mChannel, new WifiP2pManager.ConnectionInfoListener() {
+                    @Override
+                    public void onConnectionInfoAvailable(WifiP2pInfo wifiP2pInfo) {
+
+                    }
+                });*/
+            }
+        });
+
         search = (Button) findViewById(R.id.searchButton);
 
         search.setOnClickListener(new View.OnClickListener() {
@@ -88,4 +112,6 @@ public class p2p_game extends AppCompatActivity {
 
         });
     }
+
+
 }
