@@ -26,7 +26,7 @@ public class Board extends Activity {
         valid = null;
     }
 
-
+    /** constructor */
     public Board(Context context)
     {
         roller = new DiceController();
@@ -37,13 +37,16 @@ public class Board extends Activity {
     }
 
 
+    /** genBoardArrangement()
+     * input: int (representing the level of game difficulty)
+     * */
     public boolean genBoardArrangement(int difficulty) {
         squares = roller.genBoard();
         valid = new ValidWords(squares, difficulty, dictionary);
 
         while (!valid.checkValidBoard())
         {
-            valid = new ValidWords(squares, 1, dictionary);
+            valid = new ValidWords(squares, difficulty, dictionary);
         }
 
         return true;
@@ -53,6 +56,8 @@ public class Board extends Activity {
     public ArrayList<String> getSquares() {
         return squares;
     }
+
+
 
     public boolean checkWord(String aWord){
         //return valid.checkWord(aWord);
@@ -73,18 +78,19 @@ public class Board extends Activity {
         return true;
     }
 
+
+
     public ArrayList<String> foundWords(){
         foundWordsList = new ArrayList<String>();
         foundWordsList = valid.getFoundWords();
         return foundWordsList;
-
     }
+
 
     public ArrayList<String> validWords(){
         validWordsList = new ArrayList<String>();
         validWordsList = valid.getValidWords();
         return validWordsList;
-
     }
 
 
