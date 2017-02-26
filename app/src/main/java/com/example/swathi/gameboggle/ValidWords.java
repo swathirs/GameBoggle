@@ -1,15 +1,10 @@
 package com.example.swathi.gameboggle;
 
+import android.app.Activity;
+
 import java.util.ArrayList;
 
-import android.app.Activity;
-import android.content.Context;
-import android.util.Log;
-import android.widget.Toast;
 
-/**
- * Created by John on 2/10/2017.
- */
 
 public class ValidWords extends Activity {
     //

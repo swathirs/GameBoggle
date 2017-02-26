@@ -1,15 +1,11 @@
 package com.example.swathi.gameboggle;
 
-import java.util.ArrayList;
-
 import android.app.Activity;
 import android.content.Context;
-import android.util.Log;
 import android.widget.Toast;
 
-/**
- * Created by John on 2/10/2017.
- */
+import java.util.ArrayList;
+
 
 
 public class Board extends Activity {
@@ -23,24 +19,28 @@ public class Board extends Activity {
     private ArrayList<String> foundWordsList;
     private ArrayList<String> validWordsList;
 
+
     public Board() {
         roller = new DiceController();
         squares = null;
         valid = null;
     }
- 
+
+
     public Board(Context context)
     {
         roller = new DiceController();
         squares = null;
-        valid = null;//This will be created after the board is made
+        valid = null;  //This will be created after the board is made
         this.context = context;
         dictionary = new Dictionary(this.context);
     }
-   
+
+
     public boolean genBoardArrangement(int difficulty) {
         squares = roller.genBoard();
         valid = new ValidWords(squares, difficulty, dictionary);
+
         while (!valid.checkValidBoard())
         {
             valid = new ValidWords(squares, 1, dictionary);
@@ -48,6 +48,7 @@ public class Board extends Activity {
 
         return true;
     }
+
 
     public ArrayList<String> getSquares() {
         return squares;
