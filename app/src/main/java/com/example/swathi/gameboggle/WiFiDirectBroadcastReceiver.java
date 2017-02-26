@@ -91,6 +91,7 @@ public class WiFiDirectBroadcastReceiver extends BroadcastReceiver {
             Log.d("p2p", "No devices found");
             return;
         }
+        Log.d("p2p", "Devices found: " + peers.size());
 
         // Picking the first device found on the network.
         WifiP2pDevice device = peers.get(0);
