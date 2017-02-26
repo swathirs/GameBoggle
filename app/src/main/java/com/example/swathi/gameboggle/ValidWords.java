@@ -1,12 +1,17 @@
 package com.example.swathi.gameboggle;
 
 import java.util.ArrayList;
+
+import android.app.Activity;
+import android.content.Context;
 import android.util.Log;
+import android.widget.Toast;
+
 /**
  * Created by John on 2/10/2017.
  */
 
-public class ValidWords {
+public class ValidWords extends Activity{
     //
     private int difficulty;
     private ArrayList<WordNode> validList[];
@@ -206,10 +211,14 @@ public class ValidWords {
     }
 
     //return 0 for not found, 1 for found and already used, 2 for found and not already found
+    //return -1 if aWord.length() < 3
     public int checkWord(String aWord)
     {
-        if (aWord.length() < 1)
-            return 0;
+        if (aWord.length() < 3)
+        {
+            return -1;
+        }
+
         char firstLetter = aWord.charAt(0);
         int index = firstLetter - 97;
         WordNode temp = null;
@@ -244,4 +253,24 @@ public class ValidWords {
 
         return temp;
     }
+
+    //Returns the words found by the player
+
+    public ArrayList<String> getFoundWords()
+    {
+        ArrayList<String> temp = new ArrayList<String>();
+
+        for (int i = 0; i < 26; i++)
+        {
+            for (int j = 0; j < validList[i].size(); j++)
+            {
+                if (validList[i].get(j).isFound())
+                    temp.add(validList[i].get(j).getWord());
+            }
+        }
+
+        return temp;
+    }
 }
+
+

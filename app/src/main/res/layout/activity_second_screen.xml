@@ -14,43 +14,77 @@
     <TextView
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
         android:text="@string/select_difficulty_level"
         android:textSize="20sp"
-        android:layout_marginBottom="5dp"/>
+        android:layout_marginBottom="5dp"
+        android:layout_alignParentTop="true" />
+
+    <Button
+        android:text="Start Singleplayer"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/buttonSubmitSecScreenId"
+        android:layout_below="@+id/spinnerRoundsId"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="31dp" />
 
     <Spinner
         android:id="@+id/spinnerDifficultyId"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="80dp"/>
+        android:layout_marginTop="24dp"
+        android:layout_below="@+id/textView3"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true" />
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/select_number_rounds"
+        android:layout_marginTop="30dp"
+        android:textSize="20sp"
+        android:id="@+id/textViewRoundsId"
         android:layout_below="@+id/spinnerDifficultyId"
         android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
-        android:layout_marginTop="72dp"
-        android:textSize="20sp"
-        android:id="@+id/textViewRoundsId" />
+        android:layout_alignParentStart="true" />
 
     <Spinner
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:id="@+id/spinnerRoundsId"
         android:layout_below="@+id/textViewRoundsId"
         android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
-        android:layout_marginTop="39dp"
-        android:id="@+id/spinnerRoundsId" />
+        android:layout_alignParentStart="true" />
 
-    <Button
-        android:text="Submit"
+    <TextView
+        android:text="Select Multiplayer Mode:"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/buttonSubmitSecScreenId"
-        android:layout_alignParentBottom="true"
-        android:layout_centerHorizontal="true" />
+        android:layout_below="@+id/buttonSubmitSecScreenId"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_marginTop="60dp"
+        android:textSize="20sp"
+        android:id="@+id/textViewMulti"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true" />
+
+    <Spinner
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/textViewMulti"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:id="@+id/spinnerMultiId" />
+
+    <Button
+        android:text="Start Multiplayer"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/spinnerMultiId"
+        android:layout_alignLeft="@+id/buttonSubmitSecScreenId"
+        android:layout_alignStart="@+id/buttonSubmitSecScreenId"
+        android:layout_marginTop="43dp"
+        android:id="@+id/multiButtonSubmitSecScreenId" />
 
 </RelativeLayout>

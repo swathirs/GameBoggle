@@ -4,7 +4,9 @@ import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
 import android.net.wifi.p2p.WifiP2pDevice;
+import android.net.wifi.p2p.WifiP2pDeviceList;
 import android.net.wifi.p2p.WifiP2pManager;
+import android.util.Log;
 
 import static com.example.swathi.gameboggle.R.layout.activity_p2p_game;
 
@@ -36,5 +38,12 @@ public class WiFiDirectBroadcastReceiver extends BroadcastReceiver {
             // Respond to this device's wifi state changing
         }
     }
+
+    private WifiP2pManager.PeerListListener peerListListener = new WifiP2pManager.PeerListListener() {
+
+        public void onPeersAvailable(WifiP2pDeviceList peers) {
+            Log.d("p2p", "deviceCount = " + peers.getDeviceList().size());
+        }
+    };
 
 }
