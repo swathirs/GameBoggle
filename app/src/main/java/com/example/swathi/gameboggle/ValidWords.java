@@ -1,12 +1,12 @@
 package com.example.swathi.gameboggle;
 
-import android.app.Activity;
+//import android.app.Activity;
 
 import java.util.ArrayList;
 
 
 
-public class ValidWords extends Activity {
+public class ValidWords {
     //
     private int difficulty;
     private ArrayList<WordNode> validList[];

@@ -5,7 +5,9 @@ import android.support.test.InstrumentationRegistry;
 import android.support.test.runner.AndroidJUnit4;
 
 import org.junit.Before;
+import org.junit.Test;
 import org.junit.runner.RunWith;
+import static org.junit.Assert.*;
 
 import java.util.ArrayList;
 
@@ -27,7 +29,9 @@ public class Instrumented_BoardTest  {
     private int normal = 2;
     private int difficult = 3;
 
-    private ArrayList<String> validWords;
+    private ArrayList<String> validWordsList;
+    private ArrayList<String> aSquares;
+
 
 
 
@@ -48,55 +52,76 @@ public class Instrumented_BoardTest  {
     /** easy_genBoard()
      * generates a board on easy setting and checks that the validWord
      * length is long enough: len >= 2 */
-//    @Test
-//    public void easy_genBoard() {
-//
-//        aBoard.genBoardArrangement(easy);
-//        validWords = new ArrayList<String>();
-//        validWords = aBoard.validWords();
-//        // assert that the validWords is >= 2
-//        assertTrue( validWords.size() >= 2 );
-//    }
+    @Test
+    public void easy_genBoard() {
+        aBoard.genBoardArrangement(easy);
+        validWordsList = new ArrayList<String>();
+        validWordsList = aBoard.validWords();
+
+        // assert that the validWords is >= 2
+        assertTrue( validWordsList.size() >= 2 );
+    }
 
 
     /** normal_genBoard()
      * generates a board on easy setting and checks that the validWord
      * length is long enough: len >= 2 */
-//    @Test
-//    public void normal_genBoard() {
-//
-//        aBoard.genBoardArrangement(normal);
-//
-//        validWordsList = new ArrayList<String>();
-//        validWordsList = aBoard.validWords();
-//
-//        // assert that the validWordsList is > 1
-//        assertTrue( validWordsList.size() >= 5 );
-//    }
+    @Test
+    public void normal_genBoard() {
+
+        aBoard.genBoardArrangement(normal);
+
+        validWordsList = new ArrayList<String>();
+        validWordsList = aBoard.validWords();
+
+        // assert that the validWordsList is > 1
+        assertTrue( validWordsList.size() >= 5 );
+    }
 
 
     /** difficult_genBoard()
      * generates a board on easy setting and checks that the validWord
      * length is long enough: len >= 2 */
-//    @Test
-//    public void difficult_genBoard() {
-//
-//        aBoard.genBoardArrangement(difficult);
-//
-//        validWordsList = new ArrayList<String>();
-//        validWordsList = aBoard.validWords();
-//
-//        // assert that the validWordsList is >= 7
-//        assertTrue( validWordsList.size() >= 7 );
-//    }
+    @Test
+    public void difficult_genBoard() {
+
+        aBoard.genBoardArrangement(difficult);
+
+        validWordsList = new ArrayList<String>();
+        validWordsList = aBoard.validWords();
+
+        // assert that the validWordsList is >= 7
+        assertTrue( validWordsList.size() >= 7 );
+    }
 
 
+    // TESTS 2: Board getSquares()
+
+    /** Checkes that Board getSquares() returns something which is not null after a
+     * board has been generated */
+    @Test
+    public void getSquaresIsNotNull() {
+
+        aBoard.genBoardArrangement(easy);
+        aSquares = aBoard.getSquares();
+
+        assertNotNull(aSquares);
+    }
+
+    // TESTS 3: Board checkWord()
+
+    @Test
+    public void one_checkWord() {
 
 
-    // TESTS 2: getSquares
+        // "a" should return false
+
+        // "at"  should return false
+
+        // "ate" should return true
 
 
-    // TESTS 3: checkWord
+    }
 
 
 

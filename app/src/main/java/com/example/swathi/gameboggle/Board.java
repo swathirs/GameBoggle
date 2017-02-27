@@ -1,6 +1,6 @@
 package com.example.swathi.gameboggle;
 
-import android.app.Activity;
+//import android.app.Activity;
 import android.content.Context;
 import android.widget.Toast;
 
@@ -8,7 +8,7 @@ import java.util.ArrayList;
 
 
 
-public class Board extends Activity {
+public class Board {
     private DiceController roller;
     private ArrayList<String> squares;
 
