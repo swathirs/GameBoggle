@@ -282,15 +282,31 @@ public class ThirdScreen extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         letters = null;
+        String difficultyString;
         //difficulty = 3; //TODO: get difficulty from screen 2
 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_third_screen);
         board = new Board(getApplicationContext());
 
-        roundNumber = getIntent().getExtras().getInt("RoundNumber");//Obtained from MainActivity
-        roundScore= getIntent().getExtras().getInt("RoundScore");//Obtained from MainActivity
-        difficulty= getIntent().getExtras().getInt("Difficulty");//Obtained from MainActivity
+       // roundNumber = getIntent().getExtras().getInt("RoundNumber");
+        roundScore= getIntent().getExtras().getInt("RoundScore");//Obtained from SecondScreen
+        difficultyString = getIntent().getExtras().getString("DifficultyStringValue");//Obtained from SecondScreen
+
+       Log.d("DifficultyStringVal", difficultyString);
+
+        switch (difficultyString)
+        {
+            case "Easy": difficulty = 1;
+                break;
+            case "Normal": difficulty = 2;
+                break;
+            case "Difficult": difficulty = 3;
+                break;
+            default: difficulty = 1;
+                return;
+        }
+        Log.d("DifficultyIntVal:", String.valueOf(difficulty));
 
         textView = (TextView) findViewById(R.id.textView_Timer);
         countDownTimer = new CountDownTimerActivity(startTime, interval);
