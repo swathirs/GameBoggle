@@ -12,7 +12,7 @@ import android.widget.Toast;
  */
 
 
-public class Board extends Activity {
+public class Board {
     private DiceController roller;
     private ArrayList<String> squares;
 
