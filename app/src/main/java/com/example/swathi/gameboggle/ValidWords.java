@@ -11,7 +11,7 @@ import android.widget.Toast;
  * Created by John on 2/10/2017.
  */
 
-public class ValidWords extends Activity{
+public class ValidWords extends Activity {
     //
     private int difficulty;
     private ArrayList<WordNode> validList[];
@@ -26,8 +26,7 @@ public class ValidWords extends Activity{
     private Dictionary dictionary;
 
     //default constructor, assumed it won't be used
-    public ValidWords()
-    {
+    public ValidWords() {
         total = 0;
         difficulty = 0;
         maxLength = 16;
@@ -35,25 +34,21 @@ public class ValidWords extends Activity{
     }
 
     //Initializes ValidWords for a specific board
-    public ValidWords(ArrayList<String> squares, int difficulty, Dictionary dictionary)
-    {
+    public ValidWords(ArrayList<String> squares, int difficulty, Dictionary dictionary) {
         tempBoard = new String[4][4];
         visited = new boolean[4][4];
         this.difficulty = difficulty;
         //Board is i = 0 ... 3 horizontally, j = 0 ... 3 from top to bottom.  [0][0] is top left, [3][0] is top right
-        for (int i = 0; i < 4; i++)
-        {
-            for (int j = 0; j < 4; j++)
-            {
+        for (int i = 0; i < 4; i++) {
+            for (int j = 0; j < 4; j++) {
                 visited[i][j] = false;
-                tempBoard[i][j] = squares.get(i + (j*4));
+                tempBoard[i][j] = squares.get(i + (j * 4));
             }
         }
         total = 0;
         maxLength = 16;
         validList = (ArrayList<WordNode>[]) new ArrayList[26];
-        for (int j = 0; j < 26; j++)
-        {
+        for (int j = 0; j < 26; j++) {
             validList[j] = new ArrayList<WordNode>();
         }
 
@@ -62,10 +57,8 @@ public class ValidWords extends Activity{
     }
 
     //compares the number of words to the difficulty
-    public boolean checkValidBoard()
-    {
-        switch (difficulty)
-        {
+    public boolean checkValidBoard() {
+        switch (difficulty) {
             case 1:             //easy
                 if (total < 2)
                     return false;
@@ -85,12 +78,9 @@ public class ValidWords extends Activity{
     }
 
     //Finds all the words on the board using a depth-first-search
-    private void findAllWords()
-    {
-        for (int i = 0; i < 4; i++)
-        {
-            for (int j = 0; j < 4; j++)
-            {
+    private void findAllWords() {
+        for (int i = 0; i < 4; i++) {
+            for (int j = 0; j < 4; j++) {
                 //findWords(tempBoard[i][j], i, j, 1);
                 findWords("", i, j, 0);
             }
@@ -98,8 +88,7 @@ public class ValidWords extends Activity{
     }
 
     //performs the actually depth-first-search for the findAllWords() function
-    private void findWords(String oldString, int x, int y, int oldWordLength)
-    {
+    private void findWords(String oldString, int x, int y, int oldWordLength) {
         //This check will be removed once checkPrefix exists.  without checkPrefix checking the board will take too long so this statement limits it
         if (oldWordLength + 1 > maxLength)
             return;
@@ -122,22 +111,18 @@ public class ValidWords extends Activity{
 
         visited[x][y] = true;
 
-        for (int i = -1; i < 2; i++)
-        {
-            for (int j = -1; j < 2; j++)
-            {
-                findWords(newString, x+i, y+j, oldWordLength + 1);
+        for (int i = -1; i < 2; i++) {
+            for (int j = -1; j < 2; j++) {
+                findWords(newString, x + i, y + j, oldWordLength + 1);
             }
         }
 
         //At this point the program is on the way back from the depth-first-search, so now check that the current word is ok.
 
-        if (oldWordLength > 1)
-        {
-            if (dictionary.isWord(newString))
-            {
+        if (oldWordLength > 1) {
+            if (dictionary.isWord(newString)) {
                 if (addValidWord(newString))
-                    total ++;
+                    total++;
             }
         }
 
@@ -158,36 +143,30 @@ public class ValidWords extends Activity{
     }
 
     //Words can be valid, invalid, and already found.  wordNode will simply contain a word string and a boolean found for tracking this
-    private class WordNode
-    {
+    private class WordNode {
         private String word;
         private boolean found;
 
-        public WordNode(String word)
-        {
+        public WordNode(String word) {
             this.word = word;
             found = false;
         }
 
-        public String getWord()
-        {
+        public String getWord() {
             return word;
         }
 
-        public boolean isFound()
-        {
+        public boolean isFound() {
             return found;
         }
 
-        public void markFound()
-        {
+        public void markFound() {
             found = true;
         }
     }
 
     //This function will add a word to the data structure (unless it is already in there)
-    private boolean addValidWord(String aWord)
-    {
+    private boolean addValidWord(String aWord) {
         if (aWord.length() < 1)
             return false;
         char firstLetter = aWord.charAt(0);
@@ -196,10 +175,8 @@ public class ValidWords extends Activity{
         WordNode temp = null;
 
         //This loop checks all words that start with firstLetter to see if the word already exists
-        for (int i = 0; i < validList[index].size(); i++)
-        {
-            if (validList[index].get(i).getWord().equals(aWord))
-            {
+        for (int i = 0; i < validList[index].size(); i++) {
+            if (validList[index].get(i).getWord().equals(aWord)) {
                 return false;
             }
         }
@@ -212,10 +189,8 @@ public class ValidWords extends Activity{
 
     //return 0 for not found, 1 for found and already used, 2 for found and not already found
     //return -1 if aWord.length() < 3
-    public int checkWord(String aWord)
-    {
-        if (aWord.length() < 3)
-        {
+    public int checkWord(String aWord) {
+        if (aWord.length() < 3) {
             return -1;
         }
 
@@ -223,11 +198,9 @@ public class ValidWords extends Activity{
         int index = firstLetter - 97;
         WordNode temp = null;
 
-        for (int i = 0; i < validList[index].size(); i++)
-        {
+        for (int i = 0; i < validList[index].size(); i++) {
             temp = validList[index].get(i);
-            if (temp.getWord().equals(aWord))
-            {
+            if (temp.getWord().equals(aWord)) {
                 if (temp.isFound())
                     return 1;
                 temp.markFound();
@@ -239,14 +212,11 @@ public class ValidWords extends Activity{
     }
 
     //Words were initially stored in WordNodes, must retrieve String from the WordNodes and return them all in an ArrayList
-    public ArrayList<String> getValidWords()
-    {
+    public ArrayList<String> getValidWords() {
         ArrayList<String> temp = new ArrayList<String>();
 
-        for (int i = 0; i < 26; i++)
-        {
-            for (int j = 0; j < validList[i].size(); j++)
-            {
+        for (int i = 0; i < 26; i++) {
+            for (int j = 0; j < validList[i].size(); j++) {
                 temp.add(validList[i].get(j).getWord());
             }
         }
@@ -256,14 +226,11 @@ public class ValidWords extends Activity{
 
     //Returns the words found by the player
 
-    public ArrayList<String> getFoundWords()
-    {
+    public ArrayList<String> getFoundWords() {
         ArrayList<String> temp = new ArrayList<String>();
 
-        for (int i = 0; i < 26; i++)
-        {
-            for (int j = 0; j < validList[i].size(); j++)
-            {
+        for (int i = 0; i < 26; i++) {
+            for (int j = 0; j < validList[i].size(); j++) {
                 if (validList[i].get(j).isFound())
                     temp.add(validList[i].get(j).getWord());
             }
@@ -273,3 +240,4 @@ public class ValidWords extends Activity{
     }
 
 
+}
