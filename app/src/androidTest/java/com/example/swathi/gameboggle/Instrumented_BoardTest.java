@@ -144,11 +144,10 @@ public class Instrumented_BoardTest  {
         assertTrue( validWordsList.size() >= 1 );
     }
 
-
     /** foundWords: check that foundWords list returned from Board
      * is not null  */
     @Test
-    public void getFoundWwrdsIsNotNull() {
+    public void getFoundWordsIsNotNull() {
         aBoard.genBoardArrangement(easy);
         foundWordsList = aBoard.foundWords();
 
@@ -157,4 +156,6 @@ public class Instrumented_BoardTest  {
 
 
 
-} // end Instrumented_BoardTest class
+
+
+} //end
