@@ -7,9 +7,12 @@ import android.support.test.runner.AndroidJUnit4;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
-import static org.junit.Assert.*;
 
 import java.util.ArrayList;
+
+import static org.junit.Assert.assertNotNull;
+import static org.junit.Assert.assertTrue;
+
 
 
 @RunWith(AndroidJUnit4.class)
@@ -30,6 +33,7 @@ public class Instrumented_BoardTest  {
     private int difficult = 3;
 
     private ArrayList<String> validWordsList;
+    private ArrayList<String> foundWordsList;
     private ArrayList<String> aSquares;
 
 
@@ -95,6 +99,7 @@ public class Instrumented_BoardTest  {
     }
 
 
+
     // TESTS 2: Board getSquares()
 
     /** Checkes that Board getSquares() returns something which is not null after a
@@ -108,21 +113,48 @@ public class Instrumented_BoardTest  {
         assertNotNull(aSquares);
     }
 
+
+
     // TESTS 3: Board checkWord()
 
+//    @Test
+//    public void one_checkWord() {
+//    // aBoard = new Board(appContext);
+//
+//        aBoard.genBoardArrangement(normal);  // generate a board
+//
+//        // "a" should return false
+//        assertFalse( aBoard.checkWord("a"));
+//        // "at"  should return false
+//        assertFalse( aBoard.checkWord("at"));
+//        // "ate" should return true
+//        assertTrue( aBoard.checkWord("ate"));
+//    }
+
+
+    /** validWords: check that validwords list returned from Board
+     * is not null AND not empty */
     @Test
-    public void one_checkWord() {
+    public void validWordsIsNotNull() {
+        aBoard.genBoardArrangement(easy);
+        validWordsList = aBoard.validWords();
+
+        assertNotNull(validWordsList);
+        // valid words should return something
+        assertTrue( validWordsList.size() >= 1 );
+    }
 
 
-        // "a" should return false
+    /** foundWords: check that foundWords list returned from Board
+     * is not null  */
+    @Test
+    public void getFoundWwrdsIsNotNull() {
+        aBoard.genBoardArrangement(easy);
+        foundWordsList = aBoard.foundWords();
 
-        // "at"  should return false
-
-        // "ate" should return true
-
-
+        assertNotNull(foundWordsList);
     }
 
 
 
-}
+} // end Instrumented_BoardTest class
