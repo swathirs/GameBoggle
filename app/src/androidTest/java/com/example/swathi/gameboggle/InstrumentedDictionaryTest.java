@@ -8,6 +8,7 @@ import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 
+
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
 
@@ -20,11 +21,13 @@ public class InstrumentedDictionaryTest {
     private Dictionary aDictionary;
     private Context appContext;
 
+
     @Before
     public void setUp() throws Exception {
         appContext = InstrumentationRegistry.getTargetContext();
         aDictionary = new Dictionary(appContext);
     }
+
 
     // TESTS 1:  isWord
     // isWord will take in a string and return true if that string is a word in the dictionary
@@ -91,4 +94,9 @@ public class InstrumentedDictionaryTest {
         assertFalse(aDictionary.isPrefix("zitheristsz"));
     }
 
-}
+
+
+
+
+
+} //end
