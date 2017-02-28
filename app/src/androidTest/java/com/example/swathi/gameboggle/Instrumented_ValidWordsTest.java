@@ -10,6 +10,8 @@ import org.junit.runner.RunWith;
 
 import java.util.ArrayList;
 
+import static org.junit.Assert.*;
+
 
 @RunWith(AndroidJUnit4.class)
 public class Instrumented_ValidWordsTest {
@@ -79,8 +81,9 @@ public class Instrumented_ValidWordsTest {
     // tests for Valid Word?
     @Test
     public void ex_validWord() {
+        ArrayList<String> temp = create_bad_squares();
 
-        //        assertFalse(aDictionary.isPrefix("zitheristsz"));
+        assertNotNull(temp);
     }
 
 
