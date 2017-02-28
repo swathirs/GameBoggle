@@ -35,7 +35,8 @@ public class Instrumented_ValidWordsTest {
     private Dictionary aDictionary;
     private DiceController roller_good;
     private DiceController roller_bad;
-    private ValidWords aValidWords;
+    private ValidWords aValidBoard;
+    private ValidWords invalidBoard;
 
 
     @Before
@@ -46,17 +47,15 @@ public class Instrumented_ValidWordsTest {
         roller_good = new DiceController();  // dice controller get squares
         ArrayList<String> squares_good = roller_good.genBoard();  // squares
 
-        ArrayList<String> squares_bad = create_bad_squares();
-
 
         // Create ValidWords Object:  squares, int difficulty, dictionary
-        aValidWords = new ValidWords(squares_good, 1, aDictionary);
+        aValidBoard = new ValidWords(squares_good, 1, aDictionary);
     }
 
 
     /**
-     * create_bad_squares(): creates an array of squares with only one word,
-     * this is an invalid boggle board.
+     * create_bad_squares(): a helper function that creates an array of squares
+     * with only one valid word, this is an invalid boggle board.
      * Returns ArrayList
      */
     public ArrayList<String> create_bad_squares() {
@@ -68,7 +67,7 @@ public class Instrumented_ValidWordsTest {
         temp.add("n");
         temp.add("d");
         // add "z" to rest of the board
-        for(int i = 0; i < 9; i++) {
+        for (int i = 0; i < 13; i++) {
             temp.add("z");
         }
 
@@ -78,12 +77,34 @@ public class Instrumented_ValidWordsTest {
     }
 
 
-    // tests for Valid Word?
+    /**
+     * Test checkValidBoard(): creates squares with just one valid word and checks that
+     * checkValidBoard returns false
+     */
     @Test
-    public void ex_validWord() {
-        ArrayList<String> temp = create_bad_squares();
+    public void checkValidBoard_wBadSquares_assertFalse() {
+        ArrayList<String> squares_bad = create_bad_squares();  //create bad squares
 
-        assertNotNull(temp);
+        invalidBoard = new ValidWords(squares_bad, 1, aDictionary);
+        assertFalse(invalidBoard.checkValidBoard());             // false with easy level
+
+        invalidBoard = new ValidWords(squares_bad, 2, aDictionary);
+        assertFalse(invalidBoard.checkValidBoard());             // false with normal level
+
+        invalidBoard = new ValidWords(squares_bad, 3, aDictionary);
+        assertFalse(invalidBoard.checkValidBoard());             // false with difficult level
+    }
+
+    /**
+     * Test findAllWords(): creates squares with just one valid word and checks that
+     * getValidWords() will return a list of size one.  i.e. FindAllWords should only find one word
+     */
+    @Test
+    public void findAllWords_wBadSquares_assertSizeOfOne() {
+        ArrayList<String> squares_bad = create_bad_squares();  // create bad squares
+        invalidBoard = new ValidWords(squares_bad, 1, aDictionary);
+        ArrayList<String> temp = invalidBoard.getValidWords();  // get list of valid words
+        assertTrue(temp.size() == 1);  // verify size of list is 1
     }
 
 
