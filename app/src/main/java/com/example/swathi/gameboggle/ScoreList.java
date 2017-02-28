@@ -18,8 +18,26 @@ import java.io.OutputStream;
 import java.io.OutputStreamWriter;
 import java.util.Scanner;
 
-/**
- * Created by John on 2/10/2017.
+/*
+READ FIRST
+For the category parameter on various functions follow this guide:
+1   =   singpleplayer easy
+2   =   singleplayer normal
+3   =   singleplayer difficult
+4   =   multiplayer basic
+5   =   multiplayer cutthroat
+
+Sample usage:
+ScoreList list = new ScoreList(getApplicationContext());
+//to see if a score of 20 would be a new highscore on singleplayer difficult
+if (list.checkNewHighScores(3, 20)
+    //this is a valid new high score, to submit it you would then do
+    list.addHighScore(3, 20, name)
+//to get the list of names and scores for multiplayer basic you would:
+int scores[] = list.getScores(4)
+String names[] = list.getNames(4)
+//the resulting lists will always have 5 elements where [0] is the highest score, [4] is the lowest
+//currently there is a bugged highscore file that i've left in so it will break this rule.
  */
 
 //This class will read in the high scores and allow a new highscore to be submitted
@@ -27,25 +45,14 @@ public class ScoreList {
     private Score[] scores;
     private Context context;
     private String filename;
-    //private File file;
 
+    //Initializes ScoreList with a context and tries to load from a file
     ScoreList(Context context)
     {
         scores = new Score[25];
         this.context = context;
         filename = "highscores";
-        /*
-        try {
-            FileOutputStream outputStream = context.openFileOutput(filename, Context.MODE_PRIVATE);
-            outputStream.close();
-        } catch (FileNotFoundException e) {
-            e.printStackTrace();
-        } catch (IOException e){
-            e.printStackTrace();
-        }*/
 
-
-        Log.d("ScoreList", "start initialization");
         for (int i = 0; i < 25; i++)
         {
             scores[i] = new Score();
@@ -54,22 +61,13 @@ public class ScoreList {
         loadFromFile();
     }
 
+    //opens up the input file to read from, if there is nothing to read then it creates the file and initializes it
     private int loadFromFile()
     {
-        Log.d("loadFromFile", "loading file");
         try {
             FileInputStream inputStream = context.openFileInput(filename);
             if (inputStream != null)
             {
-                //read from the input steam into the data array
-                Log.d("loadFromFile", "i'm in here?");
-                //TESTING CHANGES
-                /*
-                InputStreamReader inputStreamReader = new InputStreamReader(inputStream);
-                BufferedReader in = new BufferedReader(inputStreamReader);
-                */
-                Log.d("loadFromFile", "1");
-                //String temp = "";
                 for (int i = 0; i < 25; i++)
                 {
                     int c;
@@ -81,13 +79,7 @@ public class ScoreList {
                         c = inputStream.read();
                     }
                     scores[i].setName(temp);
-                    //Testing Changes
-                    /*
-                    temp = in.readLine();
-                    scores[i].setName(temp);
-                    */
                 }
-                Log.d("loadFromFile", "2");
                 for (int i = 0; i < 25; i++)
                 {
                     int c;
@@ -100,82 +92,52 @@ public class ScoreList {
                     }
                     if (temp != "")
                         scores[i].setScore(Integer.parseInt(temp));
-                    //Testing changes
-                    /*
-                    temp = in.readLine();
-                    if (temp != null)
-                        scores[i].setScore(Integer.parseInt(temp));
-                        */
                 }
                 inputStream.close();
-                Log.d("loadFromFile", "3");
-                //Log.d("loadFromFile", scores[0].getName());
-                //If the file has been read in and something is null then that means there was no file
+
+                //if this if statement gets triggered that means there was no file previously, so this code initializes the file
                 if (scores[0].getName() == "")
                 {
-                    Log.d("loadFromFile", "found a null");
                     for (int i = 0; i < 25; i++) {
                         scores[i] = new Score();
                     }
                     saveToFile();
                 }
-                else
-                    Log.d("loadFromFile", "not null? " + scores[0].getName());
             }
         } catch (Exception e) {
-            Log.d("loadFromFile", "exception");
-            //saveToFile();
             e.printStackTrace();
         }
         return 0;
     }
 
+    //saves the file, should be called on any function that changes the contents of scores[]
     private int saveToFile()
     {
-        Log.d("saveToFile", "saving file");
         try {
             FileOutputStream outputStream = context.openFileOutput(filename, Context.MODE_PRIVATE);
-            //TESTING CHANGES
-            /*
-            OutputStreamWriter outputStreamWriter = new OutputStreamWriter(outputStream);
-            BufferedWriter out = new BufferedWriter(outputStreamWriter);
-            */
+
             for (int i = 0; i < 25; i++)
             {
                 outputStream.write((scores[i].getName() + "\n").getBytes());
-                //testing changes
-                /*
-                out.write(scores[i].getName());
-                out.newLine();
-                */
             }
             for (int i = 0; i < 25; i++)
             {
                 String temp = Integer.toString(scores[i].getScore());
                 outputStream.write((temp + "\n").getBytes());
-                //outputStream.write(scores[i].getName().getBytes());
-                //Testing Changes
-                /*
-                out.write(scores[i].getScore());
-                out.newLine();
-                */
             }
-            //Testing changes
-            /*
-            out.close();
-            outputStreamWriter.close();
-            */
+
             outputStream.close();
         } catch (IOException e) {
-            Log.e("LoadWordsFile():", "Exception occurred while trying to open the dictionary file. \n");
             return -1;
         }
         return 0;
     }
 
+    //returns an array of names by category
     public String[] getNames(int category)
     {
-        Log.d("getNames", "getting names");
+        if (category < 1 || category > 5)
+            return null;
         int offset = category - 1;
         String names[] = new String[5];
 
@@ -187,9 +149,11 @@ public class ScoreList {
         return names;
     }
 
+    //returns an array of scores by category
     public int[] getScores(int category)
     {
-        Log.d("getScores", "getting scores");
+        if (category < 1 || category > 5)
+            return null;
         int offset = category - 1;
         int tempScores[] = new int[5];
 
@@ -201,9 +165,11 @@ public class ScoreList {
         return tempScores;
     }
 
+    //returns true if the input score is a potential new high score
     public boolean checkNewHighScore(int category, int score)
     {
-        Log.d("checkNewHighScore", "checking if new high score");
+        if (category < 1 || category > 5)
+            return false;
         int offset = (category - 1) * 5;
         for (int i = 0; i < 5; i++)
         {
@@ -216,11 +182,16 @@ public class ScoreList {
     //returns true if a new highscore is added
     public boolean addHighScore(int category, int score, String name)
     {
-        Log.d("addHighScore", "adding highscore");
+        if (category < 1 || category > 5)
+            return false;
         int offset = (category - 1) * 5;
+
+        //These arrays will hold the old highscores
         int[] tempScores = new int[5];
         String[] tempNames = new String[5];
         int start = -1;
+
+        //traverse through scores until the one to replace is found
         for (int i = 0; i < 5; i++)
         {
             if (start == -1)
@@ -228,17 +199,19 @@ public class ScoreList {
                 if (scores[offset + i].getScore() < score)
                     start = i;
             }
-            tempNames[i] = scores[i].getName();
-            tempScores[i] = scores[i].getScore();
+            tempNames[i] = scores[offset + i].getName();
+            tempScores[i] = scores[offset + i].getScore();
         }
+
+        //Do work here to insert the new score and shift the old scores down
         if (start != -1)
         {
-            scores[start].setName(name);
-            scores[start].setScore(score);
+            scores[offset + start].setName(name);
+            scores[offset + start].setScore(score);
             for (int i = start + 1; i < 5; i++)
             {
-                scores[i].setName(tempNames[i - 1]);
-                scores[i].setScore(tempScores[i - 1]);
+                scores[offset + i].setName(tempNames[i - 1]);
+                scores[offset + i].setScore(tempScores[i - 1]);
             }
             saveToFile();
             return true;
@@ -275,10 +248,5 @@ public class ScoreList {
         {
             this.score = score;
         }
-    }
-
-    public void testFunction()
-    {
-        loadFromFile();
     }
 }
