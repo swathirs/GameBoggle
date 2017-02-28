@@ -11,7 +11,7 @@ import java.io.InputStream;
 import java.io.InputStreamReader;
 
 
-public class Dictionary{
+public class Dictionary {
     private Context context;
     private TrieNode root;
 

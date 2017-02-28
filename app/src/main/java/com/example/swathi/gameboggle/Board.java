@@ -1,15 +1,11 @@
 package com.example.swathi.gameboggle;
 
-import java.util.ArrayList;
-
-import android.app.Activity;
+//import android.app.Activity;
 import android.content.Context;
-import android.util.Log;
 import android.widget.Toast;
 
-/**
- * Created by John on 2/10/2017.
- */
+import java.util.ArrayList;
+
 
 
 public class Board {
@@ -23,35 +19,45 @@ public class Board {
     private ArrayList<String> foundWordsList;
     private ArrayList<String> validWordsList;
 
+
     public Board() {
         roller = new DiceController();
         squares = null;
         valid = null;
     }
- 
+
+    /** constructor */
     public Board(Context context)
     {
         roller = new DiceController();
         squares = null;
-        valid = null;//This will be created after the board is made
+        valid = null;  //This will be created after the board is made
         this.context = context;
         dictionary = new Dictionary(this.context);
     }
-   
+
+
+    /** genBoardArrangement()
+     * input: int (representing the level of game difficulty)
+     * */
     public boolean genBoardArrangement(int difficulty) {
         squares = roller.genBoard();
         valid = new ValidWords(squares, difficulty, dictionary);
+
         while (!valid.checkValidBoard())
         {
-            valid = new ValidWords(squares, 1, dictionary);
+            valid = new ValidWords(squares, difficulty, dictionary);
         }
 
         return true;
     }
 
+
     public ArrayList<String> getSquares() {
         return squares;
     }
+
+
 
     public boolean checkWord(String aWord){
         //return valid.checkWord(aWord);
@@ -72,18 +78,19 @@ public class Board {
         return true;
     }
 
+
+
     public ArrayList<String> foundWords(){
         foundWordsList = new ArrayList<String>();
         foundWordsList = valid.getFoundWords();
         return foundWordsList;
-
     }
+
 
     public ArrayList<String> validWords(){
         validWordsList = new ArrayList<String>();
         validWordsList = valid.getValidWords();
         return validWordsList;
-
     }
 
 

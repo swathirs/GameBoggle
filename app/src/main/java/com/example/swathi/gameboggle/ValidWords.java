@@ -1,17 +1,17 @@
 package com.example.swathi.gameboggle;
 
+
 import java.util.ArrayList;
 
 import android.app.Activity;
 import android.content.Context;
 import android.util.Log;
 import android.widget.Toast;
+import java.util.ArrayList;
 
-/**
- * Created by John on 2/10/2017.
- */
 
-public class ValidWords extends Activity {
+
+public class ValidWords {
     //
     private int difficulty;
     private ArrayList<WordNode> validList[];
@@ -25,6 +25,7 @@ public class ValidWords extends Activity {
     //Dictionary
     private Dictionary dictionary;
 
+
     //default constructor, assumed it won't be used
     public ValidWords() {
         total = 0;
@@ -33,7 +34,8 @@ public class ValidWords extends Activity {
         dictionary = null;
     }
 
-    //Initializes ValidWords for a specific board
+
+    // Initializes ValidWords for a specific board
     public ValidWords(ArrayList<String> squares, int difficulty, Dictionary dictionary) {
         tempBoard = new String[4][4];
         visited = new boolean[4][4];
@@ -56,7 +58,7 @@ public class ValidWords extends Activity {
         this.findAllWords();
     }
 
-    //compares the number of words to the difficulty
+    // compares the number of words to the difficulty
     public boolean checkValidBoard() {
         switch (difficulty) {
             case 1:             //easy
@@ -142,7 +144,8 @@ public class ValidWords extends Activity {
         return;
     }
 
-    //Words can be valid, invalid, and already found.  wordNode will simply contain a word string and a boolean found for tracking this
+    // Words can be valid, invalid, and already found.  wordNode will simply contain a word
+    //   string and a boolean found for tracking this
     private class WordNode {
         private String word;
         private boolean found;
@@ -211,7 +214,8 @@ public class ValidWords extends Activity {
         return 0;
     }
 
-    //Words were initially stored in WordNodes, must retrieve String from the WordNodes and return them all in an ArrayList
+    // Words were initially stored in WordNodes,
+    //   must retrieve String from the WordNodes and return them all in an ArrayList
     public ArrayList<String> getValidWords() {
         ArrayList<String> temp = new ArrayList<String>();
 
@@ -224,8 +228,8 @@ public class ValidWords extends Activity {
         return temp;
     }
 
-    //Returns the words found by the player
 
+    // Returns the words found by the player
     public ArrayList<String> getFoundWords() {
         ArrayList<String> temp = new ArrayList<String>();
 
