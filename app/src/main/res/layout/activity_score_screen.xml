@@ -92,8 +92,8 @@
       android:layout_height="wrap_content"
       android:layout_marginTop="20dp"
       android:width="200dp"
-      android:height="275dp"
-      android:maxHeight="275dp"
+      android:height="225dp"
+      android:maxHeight="245dp"
       android:textColor="#ffbcaa0d"
       android:enabled="false"
       android:textStyle="bold"
@@ -104,32 +104,6 @@
       android:layout_alignParentLeft="true"
       android:layout_alignParentStart="true" />
 
-
-  <Button
-      style="?android:attr/buttonStyleSmall"
-      android:layout_width="80dp"
-      android:layout_height="40dp"
-      android:text="Quit"
-      android:id="@+id/btnEndGameID"
-      android:clickable="true"
-      android:textColor="#f4fbfd24"
-      android:textStyle="bold"
-      android:layout_alignParentBottom="true"
-      android:layout_alignParentRight="true"
-      android:layout_alignParentEnd="true" />
-
-  <Button
-      style="?android:attr/buttonStyleSmall"
-      android:layout_width="120dp"
-      android:layout_height="40dp"
-      android:text="Play again"
-      android:id="@+id/btnNextRoundID"
-      android:clickable="true"
-      android:textColor="#f4fbfd24"
-      android:textStyle="bold"
-      android:layout_alignParentBottom="true"
-      android:layout_alignParentLeft="true"
-      android:layout_alignParentStart="true" />
 
   <TextView
       android:text=""
@@ -146,6 +120,58 @@
       android:layout_below="@+id/tvYGC"
       android:layout_alignParentLeft="true"
       android:layout_alignParentStart="true" />
+
+  <Button
+      style="?android:attr/buttonStyleSmall"
+      android:layout_width="120dp"
+      android:layout_height="40dp"
+      android:text="Play again"
+      android:id="@+id/btnNextRoundID"
+      android:clickable="true"
+      android:textColor="#f4fbfd24"
+      android:textStyle="bold"
+      android:layout_toRightOf="@+id/tvScore"
+      android:layout_toEndOf="@+id/tvScore"
+      android:layout_below="@+id/editText_Name"
+      android:layout_alignParentBottom="true" />
+
+  <Button
+      style="?android:attr/buttonStyleSmall"
+      android:layout_width="80dp"
+      android:layout_height="40dp"
+      android:text="Submit"
+      android:id="@+id/btnSubmitNameID"
+      android:clickable="true"
+      android:textColor="#f4fbfd24"
+      android:textStyle="bold"
+      android:layout_above="@+id/btnNextRoundID"
+      android:layout_alignParentRight="true"
+      android:layout_alignParentEnd="true" />
+
+  <TextView
+      android:text="You got a New High Score!"
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      android:id="@+id/textView_highScoreMsg"
+      android:textColor="@color/colorAccent"
+      android:fontFamily="sans-serif"
+      android:textStyle="normal|bold|italic"
+      android:textAlignment="viewStart"
+      android:layout_below="@+id/tvListOfPossibleWordsID"
+      android:layout_alignParentLeft="true"
+      android:layout_alignParentStart="true" />
+
+  <EditText
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      android:inputType="textPersonName"
+      android:ems="10"
+      android:id="@+id/editText_Name"
+      android:hint="Enter your name"
+      android:layout_below="@+id/textView_highScoreMsg"
+      android:layout_alignParentLeft="true"
+      android:layout_alignParentStart="true"
+      android:textStyle="italic" />
 
 
 </RelativeLayout>

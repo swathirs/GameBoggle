@@ -1,7 +1,6 @@
 package com.example.swathi.gameboggle;
 
 import android.content.Intent;
-import android.graphics.Color;
 import android.hardware.Sensor;
 import android.hardware.SensorManager;
 import android.os.Bundle;
@@ -13,7 +12,6 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import java.util.ArrayList;
 
@@ -43,7 +41,7 @@ public class ThirdScreen extends AppCompatActivity {
 
     public TextView textView;
     public TextView roundScoreTextView;
-    public ScoreList listOfHighScores; // ScoreList object, to check if player reaches a new high score
+
 
     private CountDownTimer countDownTimer;
     private final long startTime = 60 * 1000;
@@ -53,6 +51,7 @@ public class ThirdScreen extends AppCompatActivity {
     private SensorManager mSensorManager;
     private Sensor mAccelerometer;
     private ShakeDetector mShakeDetector;
+
 
 
     public void setButtons(boolean [] list){
@@ -83,7 +82,6 @@ public class ThirdScreen extends AppCompatActivity {
         if(dictReturn){
                 roundScore = roundScore + 1;  // increment score
                 setScore(roundScore);         // set score
-                checkHighScores(difficulty, roundScore);  // check if player reached a new high score, notify user if true
         }
         currWord = "";
         wordDisplay = (TextView) findViewById(R.id.Entry);
@@ -307,7 +305,7 @@ public class ThirdScreen extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_third_screen);
         board = new Board(getApplicationContext());
-        listOfHighScores = new ScoreList(getApplicationContext()); // ScoreList object, to check if player reaches a new high score
+
 
 
                 // roundNumber = getIntent().getExtras().getInt("RoundNumber");
@@ -349,8 +347,6 @@ public class ThirdScreen extends AppCompatActivity {
             @Override
             public void onShake() {
 
-                //TODO   add code here...
-                //TODO   generate the board on shake...
                 countDownTimer.start();
                 if(letters == null){
                     board.genBoardArrangement(difficulty);
@@ -396,20 +392,6 @@ public class ThirdScreen extends AppCompatActivity {
 
     }
 
-    /**
-     * checkHighScores():  - Checks the players score with the list of high scores.
-     *                     - Notifies user if high new score is reached with a "Toast."
-     * Input: int, players current game score
-     * Output: none
-     * */
-    public void checkHighScores(int difficulty, int roundScore) {
-
-        // Notify player if they've reached a new high score
-        if(listOfHighScores.checkNewHighScore(difficulty, roundScore))
-            Toast.makeText(getApplicationContext(), "New High Score!", Toast.LENGTH_SHORT).show();
-
-    }
-
     public class CountDownTimerActivity extends CountDownTimer {
 
         public CountDownTimerActivity(long startTime, long interval) {
@@ -419,12 +401,11 @@ public class ThirdScreen extends AppCompatActivity {
         @Override
         public void onFinish() {
             textView.setText("Time's up!");
-            textView.setTextColor(Color.RED);
 
             new Handler().postDelayed(new Runnable() {
                 public void run() {
                     Intent i = new Intent(ThirdScreen.this, ScoreScreen.class);
-                    i.putExtra("RoundScoreFromThirdScreen", roundScore);
+                    i.putExtra("RoundScoreFromThirdScreen", roundScore);  // players score
 
                     fetchFoundWords = new ArrayList<String>();
                     fetchFoundWords = board.foundWords();
@@ -433,6 +414,8 @@ public class ThirdScreen extends AppCompatActivity {
                     fetchValidWords = new ArrayList<String>();
                     fetchValidWords = board.validWords();
                     i.putExtra("ValidWordsFromThirdScreen", fetchValidWords);
+
+                    i.putExtra("difficultyFromThirdScreen", difficulty);
 
                     for (int j =0; j < fetchFoundWords.size(); j++) {
                         Log.d("FoundWords", fetchFoundWords.get(j));
@@ -445,7 +428,7 @@ public class ThirdScreen extends AppCompatActivity {
 
                     finish();
                 }
-            }, 5000);  // delay for x milliseconds
+            }, 0);  // delay for x milliseconds, i.e. 5000 = 5 sec
         }
 
         @Override
