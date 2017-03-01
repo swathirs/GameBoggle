@@ -12,9 +12,10 @@
     <string name="select_difficulty_level">Choose the difficulty level:</string>
     <string name="select_number_rounds">Select the number of rounds:</string>
     <string name="boggle">Boggle</string>
-    <string name="multiplayer">Multiplayer</string>
     <string name="single_player">Single Player</string>
     <string name="Easy">Easy</string>
     <string name="Normal">Normal</string>
     <string name="Difficult">Difficult</string>
+
+
 </resources>
