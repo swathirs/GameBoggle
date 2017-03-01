@@ -405,7 +405,7 @@ public class ThirdScreen extends AppCompatActivity {
 
         // Notify player if they've reached a new high score
         if(listOfHighScores.checkNewHighScore(difficulty, roundScore))
-            Toast.makeText(getApplicationContext(), "You've Reached a New High Score!", Toast.LENGTH_SHORT).show();
+            Toast.makeText(getApplicationContext(), "New High Score!", Toast.LENGTH_SHORT).show();
 
     }
 
@@ -443,7 +443,7 @@ public class ThirdScreen extends AppCompatActivity {
 
                     finish();
                 }
-            }, 0);
+            }, 2000);  // delay for x milliseconds
         }
 
         @Override
@@ -481,9 +481,6 @@ public class ThirdScreen extends AppCompatActivity {
         scoretxt.setText(Integer.toString(score));
 
     }
-
-
-
 
 
 }
