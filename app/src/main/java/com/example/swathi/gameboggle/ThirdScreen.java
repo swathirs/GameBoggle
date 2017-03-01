@@ -424,7 +424,7 @@ public class ThirdScreen extends AppCompatActivity {
             new Handler().postDelayed(new Runnable() {
                 public void run() {
                     Intent i = new Intent(ThirdScreen.this, ScoreScreen.class);
-                    i.putExtra("RoundScoreFromThirdScreen", roundScore);
+                    i.putExtra("RoundScoreFromThirdScreen", roundScore);  // players score
 
                     fetchFoundWords = new ArrayList<String>();
                     fetchFoundWords = board.foundWords();
@@ -433,6 +433,8 @@ public class ThirdScreen extends AppCompatActivity {
                     fetchValidWords = new ArrayList<String>();
                     fetchValidWords = board.validWords();
                     i.putExtra("ValidWordsFromThirdScreen", fetchValidWords);
+
+                    i.putExtra("difficultyFromThirdScreen", difficulty);
 
                     for (int j =0; j < fetchFoundWords.size(); j++) {
                         Log.d("FoundWords", fetchFoundWords.get(j));
