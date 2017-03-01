@@ -88,9 +88,12 @@ public class ScoreScreen extends AppCompatActivity {
         EditText playerName;
 
         playerName = (EditText) findViewById(R.id.editText_Name);
-        System.out.println("Players name: " + playerName + "  difficulty: " + difficulty + "  score: " + roundScore);
+        String player = playerName.getText().toString();
+        System.out.println("\nPlayers name: " + player + "  difficulty: " + difficulty + "  score: " + roundScore + "\n");
 
-        //listOfHighScores.addHighScore(difficulty, roundScore, playerName.toString());
+        listOfHighScores = new ScoreList(getApplicationContext()); // ScoreList object, to check if player reaches a new high score
+
+        listOfHighScores.addHighScore(difficulty, roundScore, player);
     }
 
     private void exit_application() {
