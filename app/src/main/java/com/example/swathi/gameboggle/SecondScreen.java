@@ -8,15 +8,18 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.RadioButton;
+import android.widget.RadioGroup;
 import android.widget.Spinner;
 import android.widget.Toast;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class SecondScreen extends AppCompatActivity implements AdapterView.OnItemSelectedListener {
+public class SecondScreen extends AppCompatActivity {
     Button submitButton;
-    Button multiButton;
+    private RadioGroup radioDifficultGroup;
+    private RadioButton radioDifficultyModeButton;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -24,67 +27,15 @@ public class SecondScreen extends AppCompatActivity implements AdapterView.OnIte
         setContentView(R.layout.activity_second_screen);
 
         addListenerOnButton();
-
-        // Spinner element
-        Spinner difficultyLevelSpinner = (Spinner) findViewById(R.id.spinnerDifficultyId);
-        Spinner roundsSpinner = (Spinner) findViewById(R.id.spinnerRoundsId);
-        Spinner multiSpinner = (Spinner) findViewById(R.id.spinnerMultiId);
-
-        // Spinner click listener
-        difficultyLevelSpinner.setOnItemSelectedListener((AdapterView.OnItemSelectedListener) this);
-        roundsSpinner.setOnItemSelectedListener((AdapterView.OnItemSelectedListener) this);
-        multiSpinner.setOnItemSelectedListener((AdapterView.OnItemSelectedListener) this);
-
-        // Spinner Drop down elements
-        List<String> categories = new ArrayList<String>();
-        categories.add("Easy");
-        categories.add("Normal");
-        categories.add("Difficult");
-
-        List<String> roundsCategories = new ArrayList<String>();
-        roundsCategories.add("1");
-        roundsCategories.add("2");
-        roundsCategories.add("3");
-        roundsCategories.add("4");
-        roundsCategories.add("5");
-
-        List<String> multiCategories = new ArrayList<String>();
-        multiCategories.add("Basic");
-        multiCategories.add("Cutthroat");
-
-
-        // Creating adapter for spinner
-        ArrayAdapter<String> dataAdapter1 = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, categories);
-        ArrayAdapter<String> dataAdapter2 = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, roundsCategories);
-        ArrayAdapter<String> dataAdapter3 = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, multiCategories);
-
-        // Drop down layout style - l
-        // ist view with radio button
-        dataAdapter1.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        dataAdapter2.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        dataAdapter3.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-
-        // attaching data adapter to spinner
-        difficultyLevelSpinner.setAdapter(dataAdapter1);
-        roundsSpinner.setAdapter(dataAdapter2);
-        multiSpinner.setAdapter(dataAdapter3);
     }
 
-    @Override
-    public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-        // On selecting a spinner item
-        String item = parent.getItemAtPosition(position).toString();
-
-        // Showing selected spinner item
-        Toast.makeText(parent.getContext(), "Selected: " + item, Toast.LENGTH_LONG).show();
-    }
-    public void onNothingSelected(AdapterView<?> arg0) {
-        // TODO Auto-generated method stub
-    }
 
     public void addListenerOnButton() {
 
+        final int roundScore = 0;
         final Context context = this;
+
+        radioDifficultGroup = (RadioGroup) findViewById(R.id.radioGroupDifficultyLevelID);
 
         submitButton = (Button) findViewById(R.id.buttonSubmitSecScreenId);
 
@@ -93,7 +44,12 @@ public class SecondScreen extends AppCompatActivity implements AdapterView.OnIte
             @Override
             public void onClick(View arg0) {
 
+                String selectedRadioValue = ((RadioButton)findViewById
+                        (radioDifficultGroup.getCheckedRadioButtonId() )).getText().toString();
+
                 Intent intent = new Intent(context, ThirdScreen.class);
+                intent.putExtra("DifficultyStringValue", selectedRadioValue);
+                intent.putExtra("RoundScore", roundScore );
                 startActivity(intent);
             }
 
