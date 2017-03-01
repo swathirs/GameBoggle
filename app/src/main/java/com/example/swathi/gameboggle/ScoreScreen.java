@@ -17,7 +17,7 @@ public class ScoreScreen extends AppCompatActivity {
     // FIELDS
     public ValidWords valid;
     public Board board;
-    public TextView foundWordsText, allValidWordsListText;
+    public TextView foundWordsText, allValidWordsListText, highscore_notification;
     public ArrayList<String> fetchFoundWordsList, fetchValidWordsList;
     int roundScore = 0;
     int difficulty;
@@ -67,8 +67,12 @@ public class ScoreScreen extends AppCompatActivity {
         // Show Text input, and submit button if player qualifies for new high score
         playerName = (EditText) findViewById(R.id.editText_Name);
 
-        if(!hasHighScore) { // false, hide input field and submit button
+        if(!hasHighScore) { // false, hide high score notification message, input field and submit button
+            highscore_notification = (TextView) findViewById(R.id.textView_highScoreMsg);
+            highscore_notification.setVisibility(View.INVISIBLE);
+
             playerName.setVisibility(View.INVISIBLE);
+
             submitNameButton = (Button) findViewById(R.id.btnSubmitNameID);
             submitNameButton.setVisibility(View.INVISIBLE);
         }
