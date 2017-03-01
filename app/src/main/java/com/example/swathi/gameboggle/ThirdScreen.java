@@ -1,6 +1,7 @@
 package com.example.swathi.gameboggle;
 
 import android.content.Intent;
+import android.graphics.Color;
 import android.hardware.Sensor;
 import android.hardware.SensorManager;
 import android.os.Bundle;
@@ -418,6 +419,7 @@ public class ThirdScreen extends AppCompatActivity {
         @Override
         public void onFinish() {
             textView.setText("Time's up!");
+            textView.setTextColor(Color.RED);
 
             new Handler().postDelayed(new Runnable() {
                 public void run() {
@@ -443,7 +445,7 @@ public class ThirdScreen extends AppCompatActivity {
 
                     finish();
                 }
-            }, 2000);  // delay for x milliseconds
+            }, 5000);  // delay for x milliseconds
         }
 
         @Override
