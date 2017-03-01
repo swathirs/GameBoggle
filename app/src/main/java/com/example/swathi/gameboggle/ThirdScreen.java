@@ -447,7 +447,7 @@ public class ThirdScreen extends AppCompatActivity {
 
                     finish();
                 }
-            }, 5000);  // delay for x milliseconds
+            }, 0);  // delay for x milliseconds, i.e. 5000 = 5 sec
         }
 
         @Override
