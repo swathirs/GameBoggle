@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.hardware.Sensor;
 import android.hardware.SensorManager;
 import android.os.Bundle;
+import android.os.CountDownTimer;
 import android.os.Handler;
 import android.support.v7.app.AppCompatActivity;
 import android.text.method.ScrollingMovementMethod;
@@ -14,12 +15,16 @@ import android.widget.TextView;
 
 import java.util.ArrayList;
 
-import android.os.CountDownTimer;
+/**
+ *  Third Screen holds the boggle game board and player game activity
+ *
+ */
 
 
 public class ThirdScreen extends AppCompatActivity {
-    // the third screen holds the boggle game board
-    Board board = null;//new Board(getApplicationContext());
+
+    // FIELDS:
+    Board board = null; // new Board(getApplicationContext());
     ArrayList<String> letters;
     Button currButton;
     String currWord = "";
@@ -42,6 +47,13 @@ public class ThirdScreen extends AppCompatActivity {
     private final long startTime = 60 * 1000;
     private final long interval = 1 * 1000;
 
+    // Fields specific for the shake detector feature
+    private SensorManager mSensorManager;
+    private Sensor mAccelerometer;
+    private ShakeDetector mShakeDetector;
+
+
+
     public void setButtons(boolean [] list){
         findViewById(R.id.button1).setClickable(list[0]);
         findViewById(R.id.button2).setClickable(list[1]);
@@ -61,14 +73,15 @@ public class ThirdScreen extends AppCompatActivity {
         findViewById(R.id.button16).setClickable(list[15]);
     }
 
+
     public void pressSubmit(View view){
 
         boolean dictReturn;
 
-        dictReturn= board.checkWord(currWord);  //TODO: find out why this line crashes
+        dictReturn= board.checkWord(currWord);  // check if word is valid
         if(dictReturn){
-                roundScore = roundScore + 1;
-                setScore(roundScore);
+                roundScore = roundScore + 1;  // increment score
+                setScore(roundScore);         // set score
         }
         currWord = "";
         wordDisplay = (TextView) findViewById(R.id.Entry);
@@ -83,6 +96,10 @@ public class ThirdScreen extends AppCompatActivity {
         setButtons(list);
     }
 
+
+    /**
+     * Below handles user selecting dice to select a word
+     * */
     public void press1(View view){
         currWord = currWord + letters.get(0);
         wordDisplay = (TextView) findViewById(R.id.Entry);
@@ -274,10 +291,8 @@ public class ThirdScreen extends AppCompatActivity {
         setButtons(list);
     }
 
-    // Fields specific for the shake detector feature
-    private SensorManager mSensorManager;
-    private Sensor mAccelerometer;
-    private ShakeDetector mShakeDetector;
+
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -285,12 +300,16 @@ public class ThirdScreen extends AppCompatActivity {
         String difficultyString;
         //difficulty = 3; //TODO: get difficulty from screen 2
 
+
+
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_third_screen);
         board = new Board(getApplicationContext());
 
-       // roundNumber = getIntent().getExtras().getInt("RoundNumber");
-        roundScore= getIntent().getExtras().getInt("RoundScore");//Obtained from SecondScreen
+
+
+                // roundNumber = getIntent().getExtras().getInt("RoundNumber");
+        roundScore= getIntent().getExtras().getInt("RoundScore"); //Obtained from SecondScreen
         difficultyString = getIntent().getExtras().getString("DifficultyStringValue");//Obtained from SecondScreen
 
        Log.d("DifficultyStringVal", difficultyString);
@@ -308,11 +327,13 @@ public class ThirdScreen extends AppCompatActivity {
         }
         Log.d("DifficultyIntVal:", String.valueOf(difficulty));
 
+        // Timer
         textView = (TextView) findViewById(R.id.textView_Timer);
         countDownTimer = new CountDownTimerActivity(startTime, interval);
         textView.setText(textView.getText() + String.valueOf(startTime / 1000));
         textView.setVisibility(View.VISIBLE);
 
+        // Score
         roundScoreTextView = (TextView)findViewById(R.id.tvRoundScoreID);
         roundScoreTextView.setText(Integer.toString(roundScore));
 
@@ -326,8 +347,6 @@ public class ThirdScreen extends AppCompatActivity {
             @Override
             public void onShake() {
 
-                //TODO   add code here...
-                //TODO   generate the board on shake...
                 countDownTimer.start();
                 if(letters == null){
                     board.genBoardArrangement(difficulty);
@@ -374,6 +393,7 @@ public class ThirdScreen extends AppCompatActivity {
     }
 
     public class CountDownTimerActivity extends CountDownTimer {
+
         public CountDownTimerActivity(long startTime, long interval) {
             super(startTime, interval);
         }
@@ -385,7 +405,7 @@ public class ThirdScreen extends AppCompatActivity {
             new Handler().postDelayed(new Runnable() {
                 public void run() {
                     Intent i = new Intent(ThirdScreen.this, ScoreScreen.class);
-                    i.putExtra("RoundScoreFromThirdScreen", roundScore);
+                    i.putExtra("RoundScoreFromThirdScreen", roundScore);  // players score
 
                     fetchFoundWords = new ArrayList<String>();
                     fetchFoundWords = board.foundWords();
@@ -394,6 +414,8 @@ public class ThirdScreen extends AppCompatActivity {
                     fetchValidWords = new ArrayList<String>();
                     fetchValidWords = board.validWords();
                     i.putExtra("ValidWordsFromThirdScreen", fetchValidWords);
+
+                    i.putExtra("difficultyFromThirdScreen", difficulty);
 
                     for (int j =0; j < fetchFoundWords.size(); j++) {
                         Log.d("FoundWords", fetchFoundWords.get(j));
@@ -406,7 +428,7 @@ public class ThirdScreen extends AppCompatActivity {
 
                     finish();
                 }
-            }, 0);
+            }, 0);  // delay for x milliseconds, i.e. 5000 = 5 sec
         }
 
         @Override
@@ -437,15 +459,13 @@ public class ThirdScreen extends AppCompatActivity {
 
     }
 
+
     void setScore(int score)
     {
         TextView scoretxt = (TextView) findViewById(R.id.tvRoundScoreID);
         scoretxt.setText(Integer.toString(score));
 
     }
-
-
-
 
 
 }

@@ -3,91 +3,117 @@ package com.example.swathi.gameboggle;
 
 import android.content.Context;
 import android.content.Intent;
-import android.support.v4.app.ActivityCompat;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.util.Log;
+import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.TextView;
 
 import java.util.ArrayList;
-import java.util.List;
 
 public class ScoreScreen extends AppCompatActivity {
 
+    // FIELDS
     public ValidWords valid;
     public Board board;
-    public TextView foundWordsText, allValidWordsListText;
+    public TextView foundWordsText, allValidWordsListText, highscore_notification;
     public ArrayList<String> fetchFoundWordsList, fetchValidWordsList;
     int roundScore = 0;
+    int difficulty;
+
+    public ScoreList listOfHighScores; // ScoreList object, to check if player reaches a new high score
+    boolean hasHighScore = false;  // to indicate if player should be added to high scores list.
+    EditText playerName;
+
     public TextView roundScoreDisp;
-    Button nextGameButton, endGameButton;
+    Button nextGameButton, submitNameButton;
+
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_score_screen);
 
-        roundScore = getIntent().getExtras().getInt("RoundScoreFromThirdScreen");//Obtained from ThirdScreen
+        difficulty = getIntent().getExtras().getInt("difficultyFromThirdScreen"); // Difficulty Level, obtained from ThirdScreen
+        listOfHighScores = new ScoreList(getApplicationContext()); // ScoreList object, to check if player reaches a new high score
+
+
+        // Score
+        roundScore = getIntent().getExtras().getInt("RoundScoreFromThirdScreen"); // Score, obtained from ThirdScreen
         roundScoreDisp = (TextView) findViewById(R.id.tvScoreForThisRoundID);
         roundScoreDisp.setText(Integer.toString(roundScore));
 
-        foundWordsText = (TextView)findViewById(R.id.textViewFoundWordsID);
+        // Found Words
+        foundWordsText = (TextView) findViewById(R.id.textViewFoundWordsID);
         fetchFoundWordsList = new ArrayList<String>();
         fetchFoundWordsList = (ArrayList<String>) getIntent().getSerializableExtra("FoundWordsFromThirdScreen");
         foundWordsText.setText(fetchFoundWordsList.toString());
 
-        allValidWordsListText = (TextView)findViewById(R.id. tvListOfPossibleWordsID);
+        // Possible words
+        allValidWordsListText = (TextView) findViewById(R.id.tvListOfPossibleWordsID);
         fetchValidWordsList = new ArrayList<String>();
         fetchValidWordsList = (ArrayList<String>) getIntent().getSerializableExtra("ValidWordsFromThirdScreen");
-         allValidWordsListText.setText(fetchValidWordsList.toString());
+        allValidWordsListText.setText(fetchValidWordsList.toString());
+
+
+        // check is player's score qualifies for new high score
+        System.out.println(" ** SCORE IS:   " + roundScore + " qualifies: " + listOfHighScores.checkNewHighScore(difficulty, roundScore));
+        hasHighScore = listOfHighScores.checkNewHighScore(difficulty, roundScore);
+        System.out.println(" ** HAS HIGH SCORE?  " + hasHighScore);
+
+
+        // Show Text input, and submit button if player qualifies for new high score
+        playerName = (EditText) findViewById(R.id.editText_Name);
+
+        if(!hasHighScore) { // false, hide high score notification message, input field and submit button
+            highscore_notification = (TextView) findViewById(R.id.textView_highScoreMsg);
+            highscore_notification.setVisibility(View.INVISIBLE);
+
+            playerName.setVisibility(View.INVISIBLE);
+
+            submitNameButton = (Button) findViewById(R.id.btnSubmitNameID);
+            submitNameButton.setVisibility(View.INVISIBLE);
+        }
+
+        // Button Listeners
         addListenerOnButton();
     }
 
+
     public void addListenerOnButton() {
-
         final Context context = this;
-
         nextGameButton = (Button) findViewById(R.id.btnNextRoundID);
-        endGameButton = (Button) findViewById(R.id.btnEndGameID);
+        submitNameButton = (Button) findViewById(R.id.btnSubmitNameID);
 
-       nextGameButton.setOnClickListener(new View.OnClickListener() {
-
+        nextGameButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View arg0) {
-
                 Intent intent = new Intent(context, MainActivity.class);
                 startActivity(intent);
             }
-
         });
-        endGameButton.setOnClickListener(new View.OnClickListener() {
 
+        submitNameButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View arg0) {
-
-                ScoreScreen.this.exit_application();
+                addPlayerToHighScores();  // add their name to high scores
+                // send player to high scores screen
+                Intent intent = new Intent(context, HighScores.class);
+                startActivity(intent);
             }
-
         });
     }
-    private void exit_application() {
 
-        ActivityCompat.finishAffinity(this);
-        System.exit(0);
+
+
+    /**
+     * addPlayerToHighScores():  Get's player's name from text box and Adds the player's name and score to the high scores list
+     * */
+    private void addPlayerToHighScores() {
+        String name = playerName.getText().toString();
+        listOfHighScores.addHighScore(difficulty, roundScore, name);
     }
 
 }
-
-
-
-      /*  fetchFoundWords = new ArrayList<String>();
-       fetchFoundWords = valid.getFoundWords();
-        for (int i =0; i< fetchFoundWords.size(); i++) {
-            Log.d("TAG", fetchFoundWords.get(i));
-
-
-        fetchFoundWords = new ArrayList<String>();
-        fetchFoundWords = board.foundWords();
-        }*/
