@@ -9,6 +9,7 @@ import android.os.Handler;
 import android.support.v7.app.AppCompatActivity;
 import android.text.method.ScrollingMovementMethod;
 import android.util.Log;
+import android.view.MotionEvent;
 import android.view.View;
 import android.widget.Button;
 import android.widget.RelativeLayout;
@@ -46,6 +47,8 @@ public class ThirdScreen extends AppCompatActivity {
     public TextView roundScoreTextView;
 
     //needed for swiping;
+    private Button b1, b2, b3, b4, b5, b6, b7, b8, b9, b10, b11, b12, b13, b14, b15, b16;
+    int b1x1, b1x2, b1y1, b1y2;
     private RelativeLayout touchview;
     private static int defaultStates[];
     private Button mLastButton;
@@ -352,6 +355,7 @@ public class ThirdScreen extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         letters = null;
         String difficultyString;
+        pressedButtons = new ArrayList<Button>();
         //difficulty = 3; //TODO: get difficulty from screen 2
 
 
@@ -360,9 +364,29 @@ public class ThirdScreen extends AppCompatActivity {
         setContentView(R.layout.activity_third_screen);
         board = new Board(getApplicationContext());
 
+        touchview = (RelativeLayout) findViewById(R.id.activity_third_screen);
+        b1 = (Button) findViewById(R.id.button1);
+        b2 = (Button) findViewById(R.id.button2);
+        b3 = (Button) findViewById(R.id.button3);
+        b4 = (Button) findViewById(R.id.button4);
+        b5 = (Button) findViewById(R.id.button5);
+        b6 = (Button) findViewById(R.id.button6);
+        b7 = (Button) findViewById(R.id.button7);
+        b8 = (Button) findViewById(R.id.button8);
+        b9 = (Button) findViewById(R.id.button9);
+        b10 = (Button) findViewById(R.id.button10);
+        b11 = (Button) findViewById(R.id.button11);
+        b12 = (Button) findViewById(R.id.button12);
+        b13 = (Button) findViewById(R.id.button13);
+        b14 = (Button) findViewById(R.id.button14);
+        b15 = (Button) findViewById(R.id.button15);
+        b16 = (Button) findViewById(R.id.button16);
+        defaultStates = b1.getBackground().getState();
 
 
-                // roundNumber = getIntent().getExtras().getInt("RoundNumber");
+
+
+        // roundNumber = getIntent().getExtras().getInt("RoundNumber");
         roundScore= getIntent().getExtras().getInt("RoundScore"); //Obtained from SecondScreen
         difficultyString = getIntent().getExtras().getString("DifficultyStringValue");//Obtained from SecondScreen
 
@@ -443,6 +467,44 @@ public class ThirdScreen extends AppCompatActivity {
             }
         });
 
+        /*touchview.setOnTouchListener(new View.OnTouchListener() {
+
+            private boolean isInside = false;
+
+            @Override
+            public boolean onTouch(View v, MotionEvent event) {
+
+                int x = (int) event.getX();
+                int y = (int) event.getY();
+
+                for (int i = 0; i < touchview.getChildCount(); i++) {
+                    View current = touchview.getChildAt(i);
+                    if (current instanceof Button) {
+                        Button b = (Button) current;
+
+                        if (!isPointWithin(x, y, b.getLeft(), b.getRight(), b.getTop(),
+                                b.getBottom())) {
+                            b.getBackground().setState(defaultStates);
+                        }
+
+                        if (isPointWithin(x, y, b.getLeft(), b.getRight(), b.getTop(),
+                                b.getBottom())) {
+                            b.getBackground().setState(STATE_PRESSED);
+                            b.performClick();
+                            if (b != mLastButton) {
+                                mLastButton = b;
+                            }
+
+                        }
+
+                    }
+                }
+                return true;
+            }
+
+        });*/
+
+
 
     }
 
@@ -496,12 +558,76 @@ public class ThirdScreen extends AppCompatActivity {
     public void onResume() {
         super.onResume();
 
+        touchview.setOnTouchListener(new View.OnTouchListener() {
+
+            private boolean isInside = false;
+
+            @Override
+            public boolean onTouch(View v, MotionEvent event) {
+
+                int x = (int) event.getX();
+                int y = (int) event.getY();
+
+                TextView t1 = (TextView) findViewById(R.id.textView22);
+                t1.setText(String.valueOf(x));
+                TextView t2 = (TextView) findViewById(R.id.textView23);
+                t2.setText(String.valueOf(y));
+
+                for (int i = 0; i < touchview.getChildCount(); i++) {
+                    View current = touchview.getChildAt(i);
+                    if (current instanceof Button) {
+                        Button b = (Button) current;
+
+                        if (!isPointWithin(x, y, b.getLeft(), b.getRight(), b.getTop(),
+                                b.getBottom())) {
+                            //b.getBackground().setState(defaultStates);
+                        }
+
+                        if (isPointWithin(x, y, b.getLeft(), b.getRight(), b.getTop(),
+                                b.getBottom())) {
+                            //b.performClick();
+                            //b.getBackground().setState(STATE_PRESSED);
+                            if(b.equals(b1) && b1.isClickable()) press1(touchview);
+                            else if(b.equals(b2) && b2.isClickable()) press2(touchview);
+                            else if(b.equals(b3) && b3.isClickable()) press3(touchview);
+                            else if(b.equals(b4) && b4.isClickable()) press4(touchview);
+                            else if(b.equals(b5) && b5.isClickable()) press5(touchview);
+                            else if(b.equals(b6) && b6.isClickable()) press6(touchview);
+                            else if(b.equals(b7) && b7.isClickable()) press7(touchview);
+                            else if(b.equals(b8) && b8.isClickable()) press8(touchview);
+                            else if(b.equals(b9) && b9.isClickable()) press9(touchview);
+                            else if(b.equals(b10) && b10.isClickable()) press10(touchview);
+                            else if(b.equals(b11) && b11.isClickable()) press11(touchview);
+                            else if(b.equals(b12) && b12.isClickable()) press12(touchview);
+                            else if(b.equals(b13) && b13.isClickable()) press13(touchview);
+                            else if(b.equals(b14) && b14.isClickable()) press14(touchview);
+                            else if(b.equals(b15) && b15.isClickable()) press15(touchview);
+                            else if(b.equals(b16) && b16.isClickable()) press16(touchview);
+                        }
+
+                    }
+                }
+                return true;
+            }
+
+        });
+
+
         // registers the SHAKE DETECTOR event with the System Sensor manager...
         //    ...need to register (onResume) and unregister (onPause) to stop listening to this system service
 
         // args: sensorEventListener, Sensor, Rate for how often to receive sensor - sensor_delay constant for UIs  )
         mSensorManager.registerListener(mShakeDetector, mAccelerometer,
                 SensorManager.SENSOR_DELAY_UI);
+    }
+
+    @Override
+    public void onWindowFocusChanged(boolean hasFocus) {
+        super.onWindowFocusChanged(hasFocus);
+    }
+
+    static boolean isPointWithin(int x, int y, int x1, int x2, int y1, int y2) {
+        return (x <= x2 && x >= x1 && y <= y2 && y >= y1);
     }
 
 
