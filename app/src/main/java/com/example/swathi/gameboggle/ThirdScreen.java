@@ -47,9 +47,10 @@ public class ThirdScreen extends AppCompatActivity {
     public TextView roundScoreTextView;
 
     //needed for swiping;
-    private Button b1, b2, b3, b4, b5, b6, b7, b8, b9, b10, b11, b12, b13, b14, b15, b16;
+    private Button b1, b2, b3, b4, b5, b6, b7, b8, b9, b10, b11, b12, b13, b14, b15, b16, sub;
     int b1x1, b1x2, b1y1, b1y2;
     private RelativeLayout touchview;
+    private GameLayout gameview;
     private static int defaultStates[];
     private Button mLastButton;
     private final static int[] STATE_PRESSED = {
@@ -119,6 +120,7 @@ public class ThirdScreen extends AppCompatActivity {
                         true, true, true, true};
         setButtons(list);
         pressedButtons = new ArrayList<>();
+        sub.setClickable(false);
     }
 
 
@@ -136,6 +138,7 @@ public class ThirdScreen extends AppCompatActivity {
         setButtons(list);
         pressedButtons.add((Button) findViewById(R.id.button1));
         disablePressed(pressedButtons);
+        sub.setClickable(true);
     }
 
     public void press2(View view){
@@ -149,6 +152,7 @@ public class ThirdScreen extends AppCompatActivity {
         setButtons(list);
         pressedButtons.add((Button) findViewById(R.id.button2));
         disablePressed(pressedButtons);
+        sub.setClickable(true);
     }
 
     public void press3(View view){
@@ -163,6 +167,7 @@ public class ThirdScreen extends AppCompatActivity {
         setButtons(list);
         pressedButtons.add((Button) findViewById(R.id.button3));
         disablePressed(pressedButtons);
+        sub.setClickable(true);
     }
 
     public void press4(View view){
@@ -177,6 +182,7 @@ public class ThirdScreen extends AppCompatActivity {
         setButtons(list);
         pressedButtons.add((Button) findViewById(R.id.button4));
         disablePressed(pressedButtons);
+        sub.setClickable(true);
     }
 
     public void press5(View view){
@@ -191,6 +197,7 @@ public class ThirdScreen extends AppCompatActivity {
         setButtons(list);
         pressedButtons.add((Button) findViewById(R.id.button5));
         disablePressed(pressedButtons);
+        sub.setClickable(true);
     }
 
     public void press6(View view){
@@ -205,6 +212,7 @@ public class ThirdScreen extends AppCompatActivity {
         setButtons(list);
         pressedButtons.add((Button) findViewById(R.id.button6));
         disablePressed(pressedButtons);
+        sub.setClickable(true);
     }
 
     public void press7(View view){
@@ -219,6 +227,7 @@ public class ThirdScreen extends AppCompatActivity {
         setButtons(list);
         pressedButtons.add((Button) findViewById(R.id.button7));
         disablePressed(pressedButtons);
+        sub.setClickable(true);
     }
 
     public void press8(View view){
@@ -233,6 +242,7 @@ public class ThirdScreen extends AppCompatActivity {
         setButtons(list);
         pressedButtons.add((Button) findViewById(R.id.button8));
         disablePressed(pressedButtons);
+        sub.setClickable(true);
     }
 
     public void press9(View view){
@@ -247,6 +257,7 @@ public class ThirdScreen extends AppCompatActivity {
         setButtons(list);
         pressedButtons.add((Button) findViewById(R.id.button9));
         disablePressed(pressedButtons);
+        sub.setClickable(true);
     }
 
     public void press10(View view){
@@ -262,6 +273,7 @@ public class ThirdScreen extends AppCompatActivity {
         setButtons(list);
         pressedButtons.add((Button) findViewById(R.id.button10));
         disablePressed(pressedButtons);
+        sub.setClickable(true);
     }
 
     public void press11(View view){
@@ -276,6 +288,7 @@ public class ThirdScreen extends AppCompatActivity {
         setButtons(list);
         pressedButtons.add((Button) findViewById(R.id.button11));
         disablePressed(pressedButtons);
+        sub.setClickable(true);
     }
 
     public void press12(View view){
@@ -290,6 +303,7 @@ public class ThirdScreen extends AppCompatActivity {
         setButtons(list);
         pressedButtons.add((Button) findViewById(R.id.button12));
         disablePressed(pressedButtons);
+        sub.setClickable(true);
     }
 
     public void press13(View view){
@@ -304,6 +318,7 @@ public class ThirdScreen extends AppCompatActivity {
         setButtons(list);
         pressedButtons.add((Button) findViewById(R.id.button13));
         disablePressed(pressedButtons);
+        sub.setClickable(true);
     }
 
     public void press14(View view){
@@ -318,6 +333,7 @@ public class ThirdScreen extends AppCompatActivity {
         setButtons(list);
         pressedButtons.add((Button) findViewById(R.id.button14));
         disablePressed(pressedButtons);
+        sub.setClickable(true);
     }
 
     public void press15(View view){
@@ -332,6 +348,7 @@ public class ThirdScreen extends AppCompatActivity {
         setButtons(list);
         pressedButtons.add((Button) findViewById(R.id.button15));
         disablePressed(pressedButtons);
+        sub.setClickable(true);
     }
 
     public void press16(View view){
@@ -346,6 +363,7 @@ public class ThirdScreen extends AppCompatActivity {
         setButtons(list);
         pressedButtons.add((Button) findViewById(R.id.button16));
         disablePressed(pressedButtons);
+        sub.setClickable(true);
     }
 
 
@@ -364,7 +382,8 @@ public class ThirdScreen extends AppCompatActivity {
         setContentView(R.layout.activity_third_screen);
         board = new Board(getApplicationContext());
 
-        touchview = (RelativeLayout) findViewById(R.id.activity_third_screen);
+        //touchview = (RelativeLayout) findViewById(R.id.activity_third_screen);
+        touchview = (GameLayout) findViewById(R.id.game);
         b1 = (Button) findViewById(R.id.button1);
         b2 = (Button) findViewById(R.id.button2);
         b3 = (Button) findViewById(R.id.button3);
@@ -381,6 +400,7 @@ public class ThirdScreen extends AppCompatActivity {
         b14 = (Button) findViewById(R.id.button14);
         b15 = (Button) findViewById(R.id.button15);
         b16 = (Button) findViewById(R.id.button16);
+        sub = (Button) findViewById(R.id.submitButton);
         defaultStates = b1.getBackground().getState();
 
 
@@ -603,6 +623,7 @@ public class ThirdScreen extends AppCompatActivity {
                             else if(b.equals(b14) && b14.isClickable()) press14(touchview);
                             else if(b.equals(b15) && b15.isClickable()) press15(touchview);
                             else if(b.equals(b16) && b16.isClickable()) press16(touchview);
+                            else if(b.equals(sub) && sub.isClickable()) pressSubmit(touchview);
                         }
 
                     }
