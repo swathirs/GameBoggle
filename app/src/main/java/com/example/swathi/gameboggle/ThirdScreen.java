@@ -39,7 +39,7 @@ public class ThirdScreen extends AppCompatActivity {
     int roundNumber = 1;
 
 
-    public TextView textView;
+    public TextView textView, shakeToStartTextView;
     public TextView roundScoreTextView;
 
 
@@ -346,8 +346,13 @@ public class ThirdScreen extends AppCompatActivity {
         mShakeDetector = new ShakeDetector(new ShakeDetector.OnShakeListener() {
             @Override
             public void onShake() {
-
+                // start timer
                 countDownTimer.start();
+
+                // Hide shake 2 start text
+                shakeToStartTextView = (TextView) findViewById(R.id.textViewShake2Start);
+                shakeToStartTextView.setVisibility(View.INVISIBLE);
+
                 if(letters == null){
                     board.genBoardArrangement(difficulty);
                     letters = board.getSquares();
