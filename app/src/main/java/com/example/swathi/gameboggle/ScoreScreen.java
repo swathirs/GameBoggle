@@ -99,8 +99,8 @@ public class ScoreScreen extends AppCompatActivity {
             @Override
             public void onClick(View arg0) {
                 addPlayerToHighScores();  // add their name to high scores
-                // send player to high scores screen
-                Intent intent = new Intent(context, HighScores.class);
+                // send player to main screen
+                Intent intent = new Intent(context, MainActivity.class);
                 startActivity(intent);
             }
         });
