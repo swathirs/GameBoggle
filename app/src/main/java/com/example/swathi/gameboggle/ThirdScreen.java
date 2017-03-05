@@ -658,7 +658,7 @@ public class ThirdScreen extends AppCompatActivity {
     }
 
     static boolean isPointWithin(int x, int y, int x1, int x2, int y1, int y2) {
-        return (x <= x2 && x >= x1 && y <= y2 && y >= y1);
+        return (x <= (x2-25) && x >= (x1+25) && y <= (y2-25) && y >= (y1+25));
     }
 
 
