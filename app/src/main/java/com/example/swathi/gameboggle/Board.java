@@ -79,6 +79,38 @@ public class Board {
     }
 
 
+    /**
+     * getWordPoints():
+     * Input: string
+     * takes a word and returns it's point value based on the word length
+     */
+    public int getWordPoints(String aWord) {
+        int size = aWord.length();
+        int points;
+
+        switch (size) {
+            case 3:             // 1 pts (len 3 or 4)
+                points = 1;
+                break;
+            case 4:
+                points = 1;
+                break;
+            case 5:             // 2 pts (len 5)
+                points = 2;
+                break;
+            case 6:             // 3 pts (len 6)
+                points = 3;
+                break;
+            case 7:             // 5 pts (len 7)
+                points = 5;
+                break;
+            default:
+                points = 10; // 10 pts, word length 8 or greater
+                break;
+        }
+        return points;
+    }
+
 
     public ArrayList<String> foundWords(){
         foundWordsList = new ArrayList<String>();
