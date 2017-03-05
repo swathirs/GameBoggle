@@ -6,9 +6,11 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import java.util.ArrayList;
+import android.util.Log;
 
 public class MainActivity extends AppCompatActivity {
-    Button singlePlayerButton, multiPlayerButton, helpButton, highScoresButton;
+    Button singlePlayerButton, multiPlayerNormalButton, helpButton, highScoresButton, multiPlayerCutThroatButton;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -23,7 +25,8 @@ public class MainActivity extends AppCompatActivity {
         final Context context = this;
 
         singlePlayerButton = (Button) findViewById(R.id.buttonSinglePlayerId);
-        multiPlayerButton = (Button) findViewById(R.id.buttonMultiPlayerId);
+        multiPlayerNormalButton = (Button) findViewById(R.id.buttonMultiPlayerNormalId);
+        multiPlayerCutThroatButton = (Button) findViewById(R.id.buttonCutThroatMode);
         helpButton = (Button) findViewById(R.id.buttonHelpId);
         highScoresButton = (Button) findViewById(R.id.buttonHighScoresId);
 
@@ -37,12 +40,22 @@ public class MainActivity extends AppCompatActivity {
             }
 
         });
-        multiPlayerButton.setOnClickListener(new View.OnClickListener() {
+        multiPlayerNormalButton.setOnClickListener(new View.OnClickListener() {
 
             @Override
             public void onClick(View arg0) {
 
-                Intent intent = new Intent(context, MainActivity.class);
+                Intent intent = new Intent(context, MultiplayerNormal.class);
+                startActivity(intent);
+            }
+
+        });
+        multiPlayerCutThroatButton.setOnClickListener(new View.OnClickListener() {
+
+            @Override
+            public void onClick(View arg0) {
+
+                Intent intent = new Intent(context, MultiplayerNormal.class);
                 startActivity(intent);
             }
 
@@ -70,3 +83,4 @@ public class MainActivity extends AppCompatActivity {
 
     }
 }
+

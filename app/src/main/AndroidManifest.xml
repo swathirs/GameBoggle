@@ -2,6 +2,14 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.example.swathi.gameboggle">
 
+    <uses-permission android:name="android.permission.BLUETOOTH" />
+    <uses-permission android:name="android.permission.BLUETOOTH_ADMIN" />
+
+    <permission
+        android:name="android.permission.BLUETOOTH"
+        android:label="BLUETOOTH" />
+    <permission android:name="android.permission.BLUETOOTH_ADMIN" />
+
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
@@ -18,7 +26,10 @@
         <activity android:name=".SecondScreen" />
         <activity android:name=".HelpScreen" />
         <activity android:name=".ThirdScreen" />
-        <activity android:name=".HighScores"/>
+        <activity android:name=".HighScores" />
+        <activity android:name=".ScoreScreen" />
+        <activity android:name=".BluetoothChatService" />
+        <activity android:name=".MultiplayerNormal" />
     </application>
 
 </manifest>

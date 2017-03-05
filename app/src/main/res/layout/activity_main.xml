@@ -32,32 +32,42 @@
         android:id="@+id/textView5" />
 
     <Button
-        android:text="@string/single_player"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="163dp"
-        android:id="@+id/buttonSinglePlayerId"
-
-        android:layout_alignParentTop="true"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"/>
-
-    <Button
-        android:text="@string/multiplayer"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="46dp"
-        android:id="@+id/buttonMultiPlayerId"
-        android:layout_below="@+id/buttonSinglePlayerId"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"/>
-
-    <Button
         android:text="High Scores"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="46dp"
         android:id="@+id/buttonHighScoresId"
-        android:layout_below="@+id/buttonMultiPlayerId"/>
+        android:layout_marginTop="25dp"
+        android:layout_below="@+id/buttonCutThroatMode"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true" />
+
+    <Button
+        android:text="@string/single_player"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="100dp"
+        android:id="@+id/buttonSinglePlayerId"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true" />
+
+    <Button
+        android:text="Multiplayer Cut-throat"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/buttonCutThroatMode"
+        android:layout_below="@+id/buttonMultiPlayerNormalId"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="25dp" />
+
+    <Button
+        android:text="Multiplayer Normal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="23dp"
+        android:id="@+id/buttonMultiPlayerNormalId"
+        android:layout_below="@+id/buttonSinglePlayerId"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true" />
 
 </RelativeLayout>
