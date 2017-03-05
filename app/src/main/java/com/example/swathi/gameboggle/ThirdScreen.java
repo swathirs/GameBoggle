@@ -421,8 +421,6 @@ public class ThirdScreen extends AppCompatActivity {
         pressedButtons = new ArrayList<Button>();
         //difficulty = 3; //TODO: get difficulty from screen 2
 
-
-
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_third_screen);
         board = new Board(getApplicationContext());
@@ -631,74 +629,6 @@ public class ThirdScreen extends AppCompatActivity {
     }
 
 
-    @Override  //onResume from Activity class
-    public void onResume() {
-        super.onResume();
-
-        touchview.setOnTouchListener(new View.OnTouchListener() {
-
-            private boolean isInside = false;
-
-            @Override
-            public boolean onTouch(View v, MotionEvent event) {
-
-                int x = (int) event.getX();
-                int y = (int) event.getY();
-
-                TextView t1 = (TextView) findViewById(R.id.textView22);
-                t1.setText(String.valueOf(x));
-                TextView t2 = (TextView) findViewById(R.id.textView23);
-                t2.setText(String.valueOf(y));
-
-                for (int i = 0; i < touchview.getChildCount(); i++) {
-                    View current = touchview.getChildAt(i);
-                    if (current instanceof Button) {
-                        Button b = (Button) current;
-
-                        if (!isPointWithin(x, y, b.getLeft(), b.getRight(), b.getTop(),
-                                b.getBottom())) {
-                            //b.getBackground().setState(defaultStates);
-                        }
-
-                        if (isPointWithin(x, y, b.getLeft(), b.getRight(), b.getTop(),
-                                b.getBottom())) {
-                            //b.performClick();
-                            //b.getBackground().setState(STATE_PRESSED);
-                            if(b.equals(b1) && b1.isClickable()) press1(touchview);
-                            else if(b.equals(b2) && b2.isClickable()) press2(touchview);
-                            else if(b.equals(b3) && b3.isClickable()) press3(touchview);
-                            else if(b.equals(b4) && b4.isClickable()) press4(touchview);
-                            else if(b.equals(b5) && b5.isClickable()) press5(touchview);
-                            else if(b.equals(b6) && b6.isClickable()) press6(touchview);
-                            else if(b.equals(b7) && b7.isClickable()) press7(touchview);
-                            else if(b.equals(b8) && b8.isClickable()) press8(touchview);
-                            else if(b.equals(b9) && b9.isClickable()) press9(touchview);
-                            else if(b.equals(b10) && b10.isClickable()) press10(touchview);
-                            else if(b.equals(b11) && b11.isClickable()) press11(touchview);
-                            else if(b.equals(b12) && b12.isClickable()) press12(touchview);
-                            else if(b.equals(b13) && b13.isClickable()) press13(touchview);
-                            else if(b.equals(b14) && b14.isClickable()) press14(touchview);
-                            else if(b.equals(b15) && b15.isClickable()) press15(touchview);
-                            else if(b.equals(b16) && b16.isClickable()) press16(touchview);
-                            else if(b.equals(sub) && sub.isClickable()) pressSubmit(touchview);
-                            else if(b.equals(un) && un.isClickable()) pressUndo(touchview);
-                        }
-
-                    }
-                }
-                return true;
-            }
-
-        });
-
-
-        // registers the SHAKE DETECTOR event with the System Sensor manager...
-        //    ...need to register (onResume) and unregister (onPause) to stop listening to this system service
-
-        // args: sensorEventListener, Sensor, Rate for how often to receive sensor - sensor_delay constant for UIs  )
-        mSensorManager.registerListener(mShakeDetector, mAccelerometer,
-                SensorManager.SENSOR_DELAY_UI);
-    }
 
     @Override
     public void onWindowFocusChanged(boolean hasFocus) {
