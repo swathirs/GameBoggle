@@ -19,8 +19,7 @@ import java.util.ArrayList;
 import java.util.Iterator;
 
 /**
- *  Third Screen holds the boggle game board and player game activity
- *
+ * Third Screen holds the boggle game board and player game activity
  */
 
 
@@ -56,8 +55,7 @@ public class ThirdScreen extends AppCompatActivity {
     private final static int[] STATE_PRESSED = {
             android.R.attr.state_pressed,
             android.R.attr.state_focused
-                    | android.R.attr.state_enabled };
-
+                    | android.R.attr.state_enabled};
 
 
     private CountDownTimer countDownTimer;
@@ -70,8 +68,7 @@ public class ThirdScreen extends AppCompatActivity {
     private ShakeDetector mShakeDetector;
 
 
-
-    public void setButtons(boolean [] list){
+    public void setButtons(boolean[] list) {
         findViewById(R.id.button1).setClickable(list[0]);
         findViewById(R.id.button2).setClickable(list[1]);
         findViewById(R.id.button3).setClickable(list[2]);
@@ -90,31 +87,31 @@ public class ThirdScreen extends AppCompatActivity {
         findViewById(R.id.button16).setClickable(list[15]);
     }
 
-    public void disablePressed(ArrayList<Button> pressedButtons){
+    public void disablePressed(ArrayList<Button> pressedButtons) {
         Iterator i = pressedButtons.iterator();
         Button b;
-        while(i.hasNext()){
+        while (i.hasNext()) {
             b = (Button) i.next();
             b.setClickable(false);
         }
     }
 
-    public void pressSubmit(View view){
+    public void pressSubmit(View view) {
 
         boolean dictReturn;
 
-        dictReturn= board.checkWord(currWord);  // check if word is valid
-        if(dictReturn){
-                roundScore = roundScore + 1;  // increment score
-                setScore(roundScore);         // set score
+        dictReturn = board.checkWord(currWord);  // check if word is valid
+        if (dictReturn) {
+            roundScore = roundScore + board.getWordPoints(currWord);  // increment score based on pts for word length
+            setScore(roundScore);         // set score
         }
         currWord = "";
         wordDisplay = (TextView) findViewById(R.id.Entry);
         wordDisplay.setMovementMethod(new ScrollingMovementMethod());
         wordDisplay.setText(currWord);
         wordDisplay.setVisibility(View.VISIBLE);
-        boolean [] list =
-                        {true, true, true, true,
+        boolean[] list =
+                {true, true, true, true,
                         true, true, true, true,
                         true, true, true, true,
                         true, true, true, true};
@@ -124,8 +121,12 @@ public class ThirdScreen extends AppCompatActivity {
         un.setClickable(false);
     }
 
-    public void pressUndo(View view){
-        if(currWord.length() > 1) {
+
+
+
+
+    public void pressUndo(View view) {
+        if (currWord.length() > 1) {
             int digit = currWord.length();
             currWord = currWord.substring(0, digit - 2);
             pressedButtons.remove(digit - 1);
@@ -133,14 +134,13 @@ public class ThirdScreen extends AppCompatActivity {
             pressedButtons.remove(digit - 2);
             prev.performClick();
             un.setClickable(false);
-        }
-        else if(currWord.length() == 1){
+        } else if (currWord.length() == 1) {
             currWord = "";
             wordDisplay = (TextView) findViewById(R.id.Entry);
             wordDisplay.setMovementMethod(new ScrollingMovementMethod());
             wordDisplay.setText(currWord);
             wordDisplay.setVisibility(View.VISIBLE);
-            boolean [] list =
+            boolean[] list =
                     {true, true, true, true,
                             true, true, true, true,
                             true, true, true, true,
@@ -155,15 +155,15 @@ public class ThirdScreen extends AppCompatActivity {
 
     /**
      * Below handles user selecting dice to select a word
-     * */
-    public void press1(View view){
+     */
+    public void press1(View view) {
         currWord = currWord + letters.get(0);
         wordDisplay = (TextView) findViewById(R.id.Entry);
         wordDisplay.setText(currWord);
-        boolean [] list = {false, true, false, false,
-                           true, true, false, false,
-                           false, false, false, false,
-                           false, false, false, false};
+        boolean[] list = {false, true, false, false,
+                true, true, false, false,
+                false, false, false, false,
+                false, false, false, false};
         setButtons(list);
         pressedButtons.add((Button) findViewById(R.id.button1));
         disablePressed(pressedButtons);
@@ -171,14 +171,14 @@ public class ThirdScreen extends AppCompatActivity {
         un.setClickable(true);
     }
 
-    public void press2(View view){
+    public void press2(View view) {
         currWord = currWord + letters.get(1);
         wordDisplay = (TextView) findViewById(R.id.Entry);
         wordDisplay.setText(currWord);
-        boolean [] list = {true, false, true, false,
-                           true, true, true, false,
-                           false, false, false, false,
-                           false, false, false, false};
+        boolean[] list = {true, false, true, false,
+                true, true, true, false,
+                false, false, false, false,
+                false, false, false, false};
         setButtons(list);
         pressedButtons.add((Button) findViewById(R.id.button2));
         disablePressed(pressedButtons);
@@ -186,15 +186,15 @@ public class ThirdScreen extends AppCompatActivity {
         un.setClickable(true);
     }
 
-    public void press3(View view){
+    public void press3(View view) {
         currWord = currWord + letters.get(2);
         wordDisplay = (TextView) findViewById(R.id.Entry);
         wordDisplay.setText(currWord);
-        boolean [] list =
+        boolean[] list =
                 {false, true, false, true,
-                false, true, true, true,
-                false, false, false, false,
-                false, false, false, false};
+                        false, true, true, true,
+                        false, false, false, false,
+                        false, false, false, false};
         setButtons(list);
         pressedButtons.add((Button) findViewById(R.id.button3));
         disablePressed(pressedButtons);
@@ -202,12 +202,12 @@ public class ThirdScreen extends AppCompatActivity {
         un.setClickable(true);
     }
 
-    public void press4(View view){
+    public void press4(View view) {
         currWord = currWord + letters.get(3);
         wordDisplay = (TextView) findViewById(R.id.Entry);
         wordDisplay.setText(currWord);
-        boolean [] list =
-                        {false, false, true, false,
+        boolean[] list =
+                {false, false, true, false,
                         false, false, true, true,
                         false, false, false, false,
                         false, false, false, false};
@@ -218,12 +218,12 @@ public class ThirdScreen extends AppCompatActivity {
         un.setClickable(true);
     }
 
-    public void press5(View view){
+    public void press5(View view) {
         currWord = currWord + letters.get(4);
         wordDisplay = (TextView) findViewById(R.id.Entry);
         wordDisplay.setText(currWord);
-        boolean [] list =
-                        {true, true, false, false,
+        boolean[] list =
+                {true, true, false, false,
                         false, true, false, false,
                         true, true, false, false,
                         false, false, false, false};
@@ -234,12 +234,12 @@ public class ThirdScreen extends AppCompatActivity {
         un.setClickable(true);
     }
 
-    public void press6(View view){
+    public void press6(View view) {
         currWord = currWord + letters.get(5);
         wordDisplay = (TextView) findViewById(R.id.Entry);
         wordDisplay.setText(currWord);
-        boolean [] list =
-                       {true, true, true, false,
+        boolean[] list =
+                {true, true, true, false,
                         true, false, true, false,
                         true, true, true, false,
                         false, false, false, false};
@@ -250,12 +250,12 @@ public class ThirdScreen extends AppCompatActivity {
         un.setClickable(true);
     }
 
-    public void press7(View view){
+    public void press7(View view) {
         currWord = currWord + letters.get(6);
         wordDisplay = (TextView) findViewById(R.id.Entry);
         wordDisplay.setText(currWord);
-        boolean [] list =
-                       {false, true, true, true,
+        boolean[] list =
+                {false, true, true, true,
                         false, true, false, true,
                         false, true, true, true,
                         false, false, false, false};
@@ -266,12 +266,12 @@ public class ThirdScreen extends AppCompatActivity {
         un.setClickable(true);
     }
 
-    public void press8(View view){
+    public void press8(View view) {
         currWord = currWord + letters.get(7);
         wordDisplay = (TextView) findViewById(R.id.Entry);
         wordDisplay.setText(currWord);
-        boolean [] list =
-                        {false, false, true, true,
+        boolean[] list =
+                {false, false, true, true,
                         false, false, true, false,
                         false, false, true, true,
                         false, false, false, false};
@@ -282,12 +282,12 @@ public class ThirdScreen extends AppCompatActivity {
         un.setClickable(true);
     }
 
-    public void press9(View view){
+    public void press9(View view) {
         currWord = currWord + letters.get(8);
         wordDisplay = (TextView) findViewById(R.id.Entry);
         wordDisplay.setText(currWord);
-        boolean [] list =
-                        {false, false, false, false,
+        boolean[] list =
+                {false, false, false, false,
                         true, true, false, false,
                         false, true, false, false,
                         true, true, false, false,};
@@ -298,16 +298,16 @@ public class ThirdScreen extends AppCompatActivity {
         un.setClickable(true);
     }
 
-    public void press10(View view){
+    public void press10(View view) {
         currWord = currWord + letters.get(9);
         wordDisplay = (TextView) findViewById(R.id.Entry);
         wordDisplay.setText(currWord);
-        boolean [] list =
-                      {false, false, false, false,
+        boolean[] list =
+                {false, false, false, false,
                         true, true, true, false,
                         true, false, true, false,
                         true, true, true, false,
-                        };
+                };
         setButtons(list);
         pressedButtons.add((Button) findViewById(R.id.button10));
         disablePressed(pressedButtons);
@@ -315,12 +315,12 @@ public class ThirdScreen extends AppCompatActivity {
         un.setClickable(true);
     }
 
-    public void press11(View view){
+    public void press11(View view) {
         currWord = currWord + letters.get(10);
         wordDisplay = (TextView) findViewById(R.id.Entry);
         wordDisplay.setText(currWord);
-        boolean [] list =
-                        {false, false, false, false,
+        boolean[] list =
+                {false, false, false, false,
                         false, true, true, true,
                         false, true, false, true,
                         false, true, true, true};
@@ -331,12 +331,12 @@ public class ThirdScreen extends AppCompatActivity {
         un.setClickable(true);
     }
 
-    public void press12(View view){
+    public void press12(View view) {
         currWord = currWord + letters.get(11);
         wordDisplay = (TextView) findViewById(R.id.Entry);
         wordDisplay.setText(currWord);
-        boolean [] list =
-                        {false, false, false, false,
+        boolean[] list =
+                {false, false, false, false,
                         false, false, true, true,
                         false, false, true, false,
                         false, false, true, true};
@@ -347,12 +347,12 @@ public class ThirdScreen extends AppCompatActivity {
         un.setClickable(true);
     }
 
-    public void press13(View view){
+    public void press13(View view) {
         currWord = currWord + letters.get(12);
         wordDisplay = (TextView) findViewById(R.id.Entry);
         wordDisplay.setText(currWord);
-        boolean [] list =
-                        {false, false, false, false,
+        boolean[] list =
+                {false, false, false, false,
                         false, false, false, false,
                         true, true, false, false,
                         false, true, false, false};
@@ -363,12 +363,12 @@ public class ThirdScreen extends AppCompatActivity {
         un.setClickable(true);
     }
 
-    public void press14(View view){
+    public void press14(View view) {
         currWord = currWord + letters.get(13);
         wordDisplay = (TextView) findViewById(R.id.Entry);
         wordDisplay.setText(currWord);
-        boolean [] list =
-                        {false, false, false, false,
+        boolean[] list =
+                {false, false, false, false,
                         false, false, false, false,
                         true, true, true, false,
                         true, false, true, false};
@@ -379,12 +379,12 @@ public class ThirdScreen extends AppCompatActivity {
         un.setClickable(true);
     }
 
-    public void press15(View view){
+    public void press15(View view) {
         currWord = currWord + letters.get(14);
         wordDisplay = (TextView) findViewById(R.id.Entry);
         wordDisplay.setText(currWord);
-        boolean [] list =
-                        {false, false, false, false,
+        boolean[] list =
+                {false, false, false, false,
                         false, false, false, false,
                         false, true, true, true,
                         false, true, false, true};
@@ -395,12 +395,12 @@ public class ThirdScreen extends AppCompatActivity {
         un.setClickable(true);
     }
 
-    public void press16(View view){
+    public void press16(View view) {
         currWord = currWord + letters.get(15);
         wordDisplay = (TextView) findViewById(R.id.Entry);
         wordDisplay.setText(currWord);
-        boolean [] list =
-                        {false, false, false, false,
+        boolean[] list =
+                {false, false, false, false,
                         false, false, false, false,
                         false, false, true, true,
                         false, false, true, false};
@@ -410,8 +410,6 @@ public class ThirdScreen extends AppCompatActivity {
         sub.setClickable(true);
         un.setClickable(true);
     }
-
-
 
 
     @Override
@@ -448,23 +446,24 @@ public class ThirdScreen extends AppCompatActivity {
         defaultStates = b1.getBackground().getState();
 
 
-
-
         // roundNumber = getIntent().getExtras().getInt("RoundNumber");
-        roundScore= getIntent().getExtras().getInt("RoundScore"); //Obtained from SecondScreen
+        roundScore = getIntent().getExtras().getInt("RoundScore"); //Obtained from SecondScreen
         difficultyString = getIntent().getExtras().getString("DifficultyStringValue");//Obtained from SecondScreen
 
-       Log.d("DifficultyStringVal", difficultyString);
+        Log.d("DifficultyStringVal", difficultyString);
 
-        switch (difficultyString)
-        {
-            case "Easy": difficulty = 1;
+        switch (difficultyString) {
+            case "Easy":
+                difficulty = 1;
                 break;
-            case "Normal": difficulty = 2;
+            case "Normal":
+                difficulty = 2;
                 break;
-            case "Difficult": difficulty = 3;
+            case "Difficult":
+                difficulty = 3;
                 break;
-            default: difficulty = 1;
+            default:
+                difficulty = 1;
                 return;
         }
         Log.d("DifficultyIntVal:", String.valueOf(difficulty));
@@ -476,7 +475,7 @@ public class ThirdScreen extends AppCompatActivity {
         textView.setVisibility(View.VISIBLE);
 
         // Score
-        roundScoreTextView = (TextView)findViewById(R.id.tvRoundScoreID);
+        roundScoreTextView = (TextView) findViewById(R.id.tvRoundScoreID);
         roundScoreTextView.setText(Integer.toString(roundScore));
 
 
@@ -495,7 +494,7 @@ public class ThirdScreen extends AppCompatActivity {
                 shakeToStartTextView = (TextView) findViewById(R.id.textViewShake2Start);
                 shakeToStartTextView.setVisibility(View.INVISIBLE);
 
-                if(letters == null){
+                if (letters == null) {
                     board.genBoardArrangement(difficulty);
                     letters = board.getSquares();
 
@@ -579,7 +578,6 @@ public class ThirdScreen extends AppCompatActivity {
         });*/
 
 
-
     }
 
     public class CountDownTimerActivity extends CountDownTimer {
@@ -607,10 +605,10 @@ public class ThirdScreen extends AppCompatActivity {
 
                     i.putExtra("difficultyFromThirdScreen", difficulty);
 
-                    for (int j =0; j < fetchFoundWords.size(); j++) {
+                    for (int j = 0; j < fetchFoundWords.size(); j++) {
                         Log.d("FoundWords", fetchFoundWords.get(j));
                     }
-                    for (int j =0; j < fetchValidWords.size(); j++) {
+                    for (int j = 0; j < fetchValidWords.size(); j++) {
                         Log.d("ValidWords", fetchValidWords.get(j));
                     }
 
@@ -623,12 +621,80 @@ public class ThirdScreen extends AppCompatActivity {
 
         @Override
         public void onTick(long millisUntilFinished) {
-            textView.setText("" + millisUntilFinished/1000);
-            if(currWord.length() > 0) un.setClickable(true);
+            textView.setText("" + millisUntilFinished / 1000);
+            if (currWord.length() > 0) un.setClickable(true);
         }
     }
 
 
+    @Override  //onResume from Activity class
+    public void onResume() {
+        super.onResume();
+
+        touchview.setOnTouchListener(new View.OnTouchListener() {
+
+            private boolean isInside = false;
+
+            @Override
+            public boolean onTouch(View v, MotionEvent event) {
+
+                int x = (int) event.getX();
+                int y = (int) event.getY();
+
+                TextView t1 = (TextView) findViewById(R.id.textView22);
+                t1.setText(String.valueOf(x));
+                TextView t2 = (TextView) findViewById(R.id.textView23);
+                t2.setText(String.valueOf(y));
+
+                for (int i = 0; i < touchview.getChildCount(); i++) {
+                    View current = touchview.getChildAt(i);
+                    if (current instanceof Button) {
+                        Button b = (Button) current;
+
+                        if (!isPointWithin(x, y, b.getLeft(), b.getRight(), b.getTop(),
+                                b.getBottom())) {
+                            //b.getBackground().setState(defaultStates);
+                        }
+
+                        if (isPointWithin(x, y, b.getLeft(), b.getRight(), b.getTop(),
+                                b.getBottom())) {
+                            //b.performClick();
+                            //b.getBackground().setState(STATE_PRESSED);
+                            if (b.equals(b1) && b1.isClickable()) press1(touchview);
+                            else if (b.equals(b2) && b2.isClickable()) press2(touchview);
+                            else if (b.equals(b3) && b3.isClickable()) press3(touchview);
+                            else if (b.equals(b4) && b4.isClickable()) press4(touchview);
+                            else if (b.equals(b5) && b5.isClickable()) press5(touchview);
+                            else if (b.equals(b6) && b6.isClickable()) press6(touchview);
+                            else if (b.equals(b7) && b7.isClickable()) press7(touchview);
+                            else if (b.equals(b8) && b8.isClickable()) press8(touchview);
+                            else if (b.equals(b9) && b9.isClickable()) press9(touchview);
+                            else if (b.equals(b10) && b10.isClickable()) press10(touchview);
+                            else if (b.equals(b11) && b11.isClickable()) press11(touchview);
+                            else if (b.equals(b12) && b12.isClickable()) press12(touchview);
+                            else if (b.equals(b13) && b13.isClickable()) press13(touchview);
+                            else if (b.equals(b14) && b14.isClickable()) press14(touchview);
+                            else if (b.equals(b15) && b15.isClickable()) press15(touchview);
+                            else if (b.equals(b16) && b16.isClickable()) press16(touchview);
+                            else if (b.equals(sub) && sub.isClickable()) pressSubmit(touchview);
+                            else if (b.equals(un) && un.isClickable()) pressUndo(touchview);
+                        }
+
+                    }
+                }
+                return true;
+            }
+
+        });
+
+
+        // registers the SHAKE DETECTOR event with the System Sensor manager...
+        //    ...need to register (onResume) and unregister (onPause) to stop listening to this system service
+
+        // args: sensorEventListener, Sensor, Rate for how often to receive sensor - sensor_delay constant for UIs  )
+        mSensorManager.registerListener(mShakeDetector, mAccelerometer,
+                SensorManager.SENSOR_DELAY_UI);
+    }
 
     @Override
     public void onWindowFocusChanged(boolean hasFocus) {
@@ -636,7 +702,7 @@ public class ThirdScreen extends AppCompatActivity {
     }
 
     static boolean isPointWithin(int x, int y, int x1, int x2, int y1, int y2) {
-        return (x <= (x2-25) && x >= (x1+25) && y <= (y2-25) && y >= (y1+25));
+        return (x <= (x2 - 25) && x >= (x1 + 25) && y <= (y2 - 25) && y >= (y1 + 25));
     }
 
 
@@ -649,8 +715,7 @@ public class ThirdScreen extends AppCompatActivity {
     }
 
 
-    void setScore(int score)
-    {
+    void setScore(int score) {
         TextView scoretxt = (TextView) findViewById(R.id.tvRoundScoreID);
         scoretxt.setText(Integer.toString(score));
 
