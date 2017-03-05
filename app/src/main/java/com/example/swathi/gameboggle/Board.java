@@ -2,6 +2,7 @@ package com.example.swathi.gameboggle;
 
 //import android.app.Activity;
 import android.content.Context;
+import android.util.Log;
 import android.widget.Toast;
 
 import java.util.ArrayList;
@@ -46,11 +47,32 @@ public class Board {
 
         while (!valid.checkValidBoard())
         {
+            squares = roller.genBoard();  // get new set of letters
             valid = new ValidWords(squares, difficulty, dictionary);
         }
+        return true;
+    }
+
+    public boolean genBoardArrangement(String tempSquares) {
+
+        squares = new ArrayList<String>();
+
+        String temp;
+
+        for (int i = 0; i < tempSquares.length(); i++){
+            temp = String.valueOf(tempSquares.charAt(i));
+            if(temp.contains("q")){
+                i++;
+                temp = temp.concat("u");
+
+            }
+            squares.add(temp);
+        }
+        valid = new ValidWords(squares, 1, dictionary);
 
         return true;
     }
+
 
 
     public ArrayList<String> getSquares() {
@@ -78,6 +100,38 @@ public class Board {
         return true;
     }
 
+
+    /**
+     * getWordPoints():
+     * Input: string
+     * takes a word and returns it's point value based on the word length
+     */
+    public int getWordPoints(String aWord) {
+        int size = aWord.length();
+        int points;
+
+        switch (size) {
+            case 3:             // 1 pts (len 3 or 4)
+                points = 1;
+                break;
+            case 4:
+                points = 1;
+                break;
+            case 5:             // 2 pts (len 5)
+                points = 2;
+                break;
+            case 6:             // 3 pts (len 6)
+                points = 3;
+                break;
+            case 7:             // 5 pts (len 7)
+                points = 5;
+                break;
+            default:
+                points = 10; // 10 pts, word length 8 or greater
+                break;
+        }
+        return points;
+    }
 
 
     public ArrayList<String> foundWords(){
