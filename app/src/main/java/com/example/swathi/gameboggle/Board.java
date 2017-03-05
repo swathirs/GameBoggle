@@ -47,11 +47,12 @@ public class Board {
 
         while (!valid.checkValidBoard())
         {
+            squares = roller.genBoard();  // get new set of letters
             valid = new ValidWords(squares, difficulty, dictionary);
         }
-
         return true;
     }
+
     public boolean genBoardArrangement(String tempSquares) {
 
         squares = new ArrayList<String>();
@@ -68,6 +69,7 @@ public class Board {
             squares.add(temp);
         }
         valid = new ValidWords(squares, 1, dictionary);
+
         return true;
     }
 
