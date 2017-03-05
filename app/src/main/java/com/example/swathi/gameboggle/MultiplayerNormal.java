@@ -46,8 +46,14 @@ public class MultiplayerNormal extends AppCompatActivity {
 
     public final int SUCCESS_CONNECT = 0;
     private final int SERVER_SUCCESS = 2;
+    private final int MESSAGE_READ = 1;
+
+
 
     public BluetoothAdapter MBT = BluetoothAdapter.getDefaultAdapter();
+
+    Board board = null;
+    ThirdScreen thirdScreen = null;
 
 
     Handler mHandler = new Handler() {
@@ -57,8 +63,52 @@ public class MultiplayerNormal extends AppCompatActivity {
             switch(msg.what) {
 
                 case SUCCESS_CONNECT:
+                    String cans ="1";
 
                     Toast.makeText(getApplicationContext(), "Connection has been established!", Toast.LENGTH_LONG).show();
+                    ConnectedThread sendAnswerstoClient = new ConnectedThread(writerClientSocket);
+                    sendAnswerstoClient.write(cans.getBytes());
+
+                    break;
+                case MESSAGE_READ:
+                    sendObject reader = (sendObject)msg.obj;
+                    String recv = reader.sendBytes;
+                    Log.d("Debug", recv);
+                    if(recv.contains("1") == true){
+                        cans ="2";
+                        board = new Board(getApplicationContext());
+                        board.genBoardArrangement(1);
+                        AcceptThread temp;
+
+                        ArrayList<String> squares = board.getSquares();
+
+                        for(int i = 0; i < 16; i++){
+                            cans = cans.concat(squares.get(i));
+
+                        }
+                        cans = cans.concat("2");
+                        Log.d("Debug2", cans);
+                        Toast.makeText(getApplicationContext(), cans, Toast.LENGTH_LONG).show();
+                        sendAnswerstoClient = new ConnectedThread(writerServerSocket);
+                        sendAnswerstoClient.write(cans.getBytes());
+                    }
+                    if(recv.contains("2") == true){
+                        String curr =" ";
+                        int i = 1;
+                        String temp = "";
+
+                        while(!curr.contains("2")){
+                            curr = String.valueOf(recv.charAt(i));
+                            temp = temp.concat(curr);
+                            i++;
+
+                        }
+                        board = new Board(getApplicationContext());
+                        board.genBoardArrangement(temp);
+                        Log.d("Debug","In message_read");
+                        Toast.makeText(getApplicationContext(), temp, Toast.LENGTH_LONG).show();
+
+                    }
 
                     break;
 
@@ -73,6 +123,7 @@ public class MultiplayerNormal extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_multiplayer_normal);
         device = "";
+        final Context context = this;
 
         final RelativeLayout connectLayer = (RelativeLayout) findViewById(R.id.RL_Connect);
         connectLayer.setVisibility(View.VISIBLE);
@@ -80,6 +131,7 @@ public class MultiplayerNormal extends AppCompatActivity {
         final Button Search = (Button) findViewById(R.id.search_button);
         final ListView BTdevices = (ListView) findViewById(R.id.PairedList);
         final Button Host = (Button) findViewById(R.id.HostBtn);
+        final Button letsPlayBtn = (Button) findViewById(R.id.Play);
 
 
 
@@ -141,6 +193,7 @@ public class MultiplayerNormal extends AppCompatActivity {
 
             }
         });
+
 
     }
 
@@ -332,7 +385,7 @@ public class MultiplayerNormal extends AppCompatActivity {
                     String bufferStr = new String(buffer);
                     // Send the obtained bytes to the UI activity
                     sendObject temp = new sendObject(bufferStr,mmSocket);
-                   // mHandler.obtainMessage(MESSAGE_READ, bytes, -1, temp).sendToTarget();
+                    mHandler.obtainMessage(MESSAGE_READ, bytes, -1, temp).sendToTarget();
 
 
                 } catch (IOException e) {
