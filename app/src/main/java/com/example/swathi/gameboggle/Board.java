@@ -47,9 +47,9 @@ public class Board {
 
         while (!valid.checkValidBoard())
         {
+            squares = roller.genBoard();  // get new set of letters
             valid = new ValidWords(squares, difficulty, dictionary);
         }
-
         return true;
     }
     public boolean genBoardArrangement(String tempSquares) {
