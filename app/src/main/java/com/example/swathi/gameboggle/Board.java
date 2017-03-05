@@ -52,6 +52,7 @@ public class Board {
         }
         return true;
     }
+
     public boolean genBoardArrangement(String tempSquares) {
 
         squares = new ArrayList<String>();
@@ -68,6 +69,7 @@ public class Board {
             squares.add(temp);
         }
         valid = new ValidWords(squares, 1, dictionary);
+
         return true;
     }
 
