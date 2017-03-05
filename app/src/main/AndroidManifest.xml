@@ -30,8 +30,6 @@
         <activity android:name=".ScoreScreen" />
         <activity android:name=".BluetoothChatService" />
         <activity android:name=".MultiplayerNormal" />
-        <activity android:name=".BluetoothHostGame" />
-        <activity android:name=".BluetoothClientGame"></activity>
     </application>
 
 </manifest>
