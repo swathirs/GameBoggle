@@ -2,6 +2,7 @@ package com.example.swathi.gameboggle;
 
 //import android.app.Activity;
 import android.content.Context;
+import android.util.Log;
 import android.widget.Toast;
 
 import java.util.ArrayList;
@@ -51,6 +52,25 @@ public class Board {
 
         return true;
     }
+    public boolean genBoardArrangement(String tempSquares) {
+
+        squares = new ArrayList<String>();
+
+        String temp;
+
+        for (int i = 0; i < tempSquares.length(); i++){
+            temp = String.valueOf(tempSquares.charAt(i));
+            if(temp.contains("q")){
+                i++;
+                temp = temp.concat("u");
+
+            }
+            squares.add(temp);
+        }
+        valid = new ValidWords(squares, 1, dictionary);
+        return true;
+    }
+
 
 
     public ArrayList<String> getSquares() {
