@@ -419,7 +419,6 @@ public class ThirdScreen extends AppCompatActivity {
         pressedButtons = new ArrayList<Button>();
         //difficulty = 3; //TODO: get difficulty from screen 2
 
-
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_third_screen);
         board = new Board(getApplicationContext());
