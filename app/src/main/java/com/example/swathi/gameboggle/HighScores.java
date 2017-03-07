@@ -1,8 +1,11 @@
 package com.example.swathi.gameboggle;
 
+import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
-import android.view.Display;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.RadioButton;
 import android.widget.TextView;
@@ -49,6 +52,33 @@ public class HighScores extends AppCompatActivity {
         ModeSingle.setChecked(true);
         Level1.setChecked(true);
         changeScores();
+    }
+
+
+    /** onCreateOptionsMenu: Creates the option menu at top of screen */
+    @Override
+    public boolean onCreateOptionsMenu (Menu menu) {
+        getMenuInflater().inflate(R.menu.main, menu);
+        return super.onCreateOptionsMenu(menu);
+    }
+
+    /** onOptionsItemSelected: Adds click event to option menu items */
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        final Context context = this;
+        Intent intent;
+        switch(item.getItemId()) {
+            case R.id.action_highScores:
+                // do nothing
+                break;
+            case R.id.action_helpInstructions:
+                intent = new Intent(context, HelpScreen.class);
+                startActivity(intent);
+                break;
+            default:
+                return super.onOptionsItemSelected(item);
+        }
+        return true;
     }
 
     View.OnClickListener updateScores = new View.OnClickListener() {

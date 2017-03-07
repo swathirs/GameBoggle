@@ -7,11 +7,13 @@
         android:id="@+id/action_highScores"
         android:icon="@drawable/ic_grade_black_24dp"
         android:title=""
+
         app:showAsAction="always"/>
     <item
         android:id="@+id/action_helpInstructions"
         android:icon="@drawable/ic_help_black_24dp"
         android:title=""
+
         app:showAsAction="ifRoom"/>
 
 

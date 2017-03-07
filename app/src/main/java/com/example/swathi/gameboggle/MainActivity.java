@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 
@@ -27,11 +28,37 @@ public class MainActivity extends AppCompatActivity {
     public void onBackPressed() {
     }
 
+    /** onCreateOptionsMenu: Creates the option menu at top of screen */
     @Override
     public boolean onCreateOptionsMenu (Menu menu) {
         getMenuInflater().inflate(R.menu.main, menu);
         return super.onCreateOptionsMenu(menu);
     }
+
+    /** onOptionsItemSelected: Adds click event to option menu items */
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        final Context context = this;
+        Intent intent;
+        switch(item.getItemId()) {
+            case R.id.action_highScores:
+                intent = new Intent(context, HighScores.class);
+                startActivity(intent);
+                break;
+            case R.id.action_helpInstructions:
+                intent = new Intent(context, HelpScreen.class);
+                startActivity(intent);
+                break;
+            default:
+                return super.onOptionsItemSelected(item);
+        }
+        return true;
+    }
+
+
+
+
+
 
 
     public void addListenerOnButton() {
