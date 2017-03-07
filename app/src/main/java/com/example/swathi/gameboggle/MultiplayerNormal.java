@@ -1,6 +1,6 @@
 package com.example.swathi.gameboggle;
 
-import android.hardware.SensorManager;
+
 import android.os.CountDownTimer;
 import android.os.Handler;
 import android.os.Message;
@@ -117,15 +117,30 @@ public class MultiplayerNormal extends AppCompatActivity {
 
         boolean dictReturn;
 
+
         dictReturn= board.checkWord(currWord);  // check if word is valid
         if(dictReturn){
             roundScore = roundScore + 1;  // increment score
             setScore(roundScore);  // set score
             foundWords++;
+            String message = "4";
+            message  = message.concat(currWord);
+            message = message.concat(";");
+            ConnectedThread sendAnswers2Client;
+
             if(foundWords>=5)
             {
                 stopTimerButton.setClickable(true);
             }
+            if(isServer){
+                sendAnswers2Client = new ConnectedThread(writerServerSocket);
+            }
+            else
+            {
+                sendAnswers2Client = new ConnectedThread(writerClientSocket);
+            }
+            sendAnswers2Client.write(message.getBytes());
+
         }
         currWord = "";
         wordDisplay = (TextView) findViewById(R.id.Entry);
@@ -178,11 +193,13 @@ public class MultiplayerNormal extends AppCompatActivity {
         countDownTimer.cancel();
         Log.d("Debug timer","Stop timer");
         String cans2 = "3";
-        cans2.concat(Integer.toString(roundScore));
-        cans2.concat(";");
+        cans2 = cans2.concat(Integer.toString(roundScore));
+         cans2 =  cans2.concat(";");
 
         if(isServer){
+
             sendAnswers2Client = new ConnectedThread(writerServerSocket);
+
         }
         else
         {
@@ -577,6 +594,20 @@ public class MultiplayerNormal extends AppCompatActivity {
                         opponentStartTime = opponentTimer.getStartTime();
                         opponentStartTime = opponentStartTime + tempScore;
                         opponentTimer.cancel();
+                    }
+                    else if(recv.contains("4") == true){
+                        String curr =" ";
+                        int i = 1;
+                        String temp = "";
+                        connectLayer.setVisibility(View.INVISIBLE);
+                        touchview.setVisibility(View.VISIBLE);
+
+                        while(!curr.contains(";")){
+                            curr = String.valueOf(recv.charAt(i));
+                            temp = temp.concat(curr);
+                            i++;
+                        }
+
                     }
 
                     break;
