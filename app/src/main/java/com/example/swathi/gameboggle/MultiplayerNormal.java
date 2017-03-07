@@ -57,26 +57,33 @@ public class MultiplayerNormal extends AppCompatActivity {
     private RelativeLayout touchview;
 
     ArrayList<String> letters;
+    private boolean isServer;
 
     private Button b1, b2, b3, b4, b5, b6, b7, b8, b9, b10, b11, b12, b13, b14, b15, b16, sub, un;
-
-
 
     public BluetoothAdapter MBT = BluetoothAdapter.getDefaultAdapter();
 
     Board board = null;
+    Button stopTimerButton;
 
     TextView textView;
+    TextView opponentTextview;
     String currWord = "";
     TextView wordDisplay;
     ArrayList<Button> pressedButtons;
     public TextView roundScoreTextView;
     int roundScore = 0;
+    int foundWords = 0;
 
 
-    private CountDownTimer countDownTimer;
-    private final long startTime = 60 * 1000;
+    private CountDownTimerActivity countDownTimer;
+    private CountDownTimerActivity opponentTimer;
+    private  long opponentStartTime = 60;
+
+    private  long startTime = 60;
     private final long interval = 1 * 1000;
+
+
 
     public void setButtons(boolean [] list){
         findViewById(R.id.button1).setClickable(list[0]);
@@ -113,7 +120,12 @@ public class MultiplayerNormal extends AppCompatActivity {
         dictReturn= board.checkWord(currWord);  // check if word is valid
         if(dictReturn){
             roundScore = roundScore + 1;  // increment score
-            setScore(roundScore);         // set score
+            setScore(roundScore);  // set score
+            foundWords++;
+            if(foundWords>=5)
+            {
+                stopTimerButton.setClickable(true);
+            }
         }
         currWord = "";
         wordDisplay = (TextView) findViewById(R.id.Entry);
@@ -157,6 +169,26 @@ public class MultiplayerNormal extends AppCompatActivity {
             sub.setClickable(false);
             un.setClickable(false);
         }
+    }
+    public void pressStopTimer(View view){
+        ConnectedThread sendAnswers2Client;
+        startTime = countDownTimer.getStartTime();
+        startTime = startTime + roundScore;
+
+        countDownTimer.cancel();
+        Log.d("Debug timer","Stop timer");
+        String cans2 = "3";
+        cans2.concat(Integer.toString(roundScore));
+        cans2.concat(";");
+
+        if(isServer){
+            sendAnswers2Client = new ConnectedThread(writerServerSocket);
+        }
+        else
+        {
+            sendAnswers2Client = new ConnectedThread(writerClientSocket);
+        }
+        sendAnswers2Client.write(cans2.getBytes());
     }
 
     public void press1(View view){
@@ -429,7 +461,6 @@ public class MultiplayerNormal extends AppCompatActivity {
 
                 case SUCCESS_CONNECT:
                     String cans ="1";
-
                     Toast.makeText(getApplicationContext(), "Connection has been established!", Toast.LENGTH_LONG).show();
 
                     ConnectedThread sendAnswerstoClient = new ConnectedThread(writerClientSocket);
@@ -440,14 +471,14 @@ public class MultiplayerNormal extends AppCompatActivity {
                     sendObject reader = (sendObject)msg.obj;
                     String recv = reader.sendBytes;
                     Log.d("Debug", recv);
-
+                    //When we are in 1 we are in the server
                     if(recv.contains("1") == true){
+                        isServer = true;
                         cans ="2";
                         board = new Board(getApplicationContext());
-                        board.genBoardArrangement(1);
+                        board.genBoardArrangement(3);
                         AcceptThread temp;
                         connectLayer.setVisibility(View.INVISIBLE);
-
 
                         letters = board.getSquares();
                         b1.setText(letters.get(0));
@@ -468,9 +499,7 @@ public class MultiplayerNormal extends AppCompatActivity {
                         b16.setText(letters.get(15));
 
                         countDownTimer.start();
-
-
-
+                        opponentTimer.start();
 
                         touchview.setVisibility(View.VISIBLE);
 
@@ -486,7 +515,8 @@ public class MultiplayerNormal extends AppCompatActivity {
                         sendAnswerstoClient = new ConnectedThread(writerServerSocket);
                         sendAnswerstoClient.write(cans.getBytes());
                     }
-                    if(recv.contains("2") == true){
+                    else if(recv.contains("2") == true){
+                        isServer = false;
                         String curr =" ";
                         int i = 1;
                         String temp = "";
@@ -521,10 +551,32 @@ public class MultiplayerNormal extends AppCompatActivity {
                         b16.setText(letters.get(15));
 
                         countDownTimer.start();
+                        opponentTimer.start();
 
                         Log.d("Debug","In message_read");
                         Toast.makeText(getApplicationContext(), temp, Toast.LENGTH_LONG).show();
 
+                    }
+                    else if(recv.contains("3") == true){
+                        int tempScore = 0;
+
+                        String curr =" ";
+                        int i = 1;
+                        String temp = "";
+                        connectLayer.setVisibility(View.INVISIBLE);
+                        touchview.setVisibility(View.VISIBLE);
+
+                        while(!curr.contains(";")){
+                            curr = String.valueOf(recv.charAt(i));
+                            temp = temp.concat(curr);
+                            i++;
+
+                        }
+                        tempScore = Integer.parseInt(temp);
+
+                        opponentStartTime = opponentTimer.getStartTime();
+                        opponentStartTime = opponentStartTime + tempScore;
+                        opponentTimer.cancel();
                     }
 
                     break;
@@ -543,6 +595,8 @@ public class MultiplayerNormal extends AppCompatActivity {
         final Context context = this;
 
         pressedButtons = new ArrayList<Button>();
+        stopTimerButton = (Button)findViewById(R.id.btnStopTimer) ;
+        stopTimerButton.setClickable(false);
 
 
 
@@ -559,9 +613,18 @@ public class MultiplayerNormal extends AppCompatActivity {
         final Button letsPlayBtn = (Button) findViewById(R.id.Play);
 
         textView = (TextView) findViewById(R.id.textView_Timer);
-        countDownTimer = new MultiplayerNormal.CountDownTimerActivity(startTime, interval);
+        opponentTextview = (TextView) findViewById(R.id.textView_OpponentTimer);
+        countDownTimer = new MultiplayerNormal.CountDownTimerActivity(startTime * interval, interval);
+        opponentTimer = new MultiplayerNormal.CountDownTimerActivity(opponentStartTime * interval, interval);
         textView.setText(textView.getText() + String.valueOf(startTime / 1000));
         textView.setVisibility(View.VISIBLE);
+        opponentTextview.setText(opponentTextview.getText() + String.valueOf(opponentStartTime));
+        opponentTextview.setVisibility(View.VISIBLE);
+
+        countDownTimer.setOpponentTimer(false);
+        opponentTimer.setOpponentTimer(true);
+
+
 
         b1 = (Button) findViewById(R.id.button1);
         b2 = (Button) findViewById(R.id.button2);
@@ -926,6 +989,7 @@ public class MultiplayerNormal extends AppCompatActivity {
                             else if(b.equals(b16) && b16.isClickable()) press16(touchview);
                             else if(b.equals(sub) && sub.isClickable()) pressSubmit(touchview);
                             else if(b.equals(un) && un.isClickable()) pressUndo(touchview);
+                            else if(b.equals(stopTimerButton) && stopTimerButton.isClickable()) pressStopTimer(touchview);
                         }
 
                     }
@@ -941,22 +1005,49 @@ public class MultiplayerNormal extends AppCompatActivity {
 
 
     public class CountDownTimerActivity extends CountDownTimer {
+        long startTime;
+        public boolean isOpponentTimer;
 
         public CountDownTimerActivity(long startTime, long interval) {
+
             super(startTime, interval);
+            this.startTime = startTime;
         }
 
         @Override
         public void onFinish() {
-            textView.setText("Time's up!");
 
            // delay for x milliseconds, i.e. 5000 = 5 sec
+            if(isOpponentTimer){
+                opponentTextview.setText("Time's up!");
+            }
+            else
+            {
+                textView.setText("Time's up!");
+            }
         }
 
         @Override
         public void onTick(long millisUntilFinished) {
-            textView.setText("" + millisUntilFinished/1000);
+            startTime--;
+            if(isOpponentTimer){
+                opponentTextview.setText(""+ millisUntilFinished/1000);
+            }
+            else
+            {
+                textView.setText(""+ millisUntilFinished/1000);
+            }
+
             if(currWord.length() > 0) un.setClickable(true);
+        }
+        public long getStartTime(){
+            return this.startTime;
+        }
+        public boolean isOpponentTimer(){
+            return this.isOpponentTimer;
+        }
+        public void setOpponentTimer(boolean value){
+             this.isOpponentTimer = value;
         }
     }
 
@@ -966,6 +1057,7 @@ public class MultiplayerNormal extends AppCompatActivity {
         scoretxt.setText(Integer.toString(score));
 
     }
+
 
 }
 
