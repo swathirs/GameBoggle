@@ -14,6 +14,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.util.ArrayList;
 import java.util.Iterator;
@@ -119,10 +120,17 @@ public class ThirdScreen extends AppCompatActivity {
 
         boolean dictReturn;
 
+
         dictReturn = board.checkWord(currWord);  // check if word is valid
         if (dictReturn) {
-            roundScore = roundScore + board.getWordPoints(currWord);  // increment score based on pts for word length
-            setScore(roundScore);         // set score
+            int points = board.getWordPoints(currWord);
+            String ptsString = ( points >  1) ? " points!" : " point!";  // have plural word depending on score
+
+            roundScore = roundScore + points;  // increment score based on pts for word length
+            setScore(roundScore);    // set score
+
+            // tell the player how many points they earned for current word
+            Toast.makeText(getApplicationContext(), "+" + points + ptsString, Toast.LENGTH_SHORT).show();
         }
         currWord = "";
         wordDisplay = (TextView) findViewById(R.id.Entry);
@@ -140,9 +148,6 @@ public class ThirdScreen extends AppCompatActivity {
         un.setClickable(false);
         resetButtonBorders();
     }
-
-
-
 
 
     public void pressUndo(View view) {
