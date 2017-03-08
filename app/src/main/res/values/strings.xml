@@ -8,7 +8,8 @@
     Words can be in singular, plural or other derived forms. Names and abbreviations are not valid.
     Each cube letter can be used only once in a single word. The score of each valid word is counted based on its length,
     1 point for 3 or 4 letter words, 2 points for 5 letter words, 3 points for 6 letter words, 5 points for 7 letter words, and
-    11 points for words of 8 or more letters.</string>
+    10 points for words of 8 or more letters.</string>
+    <string name="help_text_multiplayer"> In normal two player mode, both players play the same board and compete to see who gets the highest score. In cutthroat mode, players share a board and play on the same board at the same time. If a word has already been found by one player, then the other player is blocked from finding that word with same sequence of dice. When time is up, the player with higher score wins. The score of each valid word is counted based on its length, 1 point for 3 or 4 letter words, 2 points for 5 letter words, 3 points for 6 letter words, 5 points for 7 letter words, and 10 points for words of 8 or more letters.</string>
     <string name="select_difficulty_level">Choose the difficulty level:</string>
     <string name="select_number_rounds">Select the number of rounds:</string>
     <string name="boggle">Boggle</string>
