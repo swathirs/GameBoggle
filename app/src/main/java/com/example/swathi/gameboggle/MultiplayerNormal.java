@@ -113,6 +113,25 @@ public class MultiplayerNormal extends AppCompatActivity {
         }
     }
 
+    public void resetButtonBorders(){
+        b1.setBackgroundResource(R.drawable.buttonnoselectborder);
+        b2.setBackgroundResource(R.drawable.buttonnoselectborder);
+        b3.setBackgroundResource(R.drawable.buttonnoselectborder);
+        b4.setBackgroundResource(R.drawable.buttonnoselectborder);
+        b5.setBackgroundResource(R.drawable.buttonnoselectborder);
+        b6.setBackgroundResource(R.drawable.buttonnoselectborder);
+        b7.setBackgroundResource(R.drawable.buttonnoselectborder);
+        b8.setBackgroundResource(R.drawable.buttonnoselectborder);
+        b9.setBackgroundResource(R.drawable.buttonnoselectborder);
+        b10.setBackgroundResource(R.drawable.buttonnoselectborder);
+        b11.setBackgroundResource(R.drawable.buttonnoselectborder);
+        b12.setBackgroundResource(R.drawable.buttonnoselectborder);
+        b13.setBackgroundResource(R.drawable.buttonnoselectborder);
+        b14.setBackgroundResource(R.drawable.buttonnoselectborder);
+        b15.setBackgroundResource(R.drawable.buttonnoselectborder);
+        b16.setBackgroundResource(R.drawable.buttonnoselectborder);
+    }
+
     public void pressSubmit(View view){
 
         boolean dictReturn;
@@ -156,12 +175,15 @@ public class MultiplayerNormal extends AppCompatActivity {
         pressedButtons = new ArrayList<>();
         sub.setClickable(false);
         un.setClickable(false);
+        resetButtonBorders();
     }
 
     public void pressUndo(View view){
         if(currWord.length() > 1) {
             int digit = currWord.length();
             currWord = currWord.substring(0, digit - 2);
+            Button last = pressedButtons.get(digit - 1);
+            last.setBackgroundResource(R.drawable.buttonnoselectborder);
             pressedButtons.remove(digit - 1);
             Button prev = pressedButtons.get(digit - 2);
             pressedButtons.remove(digit - 2);
@@ -183,6 +205,7 @@ public class MultiplayerNormal extends AppCompatActivity {
             pressedButtons = new ArrayList<>();
             sub.setClickable(false);
             un.setClickable(false);
+            resetButtonBorders();
         }
     }
     public void pressStopTimer(View view){
@@ -221,6 +244,7 @@ public class MultiplayerNormal extends AppCompatActivity {
         disablePressed(pressedButtons);
         sub.setClickable(true);
         un.setClickable(true);
+        b1.setBackgroundResource(R.drawable.buttonnoselect);
 
         Log.d("Buttons debug", "some string");
     }
@@ -238,6 +262,7 @@ public class MultiplayerNormal extends AppCompatActivity {
         disablePressed(pressedButtons);
         sub.setClickable(true);
         un.setClickable(true);
+        b2.setBackgroundResource(R.drawable.buttonnoselect);
     }
 
     public void press3(View view){
@@ -254,6 +279,7 @@ public class MultiplayerNormal extends AppCompatActivity {
         disablePressed(pressedButtons);
         sub.setClickable(true);
         un.setClickable(true);
+        b3.setBackgroundResource(R.drawable.buttonnoselect);
     }
 
     public void press4(View view){
@@ -270,6 +296,7 @@ public class MultiplayerNormal extends AppCompatActivity {
         disablePressed(pressedButtons);
         sub.setClickable(true);
         un.setClickable(true);
+        b4.setBackgroundResource(R.drawable.buttonnoselect);
     }
 
     public void press5(View view){
@@ -286,6 +313,7 @@ public class MultiplayerNormal extends AppCompatActivity {
         disablePressed(pressedButtons);
         sub.setClickable(true);
         un.setClickable(true);
+        b5.setBackgroundResource(R.drawable.buttonnoselect);
     }
 
     public void press6(View view){
@@ -302,6 +330,7 @@ public class MultiplayerNormal extends AppCompatActivity {
         disablePressed(pressedButtons);
         sub.setClickable(true);
         un.setClickable(true);
+        b6.setBackgroundResource(R.drawable.buttonnoselect);
     }
 
     public void press7(View view){
@@ -318,6 +347,7 @@ public class MultiplayerNormal extends AppCompatActivity {
         disablePressed(pressedButtons);
         sub.setClickable(true);
         un.setClickable(true);
+        b7.setBackgroundResource(R.drawable.buttonnoselect);
     }
 
     public void press8(View view){
@@ -334,6 +364,7 @@ public class MultiplayerNormal extends AppCompatActivity {
         disablePressed(pressedButtons);
         sub.setClickable(true);
         un.setClickable(true);
+        b8.setBackgroundResource(R.drawable.buttonnoselect);
     }
 
     public void press9(View view){
@@ -350,6 +381,7 @@ public class MultiplayerNormal extends AppCompatActivity {
         disablePressed(pressedButtons);
         sub.setClickable(true);
         un.setClickable(true);
+        b9.setBackgroundResource(R.drawable.buttonnoselect);
     }
 
     public void press10(View view){
@@ -367,6 +399,7 @@ public class MultiplayerNormal extends AppCompatActivity {
         disablePressed(pressedButtons);
         sub.setClickable(true);
         un.setClickable(true);
+        b10.setBackgroundResource(R.drawable.buttonnoselect);
     }
 
     public void press11(View view){
@@ -383,6 +416,7 @@ public class MultiplayerNormal extends AppCompatActivity {
         disablePressed(pressedButtons);
         sub.setClickable(true);
         un.setClickable(true);
+        b11.setBackgroundResource(R.drawable.buttonnoselect);
     }
 
     public void press12(View view){
@@ -399,6 +433,7 @@ public class MultiplayerNormal extends AppCompatActivity {
         disablePressed(pressedButtons);
         sub.setClickable(true);
         un.setClickable(true);
+        b12.setBackgroundResource(R.drawable.buttonnoselect);
     }
 
     public void press13(View view){
@@ -415,6 +450,7 @@ public class MultiplayerNormal extends AppCompatActivity {
         disablePressed(pressedButtons);
         sub.setClickable(true);
         un.setClickable(true);
+        b13.setBackgroundResource(R.drawable.buttonnoselect);
     }
 
     public void press14(View view){
@@ -431,6 +467,7 @@ public class MultiplayerNormal extends AppCompatActivity {
         disablePressed(pressedButtons);
         sub.setClickable(true);
         un.setClickable(true);
+        b14.setBackgroundResource(R.drawable.buttonnoselect);
     }
 
     public void press15(View view){
@@ -447,6 +484,7 @@ public class MultiplayerNormal extends AppCompatActivity {
         disablePressed(pressedButtons);
         sub.setClickable(true);
         un.setClickable(true);
+        b15.setBackgroundResource(R.drawable.buttonnoselect);
     }
 
     public void press16(View view){
@@ -463,6 +501,7 @@ public class MultiplayerNormal extends AppCompatActivity {
         disablePressed(pressedButtons);
         sub.setClickable(true);
         un.setClickable(true);
+        b16.setBackgroundResource(R.drawable.buttonnoselect);
     }
 
 
