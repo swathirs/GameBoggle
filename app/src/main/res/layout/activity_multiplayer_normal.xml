@@ -375,16 +375,11 @@
             android:layout_marginStart="20dp"
             android:id="@+id/textView_Timer" />
 
-        <TextView
-            android:text=""
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textAppearance="?android:attr/textAppearanceLarge"
-            android:layout_alignRight="@+id/tvOpponentTimerText"
-            android:id="@+id/textView_OpponentTimer"
-            android:layout_toEndOf="@+id/tvOpponentTimerText"
-            android:layout_alignTop="@+id/tvOpponentTimerText"
-            android:layout_toRightOf="@+id/tvOpponentTimerText" />
+
+
+        <!-- android:layout_toEndOf="@+id/tvOpponentTimerText"
+          android:layout_alignTop="@+id/tvOpponentTimerText"
+          android:layout_toRightOf="@+id/tvOpponentTimerText"-->
 
         <TextView
             android:text=""
@@ -421,18 +416,6 @@
             android:visibility="invisible"/>
 
         <TextView
-            android:layout_width="fill_parent"
-            android:layout_height="wrap_content"
-            android:textAppearance="?android:attr/textAppearanceLarge"
-            android:id="@+id/textViewShake2Start"
-            android:gravity="center"
-            android:textSize="30dp"
-            android:text="Shake 2 Start"
-            android:layout_alignParentTop="true"
-            android:layout_alignParentLeft="true"
-            android:layout_alignParentStart="true" />
-
-        <TextView
             android:text="Score: "
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -456,6 +439,18 @@
             android:layout_alignStart="@+id/tvScoreThirdScreen"
             android:layout_alignRight="@+id/textView_Timer"
             android:layout_alignEnd="@+id/textView_Timer" />
+        <TextView
+            android:text=""
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:layout_below="@+id/tvTimerThirdScreen"
+
+            android:layout_toRightOf="@+id/tvOpponentTimerText"
+            android:layout_toEndOf="@+id/tvOpponentTimerText"
+            android:layout_marginLeft="20dp"
+            android:layout_marginStart="20dp"
+            android:id="@+id/textView_OpponentTimer" />
 
         <TextView
             android:layout_width="wrap_content"
@@ -492,6 +487,18 @@
             android:layout_below="@+id/tvRoundScoreID"
             android:layout_toRightOf="@+id/button3"
             android:layout_toEndOf="@+id/button3" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:id="@+id/textViewShake2Start"
+            android:gravity="center"
+            android:textSize="30dp"
+            android:text="Shake 2 Start"
+            android:layout_alignParentTop="true"
+            android:layout_toRightOf="@+id/undo"
+            android:layout_toEndOf="@+id/undo" />
 
 
     </com.example.swathi.gameboggle.GameLayout>
