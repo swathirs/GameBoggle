@@ -8,7 +8,7 @@ import android.view.View;
 import android.widget.Button;
 
 public class ChooseMultiplayerMode extends AppCompatActivity {
-    Button multiPlayerNormalButton,  multiPlayerCutThroatButton;
+    Button multiRoundBasic,  multiPlayerCutThroatButton, singleRoundBasic;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -27,17 +27,23 @@ public class ChooseMultiplayerMode extends AppCompatActivity {
     public void addListenerOnButton() {
 
         final Context context = this;
-        multiPlayerNormalButton = (Button) findViewById(R.id.buttonNormalMultiplayer);
+
+        multiRoundBasic = (Button) findViewById(R.id.buttonMultiRoundBasic);
         multiPlayerCutThroatButton = (Button) findViewById(R.id.buttonCutthroatMultiplayer);
+        singleRoundBasic = (Button) findViewById(R.id.buttonSingleRoundBasic);
 
 
 
-        multiPlayerNormalButton.setOnClickListener(new View.OnClickListener() {
+        multiRoundBasic.setOnClickListener(new View.OnClickListener() {
 
             @Override
             public void onClick(View arg0) {
 
+                int mode = 0;
+                int rounds = 1;
                 Intent intent = new Intent(context, MultiplayerNormal.class);
+                intent.putExtra("ModeValue", mode);
+                intent.putExtra("RoundValue", rounds);
                 startActivity(intent);
             }
 
@@ -46,8 +52,25 @@ public class ChooseMultiplayerMode extends AppCompatActivity {
 
             @Override
             public void onClick(View arg0) {
+                int mode = 1;
+                int rounds = 0;
+                Intent intent = new Intent(context, MultiplayerNormal.class);
+                intent.putExtra("ModeValue", mode);
+                intent.putExtra("RoundValue", rounds);
+                startActivity(intent);
+            }
 
-                Intent intent = new Intent(context, CutThroatMultiplayer.class);
+        });
+
+        singleRoundBasic.setOnClickListener(new View.OnClickListener() {
+
+            @Override
+            public void onClick(View arg0) {
+                int mode = 0;
+                int rounds = 0;
+                Intent intent = new Intent(context, MultiplayerNormal.class);
+                intent.putExtra("ModeValue", mode);
+                intent.putExtra("RoundValue", rounds);
                 startActivity(intent);
             }
 

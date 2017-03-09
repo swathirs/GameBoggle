@@ -140,6 +140,9 @@ public class Board {
         return foundWordsList;
     }
 
+    public void multiplayerCheckWord(String aWord){
+        valid.checkWord(aWord);
+    }
 
     public ArrayList<String> validWords(){
         validWordsList = new ArrayList<String>();
