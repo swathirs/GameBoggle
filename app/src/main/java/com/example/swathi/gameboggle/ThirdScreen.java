@@ -485,7 +485,14 @@ public class ThirdScreen extends AppCompatActivity {
         b14 = (Button) findViewById(R.id.button14);
         b15 = (Button) findViewById(R.id.button15);
         b16 = (Button) findViewById(R.id.button16);
+        boolean[] list =
+                {false, false, false, false,
+                        false, false, false, false,
+                        false, false, false, false,
+                        false, false, false, false};
+        setButtons(list);
         sub = (Button) findViewById(R.id.submitButton);
+        sub.setClickable(false);
         un = (Button) findViewById(R.id.undo);
         defaultStates = b1.getBackground().getState();
 
@@ -574,6 +581,14 @@ public class ThirdScreen extends AppCompatActivity {
                     currButton.setText(letters.get(14));
                     currButton = (Button) findViewById(R.id.button16);
                     currButton.setText(letters.get(15));
+
+                    boolean[] list =
+                            {true, true, true, true,
+                                    true, true, true, true,
+                                    true, true, true, true,
+                                    true, true, true, true};
+                    setButtons(list);
+                    sub.setClickable(true);
                 }
                 Log.d("ShakeDetector", "Shake Detected!");
 
