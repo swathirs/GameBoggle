@@ -75,19 +75,8 @@
         android:layout_below="@+id/radioGroup"
         android:layout_toEndOf="@+id/textView2"
         android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"/>
-
-    <TextView
-        android:text="@string/help_scoring"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textSize="18sp"
-        android:id="@+id/tvScoring"
-        android:layout_alignParentBottom="true"
-        android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
-        android:layout_marginBottom="13dp"
-        android:layout_below="@+id/textView2"/>
+        android:layout_above="@+id/textView2"/>
 
     <TextView
         android:text="Point Values"
@@ -99,10 +88,20 @@
         android:textStyle="normal|bold"
         android:typeface="normal"
         android:textColor="@color/colorAccent"
-        android:layout_below="@+id/tvMultiHelp"
+        android:layout_above="@+id/tvScoring"
         android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
-        android:layout_marginTop="16dp"/>
+        android:layout_alignParentStart="true"/>
+
+    <TextView
+        android:text="@string/help_scoring"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="18sp"
+        android:id="@+id/tvScoring"
+        android:layout_marginBottom="26dp"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"/>
 
 
 </RelativeLayout>

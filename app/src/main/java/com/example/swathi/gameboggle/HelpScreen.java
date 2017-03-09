@@ -68,15 +68,12 @@ public class HelpScreen extends AppCompatActivity {
                 if (checked)
                     single_help.setVisibility(View.VISIBLE);    // show single
                     multi_help.setVisibility(View.INVISIBLE);   // hide multi
-
                 break;
             case R.id.radioMultiHelp:
                 if (checked)
                     single_help.setVisibility(View.INVISIBLE);  // hide single
                     multi_help.setVisibility(View.VISIBLE);     // show multi
-
                 break;
-
         }
     }
 
