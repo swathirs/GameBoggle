@@ -4,6 +4,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.text.method.ScrollingMovementMethod;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -24,6 +25,10 @@ public class HelpScreen extends AppCompatActivity {
         multi_help = (TextView) findViewById(R.id.tvMultiHelp);
 
         multi_help.setVisibility(View.INVISIBLE);   // hide multi
+
+        // allow views to scroll
+        multi_help.setMovementMethod(new ScrollingMovementMethod());
+        single_help.setMovementMethod(new ScrollingMovementMethod());
     }
 
     /** onCreateOptionsMenu: Creates the option menu at top of screen */

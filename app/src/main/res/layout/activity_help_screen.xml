@@ -34,67 +34,75 @@
     </RadioGroup>
 
     <TextView
-        android:id="@+id/tvSingleHelp"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/help_text"
-        android:textAlignment="inherit"
-        android:textSize="18sp"
-        android:layout_below="@+id/radioGroup"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
-        android:layout_marginTop="18dp" />
-
-    <TextView
         android:id="@+id/tvMultiHelp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/help_text_multiplayer"
         android:textAlignment="inherit"
+        android:scrollbars="vertical"
         android:textSize="18sp"
         android:layout_alignTop="@+id/tvSingleHelp"
-        android:layout_alignBottom="@+id/tvSingleHelp" />
+        android:layout_alignBottom="@+id/tvSingleHelp"
+        android:layout_toEndOf="@+id/textView24"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"/>
 
     <TextView
         android:id="@+id/textView24"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignBaseline="@+id/radioGroup"
         android:text="Rules: "
         android:textAppearance="@style/TextAppearance.AppCompat.Medium"
         android:textSize="18sp"
         android:textStyle="normal|bold"
         android:typeface="normal"
+        android:gravity="center_vertical"
+        android:textColor="@color/colorAccent"
         android:layout_alignParentTop="true"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
-        android:textColor="@color/colorAccent" />
+        android:layout_above="@+id/tvSingleHelp"/>
 
     <TextView
-        android:text="Point Values"
+        android:id="@+id/tvSingleHelp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="15dp"
-        android:id="@+id/textView2"
-        android:layout_below="@+id/tvSingleHelp"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
-        android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+        android:text="@string/help_text"
+        android:textAlignment="inherit"
+        android:scrollbars="vertical"
         android:textSize="18sp"
-        android:textStyle="normal|bold"
-        android:typeface="normal"
-        android:textColor="@color/colorAccent" />
+        android:layout_marginTop="13dp"
+        android:layout_below="@+id/radioGroup"
+        android:layout_toEndOf="@+id/textView2"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"/>
 
     <TextView
         android:text="@string/help_scoring"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/textView2"
+        android:textSize="18sp"
+        android:id="@+id/tvScoring"
+        android:layout_alignParentBottom="true"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
-        android:layout_marginTop="11dp"
+        android:layout_marginBottom="13dp"
+        android:layout_below="@+id/textView2"/>
+
+    <TextView
+        android:text="Point Values"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/textView2"
+        android:textAppearance="@style/TextAppearance.AppCompat.Medium"
         android:textSize="18sp"
-        android:id="@+id/tvScoring" />
+        android:textStyle="normal|bold"
+        android:typeface="normal"
+        android:textColor="@color/colorAccent"
+        android:layout_below="@+id/tvMultiHelp"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_marginTop="16dp"/>
 
 
 </RelativeLayout>
