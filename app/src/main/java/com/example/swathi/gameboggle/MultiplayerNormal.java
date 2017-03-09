@@ -55,6 +55,10 @@ public class MultiplayerNormal extends AppCompatActivity {
 
     ArrayList<String> letters;
     private boolean isServer;
+    private int isCutThroat;
+    private boolean opponentStopped;
+    private boolean ownTimerStopped;
+
 
     private Button b1, b2, b3, b4, b5, b6, b7, b8, b9, b10, b11, b12, b13, b14, b15, b16, sub, un;
 
@@ -71,6 +75,7 @@ public class MultiplayerNormal extends AppCompatActivity {
     public TextView roundScoreTextView;
     int roundScore = 0;
     int foundWords = 0;
+    int totalScore = 0;
 
 
     private CountDownTimerActivity countDownTimer;
@@ -144,7 +149,7 @@ public class MultiplayerNormal extends AppCompatActivity {
             message = message.concat(";");
             ConnectedThread sendAnswers2Client;
 
-            if(foundWords>=5)
+            if(foundWords>=1) //foundWords >=5
             {
                 stopTimerButton.setClickable(true);
             }
@@ -155,7 +160,10 @@ public class MultiplayerNormal extends AppCompatActivity {
             {
                 sendAnswers2Client = new ConnectedThread(writerClientSocket);
             }
-            sendAnswers2Client.write(message.getBytes());
+            if(isCutThroat == 1){
+                sendAnswers2Client.write(message.getBytes());
+            }
+
 
         }
         currWord = "";
@@ -206,15 +214,21 @@ public class MultiplayerNormal extends AppCompatActivity {
         }
     }
     public void pressStopTimer(View view){
+
+        stopTimerButton.setClickable(false);
+        makeBoardUnclickable();
+
         ConnectedThread sendAnswers2Client;
         startTime = countDownTimer.getStartTime();
+        Log.d("Time Debug: ", Long.toString(startTime));
         startTime = startTime + roundScore;
+        ownTimerStopped = true;
 
         countDownTimer.cancel();
         Log.d("Debug timer","Stop timer");
         String cans2 = "3";
         cans2 = cans2.concat(Integer.toString(roundScore));
-         cans2 =  cans2.concat(";");
+        cans2 =  cans2.concat(";");
 
         if(isServer){
 
@@ -226,6 +240,13 @@ public class MultiplayerNormal extends AppCompatActivity {
             sendAnswers2Client = new ConnectedThread(writerClientSocket);
         }
         sendAnswers2Client.write(cans2.getBytes());
+        if(isServer)
+        {
+            if(opponentStopped){
+                // Trigger a new round
+                createNewBoard();
+            }
+        }
     }
 
     public void press1(View view){
@@ -525,7 +546,7 @@ public class MultiplayerNormal extends AppCompatActivity {
                     String recv = reader.sendBytes;
                     Log.d("Debug", recv);
                     //When we are in 1 we are in the server
-                    if(recv.contains("1") == true){
+                    if(recv.startsWith("1") == true){
                         isServer = true;
                         cans ="2";
                         board = new Board(getApplicationContext());
@@ -568,7 +589,7 @@ public class MultiplayerNormal extends AppCompatActivity {
                         sendAnswerstoClient = new ConnectedThread(writerServerSocket);
                         sendAnswerstoClient.write(cans.getBytes());
                     }
-                    else if(recv.contains("2") == true){
+                    else if(recv.startsWith("2") == true){
                         isServer = false;
                         String curr =" ";
                         int i = 1;
@@ -610,19 +631,21 @@ public class MultiplayerNormal extends AppCompatActivity {
                         Toast.makeText(getApplicationContext(), temp, Toast.LENGTH_LONG).show();
 
                     }
-                    else if(recv.contains("3") == true){
+                    else if(recv.startsWith("3") == true){
                         int tempScore = 0;
 
                         String curr =" ";
                         int i = 1;
                         String temp = "";
-                        connectLayer.setVisibility(View.INVISIBLE);
+                        //connectLayer.setVisibility(View.INVISIBLE);
                         touchview.setVisibility(View.VISIBLE);
+                        curr = String.valueOf(recv.charAt(i));
 
                         while(!curr.contains(";")){
-                            curr = String.valueOf(recv.charAt(i));
+
                             temp = temp.concat(curr);
                             i++;
+                            curr = String.valueOf(recv.charAt(i));
 
                         }
                         tempScore = Integer.parseInt(temp);
@@ -630,20 +653,84 @@ public class MultiplayerNormal extends AppCompatActivity {
                         opponentStartTime = opponentTimer.getStartTime();
                         opponentStartTime = opponentStartTime + tempScore;
                         opponentTimer.cancel();
+                        opponentStopped = true;
+                        if(isServer){
+                            if(ownTimerStopped){
+                                //Trigger new round
+                                createNewBoard();
+                            }
+                        }
                     }
-                    else if(recv.contains("4") == true){
+
+                    else if(recv.startsWith("4") == true){
                         String curr =" ";
                         int i = 1;
                         String temp = "";
-                        connectLayer.setVisibility(View.INVISIBLE);
+                       // connectLayer.setVisibility(View.INVISIBLE);
                         touchview.setVisibility(View.VISIBLE);
+                        curr = String.valueOf(recv.charAt(i));
 
                         while(!curr.contains(";")){
+
+                            temp = temp.concat(curr);
+                            i++;
+                            curr = String.valueOf(recv.charAt(i));
+                        }
+                        board.multiplayerCheckWord(temp);
+
+                    }
+                    else if(recv.startsWith("5") == true){
+
+                        String curr =" ";
+                        int i = 1;
+                        String temp = "";
+
+                        while(!curr.contains("5")){
                             curr = String.valueOf(recv.charAt(i));
                             temp = temp.concat(curr);
                             i++;
+
                         }
 
+                        board.genBoardArrangement(temp);
+
+                        letters = board.getSquares();
+                        b1.setText(letters.get(0));
+                        b2.setText(letters.get(1));
+                        b3.setText(letters.get(2));
+                        b4.setText(letters.get(3));
+                        b5.setText(letters.get(4));
+                        b6.setText(letters.get(5));
+                        b7.setText(letters.get(6));
+                        b8.setText(letters.get(7));
+                        b9.setText(letters.get(8));
+                        b10.setText(letters.get(9));
+                        b11.setText(letters.get(10));
+                        b12.setText(letters.get(11));
+                        b13.setText(letters.get(12));
+                        b14.setText(letters.get(13));
+                        b15.setText(letters.get(14));
+                        b16.setText(letters.get(15));
+
+                        countDownTimer = new CountDownTimerActivity(startTime*interval, interval);
+                        Log.d("Time Debug: ", Long.toString(startTime));
+                        opponentTimer = new CountDownTimerActivity(opponentStartTime *interval, interval);
+
+                        countDownTimer.setOpponentTimer(false);
+                        opponentTimer.setOpponentTimer(true);
+
+                        countDownTimer.start();
+                        opponentTimer.start();
+
+                        opponentStopped = false;
+                        ownTimerStopped = false;
+                        foundWords = 0;
+
+                        totalScore = totalScore + roundScore;
+                        roundScore = 0;
+                        roundScoreTextView.setText(Integer.toString(roundScore));
+
+                        makeBoardClickable();
                     }
 
                     break;
@@ -665,6 +752,7 @@ public class MultiplayerNormal extends AppCompatActivity {
         stopTimerButton = (Button)findViewById(R.id.btnStopTimer) ;
         stopTimerButton.setClickable(false);
 
+        isCutThroat = getIntent().getExtras().getInt("ModeValue");
 
 
         connectLayer = (RelativeLayout)findViewById(R.id.RL_Connect);
@@ -682,14 +770,19 @@ public class MultiplayerNormal extends AppCompatActivity {
         textView = (TextView) findViewById(R.id.textView_Timer);
         opponentTextview = (TextView) findViewById(R.id.textView_OpponentTimer);
         countDownTimer = new MultiplayerNormal.CountDownTimerActivity(startTime * interval, interval);
+        Log.d("Time Debug: ", Long.toString(startTime));
         opponentTimer = new MultiplayerNormal.CountDownTimerActivity(opponentStartTime * interval, interval);
+
         textView.setText(textView.getText() + String.valueOf(startTime / 1000));
         textView.setVisibility(View.VISIBLE);
+
         opponentTextview.setText(opponentTextview.getText() + String.valueOf(opponentStartTime));
         opponentTextview.setVisibility(View.VISIBLE);
 
         countDownTimer.setOpponentTimer(false);
         opponentTimer.setOpponentTimer(true);
+        opponentStopped = false;
+        ownTimerStopped = false;
 
 
 
@@ -714,6 +807,8 @@ public class MultiplayerNormal extends AppCompatActivity {
 
         roundScoreTextView = (TextView)findViewById(R.id.tvRoundScoreID);
         roundScoreTextView.setText(Integer.toString(roundScore));
+
+
 
 
         Search.setOnClickListener(new View.OnClickListener() {
@@ -1078,7 +1173,7 @@ public class MultiplayerNormal extends AppCompatActivity {
         public CountDownTimerActivity(long startTime, long interval) {
 
             super(startTime, interval);
-            this.startTime = startTime;
+            this.startTime = startTime/1000;
         }
 
         @Override
@@ -1124,6 +1219,112 @@ public class MultiplayerNormal extends AppCompatActivity {
         scoretxt.setText(Integer.toString(score));
 
     }
+    /**
+     * onBackPressed() -- do nothing,
+     * disable to users ability to go back to previous game results or screens
+     * */
+    @Override
+    public void onBackPressed() {
+    }
+     void createNewBoard(){
+
+         String cans;
+         cans ="5";
+         ConnectedThread sendAnswerstoClient;
+
+         board.genBoardArrangement(3);
+
+         letters = board.getSquares();
+         b1.setText(letters.get(0));
+         b2.setText(letters.get(1));
+         b3.setText(letters.get(2));
+         b4.setText(letters.get(3));
+         b5.setText(letters.get(4));
+         b6.setText(letters.get(5));
+         b7.setText(letters.get(6));
+         b8.setText(letters.get(7));
+         b9.setText(letters.get(8));
+         b10.setText(letters.get(9));
+         b11.setText(letters.get(10));
+         b12.setText(letters.get(11));
+         b13.setText(letters.get(12));
+         b14.setText(letters.get(13));
+         b15.setText(letters.get(14));
+         b16.setText(letters.get(15));
+
+         countDownTimer = new CountDownTimerActivity(startTime * interval, interval);
+         opponentTimer = new CountDownTimerActivity(opponentStartTime * interval, interval);
+
+         countDownTimer.setOpponentTimer(false);
+         opponentTimer.setOpponentTimer(true);
+
+         countDownTimer.start();
+         opponentTimer.start();
+
+         ArrayList<String> squares = board.getSquares();
+
+         for(int i = 0; i < 16; i++){
+             cans = cans.concat(squares.get(i));
+
+         }
+         cans = cans.concat("5");
+         sendAnswerstoClient = new ConnectedThread(writerServerSocket);
+         sendAnswerstoClient.write(cans.getBytes());
+
+         opponentStopped = false;
+         ownTimerStopped = false;
+         foundWords = 0;
+
+         totalScore = totalScore + roundScore;
+         roundScore = 0;
+         roundScoreTextView.setText(Integer.toString(roundScore));
+
+         makeBoardClickable();
+
+     }
+    public void makeBoardUnclickable(){
+        b1.setClickable(false);
+        b2.setClickable(false);
+        b3.setClickable(false);
+        b4.setClickable(false);
+        b5.setClickable(false);
+        b6.setClickable(false);
+        b7.setClickable(false);
+        b8.setClickable(false);
+        b9.setClickable(false);
+        b10.setClickable(false);
+        b11.setClickable(false);
+        b12.setClickable(false);
+        b13.setClickable(false);
+        b14.setClickable(false);
+        b15.setClickable(false);
+        b16.setClickable(false);
+        sub.setClickable(false);
+        un.setClickable(false);
+    }
+
+    public void makeBoardClickable(){
+        b1.setClickable(true);
+        b2.setClickable(true);
+        b3.setClickable(true);
+        b4.setClickable(true);
+        b5.setClickable(true);
+        b6.setClickable(true);
+        b7.setClickable(true);
+        b8.setClickable(true);
+        b9.setClickable(true);
+        b10.setClickable(true);
+        b11.setClickable(true);
+        b12.setClickable(true);
+        b13.setClickable(true);
+        b14.setClickable(true);
+        b15.setClickable(true);
+        b16.setClickable(true);
+        sub.setClickable(true);
+        un.setClickable(true);
+    }
+
+
 
 
 }

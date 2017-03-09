@@ -27,6 +27,7 @@ public class ChooseMultiplayerMode extends AppCompatActivity {
     public void addListenerOnButton() {
 
         final Context context = this;
+
         multiPlayerNormalButton = (Button) findViewById(R.id.buttonNormalMultiplayer);
         multiPlayerCutThroatButton = (Button) findViewById(R.id.buttonCutthroatMultiplayer);
 
@@ -37,7 +38,9 @@ public class ChooseMultiplayerMode extends AppCompatActivity {
             @Override
             public void onClick(View arg0) {
 
+                int mode = 0;
                 Intent intent = new Intent(context, MultiplayerNormal.class);
+                intent.putExtra("ModeValue", mode);
                 startActivity(intent);
             }
 
@@ -46,8 +49,9 @@ public class ChooseMultiplayerMode extends AppCompatActivity {
 
             @Override
             public void onClick(View arg0) {
-
-                Intent intent = new Intent(context, CutThroatMultiplayer.class);
+                int mode = 1;
+                Intent intent = new Intent(context, MultiplayerNormal.class);
+                intent.putExtra("ModeValue", mode);
                 startActivity(intent);
             }
 
