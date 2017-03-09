@@ -249,22 +249,7 @@
         android:layout_toRightOf="@+id/button3"
         android:layout_toEndOf="@+id/button3" />
 
-    <Button
-        style="?android:attr/buttonStyleSmall"
-        android:layout_width="120dp"
-        android:layout_height="60dp"
-        android:text="Submit"
-        android:id="@+id/submitButton"
-        android:clickable="true"
-        android:textStyle="bold"
-        android:textSize="@dimen/abc_text_size_body_1_material"
-        android:textColor="#f4fbfd24"
-        android:onClick="pressSubmit"
-        android:layout_alignParentBottom="true"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true" />
-
-    <TextView
+        <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceSmall"
@@ -343,19 +328,6 @@
         android:layout_toEndOf="@+id/tvScoreThirdScreen"
         android:id="@+id/tvRoundScoreID" />
 
-        <Button
-            android:text="Undo"
-            android:layout_width="120dp"
-            android:layout_height="60dp"
-            android:layout_above="@+id/submitButton"
-            android:layout_alignRight="@+id/submitButton"
-            android:layout_alignEnd="@+id/submitButton"
-            android:layout_marginBottom="26dp"
-            android:id="@+id/undo"
-            android:layout_alignParentLeft="true"
-            android:layout_alignParentStart="true"
-            android:onClick="undo"/>
-
         <TextView
             android:text="TextView"
             android:layout_width="wrap_content"
@@ -373,6 +345,35 @@
             android:layout_below="@+id/textView23"
             android:layout_toRightOf="@+id/button5"
             android:layout_toEndOf="@+id/button5" />
+
+        <Button
+            style="?android:attr/buttonStyleSmall"
+            android:layout_width="120dp"
+            android:layout_height="60dp"
+            android:text="Submit"
+            android:id="@+id/submitButton"
+            android:clickable="true"
+            android:textStyle="bold"
+            android:textSize="16sp"
+            android:textColor="#ffffff"
+            android:onClick="pressSubmit"
+            android:background="@android:color/holo_orange_dark"
+            android:layout_alignRight="@+id/button16"
+            android:layout_alignEnd="@+id/button16"
+            android:layout_alignBottom="@+id/undo" />
+
+        <Button
+            android:text="Undo"
+            android:layout_width="120dp"
+            android:layout_height="60dp"
+            android:id="@+id/undo"
+            android:onClick="undo"
+            android:background="@android:color/holo_blue_light"
+            android:textSize="16sp"
+            android:layout_alignBaseline="@+id/Entry"
+            android:layout_alignBottom="@+id/Entry"
+            android:layout_alignLeft="@+id/button13"
+            android:layout_alignStart="@+id/button13" />
 
     </com.example.swathi.gameboggle.GameLayout>
 
