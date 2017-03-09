@@ -10,7 +10,7 @@ import java.util.ArrayList;
 import android.util.Log;
 
 public class MainActivity extends AppCompatActivity {
-    Button singlePlayerButton, multiPlayerNormalButton, helpButton, highScoresButton, multiPlayerCutThroatButton;
+    Button singlePlayerButton, multiPlayerButton, helpButton, highScoresButton;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -35,8 +35,8 @@ public class MainActivity extends AppCompatActivity {
         final Context context = this;
 
         singlePlayerButton = (Button) findViewById(R.id.buttonSinglePlayerId);
-        multiPlayerNormalButton = (Button) findViewById(R.id.buttonMultiPlayerNormalId);
-        multiPlayerCutThroatButton = (Button) findViewById(R.id.buttonCutThroatMode);
+        multiPlayerButton = (Button) findViewById(R.id.buttonMultiPlayerModeID);
+
         helpButton = (Button) findViewById(R.id.buttonHelpId);
         highScoresButton = (Button) findViewById(R.id.buttonHighScoresId);
 
@@ -50,26 +50,17 @@ public class MainActivity extends AppCompatActivity {
             }
 
         });
-        multiPlayerNormalButton.setOnClickListener(new View.OnClickListener() {
+        multiPlayerButton.setOnClickListener(new View.OnClickListener() {
 
             @Override
             public void onClick(View arg0) {
 
-                Intent intent = new Intent(context, MultiplayerNormal.class);
+                Intent intent = new Intent(context, ChooseMultiplayerMode.class);
                 startActivity(intent);
             }
 
         });
-        multiPlayerCutThroatButton.setOnClickListener(new View.OnClickListener() {
 
-            @Override
-            public void onClick(View arg0) {
-
-                Intent intent = new Intent(context, MultiplayerNormal.class);
-                startActivity(intent);
-            }
-
-        });
         helpButton.setOnClickListener(new View.OnClickListener() {
 
             @Override

@@ -362,17 +362,6 @@
             android:maxLines = "10"
             android:scrollbars = "vertical"/>
 
-        <TextView
-            android:text="Score: "
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textAppearance="?android:attr/textAppearanceLarge"
-            android:id="@+id/tvScoreThirdScreen"
-            android:layout_below="@+id/SolveButton"
-            android:layout_alignParentLeft="true"
-            android:layout_alignParentStart="true" />
-
-
 
         <TextView
             android:text=""
@@ -382,33 +371,20 @@
             android:layout_alignTop="@+id/tvTimerThirdScreen"
             android:layout_toRightOf="@+id/tvTimerThirdScreen"
             android:layout_toEndOf="@+id/tvTimerThirdScreen"
-            android:layout_marginLeft="23dp"
-            android:layout_marginStart="23dp"
+            android:layout_marginLeft="20dp"
+            android:layout_marginStart="20dp"
             android:id="@+id/textView_Timer" />
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textAppearance="?android:attr/textAppearanceLarge"
-            android:id="@+id/tvTimerThirdScreen"
-            android:textStyle="bold"
-            android:textSize="20dp"
-            android:textColor="#e0e0e0e0"
-            android:text="Time remaining:"
-            android:layout_below="@+id/tvScoreThirdScreen"
-            android:layout_alignParentLeft="true"
-            android:layout_alignParentStart="true" />
         <TextView
             android:text=""
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textAppearance="?android:attr/textAppearanceLarge"
             android:layout_alignRight="@+id/tvOpponentTimerText"
-
             android:id="@+id/textView_OpponentTimer"
-            android:layout_alignParentTop="true"
-            android:layout_alignParentLeft="true"
-            android:layout_alignParentStart="true" />
+            android:layout_toEndOf="@+id/tvOpponentTimerText"
+            android:layout_alignTop="@+id/tvOpponentTimerText"
+            android:layout_toRightOf="@+id/tvOpponentTimerText" />
 
         <TextView
             android:text=""
@@ -430,7 +406,8 @@
             android:layout_below="@+id/textView22"
             android:layout_alignParentLeft="true"
             android:layout_alignParentStart="true"
-            android:id="@+id/textView23" />
+            android:id="@+id/textView23"
+            android:visibility="invisible"/>
 
         <TextView
             android:text="TextView"
@@ -440,20 +417,8 @@
             android:layout_alignBaseline="@+id/button1"
             android:layout_alignBottom="@+id/button1"
             android:layout_alignParentLeft="true"
-            android:layout_alignParentStart="true" />
-
-        <Button
-            android:text="Undo"
-            android:layout_width="120dp"
-            android:layout_height="60dp"
-            android:layout_above="@+id/submitButton"
-            android:layout_alignRight="@+id/submitButton"
-            android:layout_alignEnd="@+id/submitButton"
-            android:layout_marginBottom="26dp"
-            android:id="@+id/undo"
-            android:layout_alignParentLeft="true"
             android:layout_alignParentStart="true"
-            android:onClick="undo"/>
+            android:visibility="invisible"/>
 
         <TextView
             android:layout_width="fill_parent"
@@ -468,6 +433,16 @@
             android:layout_alignParentStart="true" />
 
         <TextView
+            android:text="Score: "
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:id="@+id/tvScoreThirdScreen"
+            android:layout_alignParentTop="true"
+            android:layout_toLeftOf="@+id/button1"
+            android:layout_toStartOf="@+id/button1" />
+
+        <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textAppearance="?android:attr/textAppearanceLarge"
@@ -476,20 +451,48 @@
             android:textSize="20dp"
             android:textColor="#e0e0e0e0"
             android:text="Opponent's timer:"
-            android:layout_below="@+id/textView_OpponentTimer"
+            android:layout_below="@+id/tvTimerThirdScreen"
+            android:layout_alignLeft="@+id/tvScoreThirdScreen"
+            android:layout_alignStart="@+id/tvScoreThirdScreen"
             android:layout_alignRight="@+id/textView_Timer"
             android:layout_alignEnd="@+id/textView_Timer" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:id="@+id/tvTimerThirdScreen"
+            android:textStyle="bold"
+            android:textSize="20dp"
+            android:textColor="#e0e0e0e0"
+            android:text="Time remaining:"
+            android:layout_below="@+id/tvScoreThirdScreen"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true" />
+
+        <Button
+            android:text="Undo"
+            android:layout_width="120dp"
+            android:layout_height="60dp"
+            android:id="@+id/undo"
+            android:onClick="undo"
+            android:layout_above="@+id/submitButton"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true" />
 
         <Button
             android:text="Stop Timer"
             android:layout_width="120dp"
             android:layout_height="60dp"
-
             android:id="@+id/btnStopTimer"
             android:onClick="pressStopTimer"
-            android:layout_alignParentBottom="true"
+            android:layout_alignBottom="@+id/tvOpponentTimerText"
             android:layout_alignParentRight="true"
-            android:layout_alignParentEnd="true" />
+            android:layout_alignParentEnd="true"
+            android:layout_below="@+id/tvRoundScoreID"
+            android:layout_toRightOf="@+id/button3"
+            android:layout_toEndOf="@+id/button3" />
+
 
     </com.example.swathi.gameboggle.GameLayout>
 
