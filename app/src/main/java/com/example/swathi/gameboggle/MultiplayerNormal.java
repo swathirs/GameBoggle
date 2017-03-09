@@ -1086,6 +1086,14 @@ public class MultiplayerNormal extends AppCompatActivity {
 
     }
 
+    /**
+     * onBackPressed() -- do nothing,
+     * disable to users ability to go back to previous game results or screens
+     * */
+    @Override
+    public void onBackPressed() {
+    }
+
 
 }
 
