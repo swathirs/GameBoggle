@@ -11,21 +11,31 @@
     tools:context="com.example.swathi.gameboggle.ChooseMultiplayerMode">
 
     <Button
-        android:text="Multiplayer Normal Mode"
+        android:text="Single Round Basic"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginTop="81dp"
+        android:id="@+id/buttonSingleRoundBasic"
         android:layout_alignParentTop="true"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="125dp"
-        android:id="@+id/buttonNormalMultiplayer" />
+        android:layout_centerHorizontal="true" />
 
     <Button
-        android:text="Multiplayer Cutthroat Mode"
+        android:text="Multi Round Basic"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/buttonNormalMultiplayer"
-        android:layout_alignLeft="@+id/buttonNormalMultiplayer"
-        android:layout_alignStart="@+id/buttonNormalMultiplayer"
-        android:layout_marginTop="85dp"
-        android:id="@+id/buttonCutthroatMultiplayer" />
+
+        android:id="@+id/buttonMultiRoundBasic"
+        android:layout_below="@+id/buttonSingleRoundBasic"
+        android:layout_alignRight="@+id/buttonSingleRoundBasic"
+        android:layout_alignEnd="@+id/buttonSingleRoundBasic"
+        android:layout_marginTop="56dp" />
+
+    <Button
+        android:text="Cutthroat"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="82dp"
+        android:id="@+id/buttonCutthroatMultiplayer"
+        android:layout_below="@+id/buttonMultiRoundBasic"
+        android:layout_centerHorizontal="true" />
 </RelativeLayout>
