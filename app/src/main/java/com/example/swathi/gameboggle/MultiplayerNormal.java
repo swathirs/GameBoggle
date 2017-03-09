@@ -44,6 +44,7 @@ public class MultiplayerNormal extends AppCompatActivity {
     public BluetoothSocket writerClientSocket = null;
     public BluetoothSocket writerServerSocket = null;
     public int mode = 0 ;
+    public  int rounds = 0;
     public static String device = "";
 
     public final int SUCCESS_CONNECT = 0;
@@ -149,7 +150,7 @@ public class MultiplayerNormal extends AppCompatActivity {
             message = message.concat(";");
             ConnectedThread sendAnswers2Client;
 
-            if(foundWords>=1) //foundWords >=5
+            if(foundWords>=1 && isCutThroat == 0) //foundWords >=5
             {
                 stopTimerButton.setClickable(true);
             }
@@ -240,13 +241,16 @@ public class MultiplayerNormal extends AppCompatActivity {
             sendAnswers2Client = new ConnectedThread(writerClientSocket);
         }
         sendAnswers2Client.write(cans2.getBytes());
-        if(isServer)
-        {
-            if(opponentStopped){
-                // Trigger a new round
-                createNewBoard();
+        if(rounds == 1){
+            if(isServer)
+            {
+                if(opponentStopped){
+                    // Trigger a new round
+                    createNewBoard();
+                }
             }
         }
+
     }
 
     public void press1(View view){
@@ -654,19 +658,25 @@ public class MultiplayerNormal extends AppCompatActivity {
                         opponentStartTime = opponentStartTime + tempScore;
                         opponentTimer.cancel();
                         opponentStopped = true;
-                        if(isServer){
-                            if(ownTimerStopped){
-                                //Trigger new round
-                                createNewBoard();
+
+                        if(rounds == 1)
+                        {
+                            if(isServer){
+                                if(ownTimerStopped){
+                                    //Trigger new round
+                                    createNewBoard();
+                                }
                             }
                         }
+
+
                     }
 
                     else if(recv.startsWith("4") == true){
                         String curr =" ";
                         int i = 1;
                         String temp = "";
-                       // connectLayer.setVisibility(View.INVISIBLE);
+                        // connectLayer.setVisibility(View.INVISIBLE);
                         touchview.setVisibility(View.VISIBLE);
                         curr = String.valueOf(recv.charAt(i));
 
@@ -752,7 +762,16 @@ public class MultiplayerNormal extends AppCompatActivity {
         stopTimerButton = (Button)findViewById(R.id.btnStopTimer) ;
         stopTimerButton.setClickable(false);
 
+
+
         isCutThroat = getIntent().getExtras().getInt("ModeValue");
+        rounds = getIntent().getExtras().getInt("RoundValue");
+
+        if(isCutThroat == 1){
+            stopTimerButton.setVisibility(View.INVISIBLE);
+
+            Log.d("Stop Timer Debug", "make it invisible");
+        }
 
 
         connectLayer = (RelativeLayout)findViewById(R.id.RL_Connect);
@@ -783,8 +802,6 @@ public class MultiplayerNormal extends AppCompatActivity {
         opponentTimer.setOpponentTimer(true);
         opponentStopped = false;
         ownTimerStopped = false;
-
-
 
         b1 = (Button) findViewById(R.id.button1);
         b2 = (Button) findViewById(R.id.button2);
@@ -818,7 +835,7 @@ public class MultiplayerNormal extends AppCompatActivity {
                 if(!MBT.isEnabled()){
                     Intent turnOn = new Intent(BluetoothAdapter.ACTION_REQUEST_ENABLE);
                     startActivityForResult(turnOn,0);
-                     Toast.makeText(getApplicationContext(), "Turning your phone's Bluetooth on...", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getApplicationContext(), "Turning your phone's Bluetooth on...", Toast.LENGTH_SHORT).show();
                 }
                 /////////////
                 mode =1;
@@ -859,7 +876,7 @@ public class MultiplayerNormal extends AppCompatActivity {
                 if(!MBT.isEnabled()){
                     Intent turnOn = new Intent(BluetoothAdapter.ACTION_REQUEST_ENABLE);
                     startActivityForResult(turnOn,0);
-                     Toast.makeText(getApplicationContext(), "Turning your phone's Bluetooth on...", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getApplicationContext(), "Turning your phone's Bluetooth on...", Toast.LENGTH_SHORT).show();
                 }
                 /////////////
 
@@ -934,7 +951,7 @@ public class MultiplayerNormal extends AppCompatActivity {
                     });
                     sendServerToMain(socket);
                     manageConnectedSocket(socket);
-                   mHandler.obtainMessage(SERVER_SUCCESS,socket).sendToTarget();
+                    mHandler.obtainMessage(SERVER_SUCCESS,socket).sendToTarget();
                     try {
                         mmServerSocket.close();
 
@@ -954,7 +971,7 @@ public class MultiplayerNormal extends AppCompatActivity {
         }
     } // End of "Connecting as a server"
 
-   // Connecting as a client
+    // Connecting as a client
     private class ConnectThread extends Thread {
         private final BluetoothSocket mmSocket;
         private final BluetoothDevice mmDevice;
@@ -974,36 +991,36 @@ public class MultiplayerNormal extends AppCompatActivity {
             }
             mmSocket = tmp;
         }
-       public void run() {
-           // Cancel discovery because it will slow down the connection
-           MBT.cancelDiscovery();
+        public void run() {
+            // Cancel discovery because it will slow down the connection
+            MBT.cancelDiscovery();
 
-           try {
-               // Connect the device through the socket. This will block
-               // until it succeeds or throws an exception
-               mmSocket.connect();
+            try {
+                // Connect the device through the socket. This will block
+                // until it succeeds or throws an exception
+                mmSocket.connect();
 
-               // ClientSocket = mmSocket;
+                // ClientSocket = mmSocket;
 
-           } catch (IOException connectException) {
-               // Unable to connect; close the socket and get out
-               try {
-                   mmSocket.close();
-               } catch (IOException closeException) {
-                   Log.e("ConnectThread's run():" , "Could not close the client socket", closeException);
-               }
-               return;
-           }
+            } catch (IOException connectException) {
+                // Unable to connect; close the socket and get out
+                try {
+                    mmSocket.close();
+                } catch (IOException closeException) {
+                    Log.e("ConnectThread's run():" , "Could not close the client socket", closeException);
+                }
+                return;
+            }
 
-           // The connection attempt succeeded. Perform work associated with
-           // the connection in a separate thread.
-           sendClientToMain(mmSocket);
-           manageConnectedSocket(mmSocket);
-           mHandler.obtainMessage(SUCCESS_CONNECT,mmSocket).sendToTarget();
-       }
+            // The connection attempt succeeded. Perform work associated with
+            // the connection in a separate thread.
+            sendClientToMain(mmSocket);
+            manageConnectedSocket(mmSocket);
+            mHandler.obtainMessage(SUCCESS_CONNECT,mmSocket).sendToTarget();
+        }
 
 
-           /** Will cancel an in-progress connection, and close the socket */
+        /** Will cancel an in-progress connection, and close the socket */
         public void cancel() {
             try {
                 mmSocket.close();
@@ -1179,7 +1196,7 @@ public class MultiplayerNormal extends AppCompatActivity {
         @Override
         public void onFinish() {
 
-           // delay for x milliseconds, i.e. 5000 = 5 sec
+            // delay for x milliseconds, i.e. 5000 = 5 sec
             if(isOpponentTimer){
                 opponentTextview.setText("Time's up!");
             }
@@ -1209,7 +1226,7 @@ public class MultiplayerNormal extends AppCompatActivity {
             return this.isOpponentTimer;
         }
         public void setOpponentTimer(boolean value){
-             this.isOpponentTimer = value;
+            this.isOpponentTimer = value;
         }
     }
 
@@ -1226,62 +1243,62 @@ public class MultiplayerNormal extends AppCompatActivity {
     @Override
     public void onBackPressed() {
     }
-     void createNewBoard(){
+    void createNewBoard(){
 
-         String cans;
-         cans ="5";
-         ConnectedThread sendAnswerstoClient;
+        String cans;
+        cans ="5";
+        ConnectedThread sendAnswerstoClient;
 
-         board.genBoardArrangement(3);
+        board.genBoardArrangement(3);
 
-         letters = board.getSquares();
-         b1.setText(letters.get(0));
-         b2.setText(letters.get(1));
-         b3.setText(letters.get(2));
-         b4.setText(letters.get(3));
-         b5.setText(letters.get(4));
-         b6.setText(letters.get(5));
-         b7.setText(letters.get(6));
-         b8.setText(letters.get(7));
-         b9.setText(letters.get(8));
-         b10.setText(letters.get(9));
-         b11.setText(letters.get(10));
-         b12.setText(letters.get(11));
-         b13.setText(letters.get(12));
-         b14.setText(letters.get(13));
-         b15.setText(letters.get(14));
-         b16.setText(letters.get(15));
+        letters = board.getSquares();
+        b1.setText(letters.get(0));
+        b2.setText(letters.get(1));
+        b3.setText(letters.get(2));
+        b4.setText(letters.get(3));
+        b5.setText(letters.get(4));
+        b6.setText(letters.get(5));
+        b7.setText(letters.get(6));
+        b8.setText(letters.get(7));
+        b9.setText(letters.get(8));
+        b10.setText(letters.get(9));
+        b11.setText(letters.get(10));
+        b12.setText(letters.get(11));
+        b13.setText(letters.get(12));
+        b14.setText(letters.get(13));
+        b15.setText(letters.get(14));
+        b16.setText(letters.get(15));
 
-         countDownTimer = new CountDownTimerActivity(startTime * interval, interval);
-         opponentTimer = new CountDownTimerActivity(opponentStartTime * interval, interval);
+        countDownTimer = new CountDownTimerActivity(startTime * interval, interval);
+        opponentTimer = new CountDownTimerActivity(opponentStartTime * interval, interval);
 
-         countDownTimer.setOpponentTimer(false);
-         opponentTimer.setOpponentTimer(true);
+        countDownTimer.setOpponentTimer(false);
+        opponentTimer.setOpponentTimer(true);
 
-         countDownTimer.start();
-         opponentTimer.start();
+        countDownTimer.start();
+        opponentTimer.start();
 
-         ArrayList<String> squares = board.getSquares();
+        ArrayList<String> squares = board.getSquares();
 
-         for(int i = 0; i < 16; i++){
-             cans = cans.concat(squares.get(i));
+        for(int i = 0; i < 16; i++){
+            cans = cans.concat(squares.get(i));
 
-         }
-         cans = cans.concat("5");
-         sendAnswerstoClient = new ConnectedThread(writerServerSocket);
-         sendAnswerstoClient.write(cans.getBytes());
+        }
+        cans = cans.concat("5");
+        sendAnswerstoClient = new ConnectedThread(writerServerSocket);
+        sendAnswerstoClient.write(cans.getBytes());
 
-         opponentStopped = false;
-         ownTimerStopped = false;
-         foundWords = 0;
+        opponentStopped = false;
+        ownTimerStopped = false;
+        foundWords = 0;
 
-         totalScore = totalScore + roundScore;
-         roundScore = 0;
-         roundScoreTextView.setText(Integer.toString(roundScore));
+        totalScore = totalScore + roundScore;
+        roundScore = 0;
+        roundScoreTextView.setText(Integer.toString(roundScore));
 
-         makeBoardClickable();
+        makeBoardClickable();
 
-     }
+    }
     public void makeBoardUnclickable(){
         b1.setClickable(false);
         b2.setClickable(false);
