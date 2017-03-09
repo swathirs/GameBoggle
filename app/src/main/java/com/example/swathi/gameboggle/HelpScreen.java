@@ -24,11 +24,11 @@ public class HelpScreen extends AppCompatActivity {
         single_help = (TextView) findViewById(R.id.tvSingleHelp);
         multi_help = (TextView) findViewById(R.id.tvMultiHelp);
 
-        multi_help.setVisibility(View.INVISIBLE);   // hide multi
-
         // allow views to scroll
         multi_help.setMovementMethod(new ScrollingMovementMethod());
         single_help.setMovementMethod(new ScrollingMovementMethod());
+
+        multi_help.setVisibility(View.INVISIBLE);   // hide multi
     }
 
     /** onCreateOptionsMenu: Creates the option menu at top of screen */
@@ -43,6 +43,7 @@ public class HelpScreen extends AppCompatActivity {
     public boolean onOptionsItemSelected(MenuItem item) {
         final Context context = this;
         Intent intent;
+
         switch(item.getItemId()) {
             case R.id.action_highScores:
                 intent = new Intent(context, HighScores.class);
