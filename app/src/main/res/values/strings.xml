@@ -10,9 +10,17 @@
     A cube is adjacent to another if they are horizontal, vertical or diagonal neighbors.
     Words can be in singular, plural or other derived forms. Names and abbreviations are not valid.
     Each cube letter can be used only once in a single word. </string>
-    <string name="help_text_multiplayer"> In normal two player mode, both players play the same board and compete to see who gets the highest score.
-        In cutthroat mode, players share a board and play on the same board at the same time. If a word has already been found by one player,
-        then the other player is blocked from finding that word with same sequence of dice. When time is up, the player with higher score wins.
+    <string name="help_text_multiplayer">
+        \t\t\tIn Multiplayer mode, both players share the same board.
+        In "Normal" mode, players race against the clock. Each player has
+        ability to stop the timer once they have picked at least five valid words. After both players
+        have stopped their timer a new bard is generated and game play continues.
+        Points earned for each round are added to the timer. The first player to run out of time loses.
+        \n\t\t\t
+        In "Cutthroat" mode, players race against the clock AND each other.
+        Players play on the same board at the same time. If a word has already been found by
+        one player, then the other player is blocked from finding that word with same sequence
+        of dice. When time is up, the player with higher score wins.
     </string>
     <string name="select_difficulty_level">Choose the difficulty level:</string>
     <string name="select_number_rounds">Select the number of rounds:</string>
