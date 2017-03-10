@@ -256,8 +256,7 @@
         android:id="@+id/Entry"
         android:textStyle="bold|italic"
         android:textSize="20dp"
-        android:layout_alignParentBottom="true"
-        android:textColor="#ffbcaa0d"
+            android:textColor="#ffbcaa0d"
         android:typeface="monospace"
         android:layout_alignRight="@+id/textViewShake2Start"
         android:layout_alignEnd="@+id/textViewShake2Start"
@@ -276,21 +275,13 @@
         android:gravity="center"
         android:textSize="30dp"
         android:text="Shake 2 Start"
-        android:layout_alignParentTop="true" />
-
-    <TextView
-        android:text="Score: "
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textAppearance="?android:attr/textAppearanceLarge"
-        android:id="@+id/tvScoreThirdScreen"
-        android:layout_below="@+id/SolveButton"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true" />
+        android:layout_alignParentTop="true"
+        android:textColor="@android:color/holo_orange_dark"
+        android:textStyle="normal|bold"
+        android:fontFamily="serif" />
 
 
-
-    <TextView
+        <TextView
         android:text=""
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -302,27 +293,14 @@
         android:layout_marginStart="23dp"
         android:id="@+id/textView_Timer" />
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textAppearance="?android:attr/textAppearanceLarge"
-        android:id="@+id/tvTimerThirdScreen"
-        android:textStyle="bold"
-        android:textSize="20dp"
-        android:textColor="#e0e0e0e0"
-        android:text="Time remaining:"
-        android:layout_below="@+id/tvScoreThirdScreen"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true" />
-
-    <TextView
+        <TextView
         android:text=""
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignTop="@+id/tvScoreThirdScreen"
         android:textStyle="bold"
-        android:textSize="20dp"
-        android:textColor="#e0e0e0e0"
+        android:textSize="22sp"
+        android:textColor="#ffffff"
         android:textAppearance="?android:attr/textAppearanceLarge"
         android:layout_toRightOf="@+id/tvScoreThirdScreen"
         android:layout_toEndOf="@+id/tvScoreThirdScreen"
@@ -347,6 +325,21 @@
             android:layout_toEndOf="@+id/button5" />
 
         <Button
+            android:text="Undo"
+            android:layout_width="120dp"
+            android:layout_height="60dp"
+            android:id="@+id/undo"
+            android:onClick="undo"
+            android:background="@android:color/holo_blue_light"
+            android:textSize="16sp"
+
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
+            android:layout_below="@+id/Entry"
+            android:layout_toStartOf="@+id/button14"
+            android:layout_toLeftOf="@+id/button14" />
+
+        <Button
             style="?android:attr/buttonStyleSmall"
             android:layout_width="120dp"
             android:layout_height="60dp"
@@ -358,22 +351,41 @@
             android:textColor="#ffffff"
             android:onClick="pressSubmit"
             android:background="@android:color/holo_orange_dark"
-            android:layout_alignRight="@+id/button16"
-            android:layout_alignEnd="@+id/button16"
-            android:layout_alignBottom="@+id/undo" />
 
-        <Button
-            android:text="Undo"
-            android:layout_width="120dp"
-            android:layout_height="60dp"
-            android:id="@+id/undo"
-            android:onClick="undo"
-            android:background="@android:color/holo_blue_light"
-            android:textSize="16sp"
-            android:layout_alignBaseline="@+id/Entry"
-            android:layout_alignBottom="@+id/Entry"
-            android:layout_alignLeft="@+id/button13"
-            android:layout_alignStart="@+id/button13" />
+            android:layout_alignBottom="@+id/undo"
+            android:layout_alignParentRight="true"
+            android:layout_alignParentEnd="true"
+            android:layout_below="@+id/Entry"
+            android:layout_toEndOf="@+id/SolveButton"
+            android:layout_toRightOf="@+id/SolveButton" />
+
+        <TextView
+            android:text="Score: "
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:id="@+id/tvScoreThirdScreen"
+            android:layout_below="@+id/textViewShake2Start"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
+            android:textColor="@color/colorAccent"
+            android:textStyle="normal|bold"
+            android:fontFamily="sans-serif" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:id="@+id/tvTimerThirdScreen"
+            android:textStyle="bold"
+            android:textColor="@android:color/holo_orange_light"
+            android:text="Time remaining:"
+            android:layout_below="@+id/tvScoreThirdScreen"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
+            android:layout_marginTop="10dp"
+            android:fontFamily="sans-serif"
+            android:textSize="22sp" />
 
     </com.example.swathi.gameboggle.GameLayout>
 
