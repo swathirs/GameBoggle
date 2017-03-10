@@ -11,57 +11,85 @@
     android:background="@drawable/alpha4"
     tools:context="com.example.swathi.gameboggle.MainActivity">
 
+
     <Button
-        android:text="Help"
+        android:text="High Scores"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/buttonHelpId"
-        android:layout_alignParentBottom="true"
+        android:id="@+id/buttonHighScoresId"
+        android:layout_marginTop="24dp"
+        android:background="@android:color/holo_blue_light"
+        android:padding="20dp"
+        android:textSize="16sp"
+        android:gravity="center"
+        android:layout_below="@+id/buttonMultiPlayerModeID"
+        android:layout_alignLeft="@+id/buttonMultiPlayerModeID"
+        android:layout_alignStart="@+id/buttonMultiPlayerModeID"
+        android:layout_alignRight="@+id/buttonMultiPlayerModeID"
+        android:layout_alignEnd="@+id/buttonMultiPlayerModeID"
+        android:elevation="0dp" />
+
+    <Button
+        android:text="Multiplayer"
+        android:layout_height="wrap_content"
+        android:id="@+id/buttonMultiPlayerModeID"
+        android:background="@android:color/holo_blue_light"
+        android:padding="20dp"
+        android:layout_width="wrap_content"
+        android:elevation="0dp"
+        android:textSize="16sp"
+        android:paddingRight="10dp"
+        android:paddingLeft="10dp"
+        android:layout_centerVertical="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
         android:layout_alignParentRight="true"
-        android:layout_alignParentEnd="true" />
+        android:layout_alignParentEnd="true"
+        android:visibility="visible" />
+
+    <Button
+        android:text="@string/single_player"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/buttonSinglePlayerId"
+        android:background="@android:color/holo_blue_light"
+        android:padding="20dp"
+        android:textSize="16sp"
+        android:layout_marginBottom="30dp"
+        android:layout_above="@+id/buttonMultiPlayerModeID"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true"
+        android:elevation="0dp" />
 
     <TextView
         android:text="@string/boggle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_above="@+id/buttonSinglePlayerId"
         android:textAppearance="?android:attr/textAppearanceLarge"
-        android:layout_marginBottom="-100dp"
-        android:textSize="40sp"
+        android:textSize="46sp"
+        android:id="@+id/textView5"
+        android:fontFamily="serif"
+        android:textColor="@android:color/holo_orange_dark"
+        android:shadowColor="@android:color/holo_blue_bright"
+        android:layout_marginBottom="25dp"
+        android:textAlignment="center"
+        android:layout_above="@+id/buttonSinglePlayerId"
         android:layout_centerHorizontal="true"
-        android:id="@+id/textView5" />
-
-
-    <Button
-        android:text="High Scores"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/buttonHighScoresId"
-        android:layout_marginTop="25dp"
-        android:layout_below="@+id/buttonMultiPlayerModeID"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true" />
+        android:textStyle="normal|bold" />
 
     <Button
-        android:text="@string/single_player"
-        android:layout_width="match_parent"
+        android:text="Help"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="100dp"
-        android:id="@+id/buttonSinglePlayerId"
-        android:layout_alignParentTop="true"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true" />
+        android:id="@+id/buttonHelpId"
+        android:padding="20dp"
+        android:background="@android:color/holo_blue_light"
+        android:layout_marginTop="32dp"
+        android:layout_below="@+id/buttonHighScoresId"
+        android:layout_centerHorizontal="true"
+        android:textSize="16sp" />
 
-
-
-    <Button
-        android:text="Multiplayer"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="23dp"
-        android:id="@+id/buttonMultiPlayerModeID"
-        android:layout_below="@+id/buttonSinglePlayerId"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true" />
 
 </RelativeLayout>

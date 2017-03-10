@@ -40,9 +40,8 @@
         android:text="@string/help_text_multiplayer"
         android:textAlignment="inherit"
         android:scrollbars="vertical"
-        android:textSize="18sp"
+        android:textSize="16sp"
         android:layout_alignTop="@+id/tvSingleHelp"
-        android:layout_alignBottom="@+id/tvSingleHelp"
         android:layout_toEndOf="@+id/textView24"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"/>
@@ -70,13 +69,12 @@
         android:text="@string/help_text"
         android:textAlignment="inherit"
         android:scrollbars="vertical"
-        android:textSize="18sp"
+        android:textSize="16sp"
         android:layout_marginTop="13dp"
         android:layout_below="@+id/radioGroup"
         android:layout_toEndOf="@+id/textView2"
         android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
-        android:layout_above="@+id/textView2"/>
+        android:layout_alignParentStart="true" />
 
     <TextView
         android:text="Point Values"
@@ -88,20 +86,20 @@
         android:textStyle="normal|bold"
         android:typeface="normal"
         android:textColor="@color/colorAccent"
-        android:layout_above="@+id/tvScoring"
+        android:layout_marginTop="11dp"
+        android:layout_below="@+id/tvMultiHelp"
         android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"/>
+        android:layout_alignParentStart="true" />
 
     <TextView
         android:text="@string/help_scoring"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:textSize="18sp"
+        android:textSize="16sp"
         android:id="@+id/tvScoring"
-        android:layout_marginBottom="26dp"
-        android:layout_alignParentBottom="true"
+        android:layout_below="@+id/textView2"
         android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"/>
+        android:layout_alignParentStart="true" />
 
 
 </RelativeLayout>
