@@ -105,18 +105,6 @@
       android:text="TextView"
       android:layout_width="wrap_content"
       android:layout_height="wrap_content"
-      android:id="@+id/tvYourScore"
-      android:layout_alignBottom="@+id/textView30"
-      android:layout_toRightOf="@+id/textView31"
-      android:layout_toEndOf="@+id/textView31"
-      android:textAppearance="?android:attr/textAppearanceLarge"
-      android:textColor="#ffbcaa0d"
-      android:textStyle="bold"/>
-
-  <TextView
-      android:text="TextView"
-      android:layout_width="wrap_content"
-      android:layout_height="wrap_content"
       android:layout_alignBottom="@+id/textView31"
       android:layout_toRightOf="@+id/textView31"
       android:layout_toEndOf="@+id/textView31"
@@ -126,16 +114,16 @@
       android:textStyle="bold"/>
 
   <TextView
-      android:text="Their Score: "
+      android:text="You Lose!"
       android:layout_width="wrap_content"
       android:layout_height="wrap_content"
-      android:id="@+id/textView31"
+      android:id="@+id/tvPlayerWinLose"
+      android:textColor="@android:color/holo_purple"
       android:textAppearance="?android:attr/textAppearanceLarge"
-      android:textColor="#ffbcaa0d"
-      android:textStyle="bold"
-      android:layout_centerVertical="true"
-      android:layout_alignParentLeft="true"
-      android:layout_alignParentStart="true"/>
+      android:layout_marginTop="10dp"
+      android:layout_below="@+id/textView32"
+      android:layout_alignLeft="@+id/tvYourScore"
+      android:layout_alignStart="@+id/tvYourScore"/>
 
   <TextView
       android:text="Your Score: "
@@ -145,22 +133,59 @@
       android:textAppearance="?android:attr/textAppearanceLarge"
       android:textColor="#ffbcaa0d"
       android:textStyle="bold"
-      android:layout_marginBottom="56dp"
-      android:layout_above="@+id/textView31"
+      android:layout_marginTop="10dp"
+      android:layout_below="@+id/tvPlayerWinLose"
       android:layout_alignParentLeft="true"
-      android:layout_alignParentStart="true"/>
+      android:layout_alignParentStart="true" />
 
   <TextView
-      android:text="You Lose!"
+      android:text="Their Score: "
       android:layout_width="wrap_content"
       android:layout_height="wrap_content"
-      android:id="@+id/tvPlayerWinLose"
-      android:textColor="@android:color/holo_purple"
+      android:id="@+id/textView31"
       android:textAppearance="?android:attr/textAppearanceLarge"
-      android:layout_marginTop="36dp"
-      android:layout_below="@+id/textView32"
-      android:layout_alignLeft="@+id/tvYourScore"
-      android:layout_alignStart="@+id/tvYourScore"/>
+      android:textColor="#ffbcaa0d"
+      android:textStyle="bold"
+      android:layout_marginTop="13dp"
+      android:layout_below="@+id/tvYourScore"
+      android:layout_alignParentLeft="true"
+      android:layout_alignParentStart="true" />
+
+  <TextView
+      android:text="All possible words:"
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      android:layout_alignParentLeft="true"
+      android:layout_alignParentStart="true"
+      android:textAppearance="?android:attr/textAppearanceLarge"
+      android:textColor="#ffbcaa0d"
+      android:textStyle="bold"
+      android:id="@+id/textView55"
+      android:layout_below="@+id/tvOpponentsScore" />
+
+  <TextView
+      android:text=""
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      android:layout_below="@+id/textView55"
+      android:layout_alignParentLeft="true"
+      android:layout_alignParentStart="true"
+      android:scrollbars="vertical"
+      android:layout_marginTop="10dp"
+      android:id="@+id/textViewAllPossibleWords" />
+
+  <TextView
+      android:text="TextView"
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      android:id="@+id/tvYourScore"
+      android:textAppearance="?android:attr/textAppearanceLarge"
+      android:textColor="#ffbcaa0d"
+      android:textStyle="bold"
+      android:layout_alignBaseline="@+id/textView30"
+      android:layout_alignBottom="@+id/textView30"
+      android:layout_toRightOf="@+id/textView31"
+      android:layout_toEndOf="@+id/textView31" />
 
 
 </RelativeLayout>

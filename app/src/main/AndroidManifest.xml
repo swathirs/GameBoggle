@@ -28,7 +28,7 @@
         <activity android:name=".ThirdScreen" />
         <activity android:name=".HighScores" />
         <activity android:name=".ScoreScreen" />
-        <activity android:name=".BluetoothChatService" />
+        <activity android:name=".MultiplayerScore" />
         <activity android:name=".MultiplayerNormal" />
         <activity android:name=".ChooseMultiplayerMode" />
         <activity android:name=".CutThroatMultiplayer"></activity>
