@@ -24,8 +24,9 @@ For the category parameter on various functions follow this guide:
 1   =   singpleplayer easy
 2   =   singleplayer normal
 3   =   singleplayer difficult
-4   =   multiplayer basic
-5   =   multiplayer cutthroat
+4   =   multiplayer single round basic
+5   =   multiplayer multi round basic
+6   =   multiplayer cutthroat
 
 Sample usage:
 ScoreList list = new ScoreList(getApplicationContext());
@@ -49,11 +50,11 @@ public class ScoreList {
     //Initializes ScoreList with a context and tries to load from a file
     ScoreList(Context context)
     {
-        scores = new Score[25];
+        scores = new Score[30];
         this.context = context;
         filename = "highscores";
 
-        for (int i = 0; i < 25; i++)
+        for (int i = 0; i < 30; i++)
         {
             scores[i] = new Score();
         }
@@ -68,7 +69,8 @@ public class ScoreList {
             FileInputStream inputStream = context.openFileInput(filename);
             if (inputStream != null)
             {
-                for (int i = 0; i < 25; i++)
+                //This first loop gathers the names, and the second one gathers the scores
+                for (int i = 0; i < 30; i++)
                 {
                     int c;
                     String temp = "";
@@ -80,7 +82,7 @@ public class ScoreList {
                     }
                     scores[i].setName(temp);
                 }
-                for (int i = 0; i < 25; i++)
+                for (int i = 0; i < 30; i++)
                 {
                     int c;
                     String temp = "";
@@ -98,7 +100,7 @@ public class ScoreList {
                 //if this if statement gets triggered that means there was no file previously, so this code initializes the file
                 if (scores[0].getName() == "")
                 {
-                    for (int i = 0; i < 25; i++) {
+                    for (int i = 0; i < 30; i++) {
                         scores[i] = new Score();
                     }
                     saveToFile();
@@ -116,11 +118,12 @@ public class ScoreList {
         try {
             FileOutputStream outputStream = context.openFileOutput(filename, Context.MODE_PRIVATE);
 
-            for (int i = 0; i < 25; i++)
+            //first loop saves the names, second one saves the scores
+            for (int i = 0; i < 30; i++)
             {
                 outputStream.write((scores[i].getName() + "\n").getBytes());
             }
-            for (int i = 0; i < 25; i++)
+            for (int i = 0; i < 30; i++)
             {
                 String temp = Integer.toString(scores[i].getScore());
                 outputStream.write((temp + "\n").getBytes());
@@ -136,7 +139,7 @@ public class ScoreList {
     //returns an array of names by category
     public String[] getNames(int category)
     {
-        if (category < 1 || category > 5)
+        if (category < 1 || category > 6)
             return null;
         int offset = category - 1;
         String names[] = new String[5];
@@ -152,7 +155,7 @@ public class ScoreList {
     //returns an array of scores by category
     public int[] getScores(int category)
     {
-        if (category < 1 || category > 5)
+        if (category < 1 || category > 6)
             return null;
         int offset = category - 1;
         int tempScores[] = new int[5];
@@ -168,7 +171,7 @@ public class ScoreList {
     //returns true if the input score is a potential new high score
     public boolean checkNewHighScore(int category, int score)
     {
-        if (category < 1 || category > 5)
+        if (category < 1 || category > 6)
             return false;
         int offset = (category - 1) * 5;
         for (int i = 0; i < 5; i++)
@@ -182,7 +185,7 @@ public class ScoreList {
     //returns true if a new highscore is added
     public boolean addHighScore(int category, int score, String name)
     {
-        if (category < 1 || category > 5)
+        if (category < 1 || category > 6)
             return false;
         int offset = (category - 1) * 5;
 

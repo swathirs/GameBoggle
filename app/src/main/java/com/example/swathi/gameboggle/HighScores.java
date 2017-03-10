@@ -81,6 +81,7 @@ public class HighScores extends AppCompatActivity {
         return true;
     }
 
+    //In this function changes the game types when the mode is switched and also unchecks other buttons when one is checked
     View.OnClickListener updateScores = new View.OnClickListener() {
         @Override
         public void onClick(View view) {
@@ -89,20 +90,14 @@ public class HighScores extends AppCompatActivity {
                 ModeMulti.setChecked(false);
                 Level1.setText("Easy");
                 Level2.setText("Normal");
-                Level3.setVisibility(View.VISIBLE);
                 Level3.setText("Difficult");
             }
             else if (view == ModeMulti)
             {
                 ModeSingle.setChecked(false);
-                Level1.setText("Basic");
-                Level2.setText("CutThroat");
-                if (Level3.isChecked())
-                {
-                    Level1.setChecked(true);
-                    Level3.setChecked(false);
-                }
-                Level3.setVisibility(View.INVISIBLE);
+                Level1.setText("Single Round Basic");
+                Level2.setText("Multi Round Basic");
+                Level3.setText("Cut Throat");
             }
             else if (view == Level1)
             {
@@ -133,8 +128,10 @@ public class HighScores extends AppCompatActivity {
         {
             if (Level1.isChecked())
                 category = 4;
-            else
+            else if (Level2.isChecked())
                 category = 5;
+            else
+                category = 6;
         }
         else
         {
