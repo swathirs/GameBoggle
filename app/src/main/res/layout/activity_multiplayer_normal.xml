@@ -488,19 +488,6 @@
             android:layout_toRightOf="@+id/button3"
             android:layout_toEndOf="@+id/button3" />
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textAppearance="?android:attr/textAppearanceLarge"
-            android:id="@+id/textViewShake2Start"
-            android:gravity="center"
-            android:textSize="30dp"
-            android:text="Shake 2 Start"
-            android:layout_alignParentTop="true"
-            android:layout_toRightOf="@+id/undo"
-            android:layout_toEndOf="@+id/undo" />
-
-
     </com.example.swathi.gameboggle.GameLayout>
 
 
