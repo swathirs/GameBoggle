@@ -24,35 +24,7 @@
         android:visibility="invisible"
         android:background="#b620b6cc" />
 
-    <Button
-        android:layout_width="64dp"
-        android:layout_height="64dp"
-        android:id="@+id/button1"
-        android:layout_marginTop="120dp"
-        android:backgroundTintMode="src_in"
-        android:background="@drawable/buttonnoselectborder"
-        android:textStyle="bold"
-        android:textColor="#fffdff0b"
-        android:textSize="@dimen/abc_text_size_display_1_material"
-        android:layout_toLeftOf="@+id/SolveButton"
-        android:layout_toStartOf="@+id/SolveButton"
-        android:onClick="press1" />
-
-    <Button
-
-        android:layout_width="64dp"
-        android:layout_height="64dp"
-        android:id="@+id/button2"
-        android:background="@drawable/buttonnoselectborder"
-        android:textSize="@dimen/abc_text_size_display_1_material"
-        android:textColor="#fffdff0b"
-        android:textStyle="bold"
-        android:layout_alignTop="@+id/button1"
-        android:layout_alignLeft="@+id/SolveButton"
-        android:layout_alignStart="@+id/SolveButton"
-        android:onClick="press2" />
-
-    <Button
+        <Button
 
         android:layout_width="64dp"
         android:layout_height="64dp"
@@ -386,6 +358,42 @@
             android:layout_marginTop="10dp"
             android:fontFamily="sans-serif"
             android:textSize="22sp" />
+
+        <TextView
+            android:text=" "
+            android:layout_width="256dp"
+            android:layout_height="256dp"
+            android:id="@+id/boardAligner"
+            android:layout_centerVertical="true"
+            android:layout_centerHorizontal="true" />
+
+        <Button
+            android:layout_width="64dp"
+            android:layout_height="64dp"
+            android:id="@+id/button1"
+            android:backgroundTintMode="src_in"
+            android:background="@drawable/buttonnoselectborder"
+            android:textStyle="bold"
+            android:textColor="#fffdff0b"
+            android:textSize="@dimen/abc_text_size_display_1_material"
+            android:onClick="press1"
+            android:layout_alignTop="@+id/boardAligner"
+            android:layout_alignLeft="@+id/boardAligner"
+            android:layout_alignStart="@+id/boardAligner" />
+
+        <Button
+
+        android:layout_width="64dp"
+        android:layout_height="64dp"
+        android:id="@+id/button2"
+        android:background="@drawable/buttonnoselectborder"
+        android:textSize="@dimen/abc_text_size_display_1_material"
+        android:textColor="#fffdff0b"
+        android:textStyle="bold"
+            android:onClick="press2"
+            android:layout_alignTop="@+id/boardAligner"
+            android:layout_toRightOf="@+id/button1"
+            android:layout_toEndOf="@+id/button1" />
 
     </com.example.swathi.gameboggle.GameLayout>
 
