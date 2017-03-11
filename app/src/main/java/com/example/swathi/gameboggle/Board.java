@@ -90,7 +90,7 @@ public class Board {
             return false;
         }
         if(result == 1){
-            Toast.makeText(context.getApplicationContext(), "You've already submitted this word!", Toast.LENGTH_SHORT).show();
+            Toast.makeText(context.getApplicationContext(), "Word has been submitted already!", Toast.LENGTH_SHORT).show();
             return false;
         }
          if(result == 0){
