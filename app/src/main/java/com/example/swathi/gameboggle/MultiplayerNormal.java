@@ -957,7 +957,7 @@ public class MultiplayerNormal extends AppCompatActivity {
         final Button Search = (Button) findViewById(R.id.search_button);
         final ListView BTdevices = (ListView) findViewById(R.id.PairedList);
         final Button Host = (Button) findViewById(R.id.HostBtn);
-        final Button letsPlayBtn = (Button) findViewById(R.id.Play);
+        //final Button letsPlayBtn = (Button) findViewById(R.id.Play);
 
         textView = (TextView) findViewById(R.id.textView_Timer);
         opponentTextview = (TextView) findViewById(R.id.textView_OpponentTimer);
