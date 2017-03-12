@@ -12,7 +12,8 @@
     Each cube letter can be used only once in a single word. </string>
     <string name="help_text_multiplayer">
         \t\t\tIn Multiplayer mode, both players share the same board.
-        In "Normal" mode, players race against the clock. Each player has
+        In "Single Round Basic," the player with the highest score wins.
+        In "Multi Round Basic," players race against the clock. Each player has
         ability to stop the timer once they have picked at least five valid words. After both players
         have stopped their timer a new bard is generated and game play continues.
         Points earned for each round are added to the timer. The first player to run out of time loses.
