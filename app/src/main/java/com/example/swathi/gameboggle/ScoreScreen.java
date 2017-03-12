@@ -13,6 +13,8 @@ import android.widget.TextView;
 
 import java.util.ArrayList;
 
+import static com.example.swathi.gameboggle.R.id.btnNextRoundID;
+
 public class ScoreScreen extends AppCompatActivity {
 
     // FIELDS
@@ -78,6 +80,10 @@ public class ScoreScreen extends AppCompatActivity {
             submitNameButton = (Button) findViewById(R.id.btnSubmitNameID);
             submitNameButton.setVisibility(View.INVISIBLE);
         }
+        else {  // player has high score, hide the next game button
+            nextGameButton = (Button) findViewById(btnNextRoundID);
+            nextGameButton.setVisibility(View.INVISIBLE);
+        }
 
         // Button Listeners
         addListenerOnButton();
@@ -86,7 +92,7 @@ public class ScoreScreen extends AppCompatActivity {
 
     public void addListenerOnButton() {
         final Context context = this;
-        nextGameButton = (Button) findViewById(R.id.btnNextRoundID);
+        nextGameButton = (Button) findViewById(btnNextRoundID);
         submitNameButton = (Button) findViewById(R.id.btnSubmitNameID);
 
         nextGameButton.setOnClickListener(new View.OnClickListener() {
