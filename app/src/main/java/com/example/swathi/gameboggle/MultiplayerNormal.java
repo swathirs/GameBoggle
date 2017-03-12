@@ -83,9 +83,9 @@ public class MultiplayerNormal extends AppCompatActivity {
 
     private CountDownTimerActivity countDownTimer;
     private CountDownTimerActivity opponentTimer;
-    private  long opponentStartTime = 120;
+    private  long opponentStartTime = 10; //120
 
-    private  long startTime = 120;
+    private  long startTime = 10; //120
     private final long interval = 1 * 1000;
 
 
@@ -957,7 +957,7 @@ public class MultiplayerNormal extends AppCompatActivity {
         final Button Search = (Button) findViewById(R.id.search_button);
         final ListView BTdevices = (ListView) findViewById(R.id.PairedList);
         final Button Host = (Button) findViewById(R.id.HostBtn);
-        final Button letsPlayBtn = (Button) findViewById(R.id.Play);
+        //final Button letsPlayBtn = (Button) findViewById(R.id.Play);
 
         textView = (TextView) findViewById(R.id.textView_Timer);
         opponentTextview = (TextView) findViewById(R.id.textView_OpponentTimer);
@@ -1578,7 +1578,7 @@ public class MultiplayerNormal extends AppCompatActivity {
         intent.putExtra("Win", won ); //won = 1 if player wins
         intent.putExtra("OpponentScore", opponentScore );
 
-        intent.putExtra("AllWords", fetchAllWords);
+        intent.putExtra("AllPossibleWords", fetchAllWords);
 
 
         startActivity(intent);

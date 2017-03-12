@@ -102,7 +102,7 @@
       android:layout_centerHorizontal="true"/>
 
   <TextView
-      android:text="TextView"
+      android:text=""
       android:layout_width="wrap_content"
       android:layout_height="wrap_content"
       android:layout_alignBottom="@+id/textView31"
@@ -114,7 +114,7 @@
       android:textStyle="bold"/>
 
   <TextView
-      android:text="You Lose!"
+      android:text="You lose! :("
       android:layout_width="wrap_content"
       android:layout_height="wrap_content"
       android:id="@+id/tvPlayerWinLose"
@@ -126,19 +126,6 @@
       android:layout_alignStart="@+id/tvYourScore"/>
 
   <TextView
-      android:text="Your Score: "
-      android:layout_width="wrap_content"
-      android:layout_height="wrap_content"
-      android:id="@+id/textView30"
-      android:textAppearance="?android:attr/textAppearanceLarge"
-      android:textColor="#ffbcaa0d"
-      android:textStyle="bold"
-      android:layout_marginTop="10dp"
-      android:layout_below="@+id/tvPlayerWinLose"
-      android:layout_alignParentLeft="true"
-      android:layout_alignParentStart="true" />
-
-  <TextView
       android:text="Their Score: "
       android:layout_width="wrap_content"
       android:layout_height="wrap_content"
@@ -146,7 +133,7 @@
       android:textAppearance="?android:attr/textAppearanceLarge"
       android:textColor="#ffbcaa0d"
       android:textStyle="bold"
-      android:layout_marginTop="13dp"
+      android:layout_marginTop="5dp"
       android:layout_below="@+id/tvYourScore"
       android:layout_alignParentLeft="true"
       android:layout_alignParentStart="true" />
@@ -157,25 +144,17 @@
       android:layout_height="wrap_content"
       android:layout_alignParentLeft="true"
       android:layout_alignParentStart="true"
+      android:layout_marginTop="5dp"
       android:textAppearance="?android:attr/textAppearanceLarge"
       android:textColor="#ffbcaa0d"
       android:textStyle="bold"
       android:id="@+id/textView55"
       android:layout_below="@+id/tvOpponentsScore" />
 
-  <TextView
-      android:text=""
-      android:layout_width="wrap_content"
-      android:layout_height="wrap_content"
-      android:layout_below="@+id/textView55"
-      android:layout_alignParentLeft="true"
-      android:layout_alignParentStart="true"
-      android:scrollbars="vertical"
-      android:layout_marginTop="10dp"
-      android:id="@+id/textViewAllPossibleWords" />
+
 
   <TextView
-      android:text="TextView"
+      android:text=""
       android:layout_width="wrap_content"
       android:layout_height="wrap_content"
       android:id="@+id/tvYourScore"
@@ -186,6 +165,58 @@
       android:layout_alignBottom="@+id/textView30"
       android:layout_toRightOf="@+id/textView31"
       android:layout_toEndOf="@+id/textView31" />
+
+  <TextView
+      android:text=""
+      android:layout_width="match_parent"
+      android:layout_height="wrap_content"
+      android:layout_below="@+id/textView55"
+      android:layout_alignParentLeft="true"
+      android:layout_alignParentStart="true"
+      android:width="400dp"
+      android:height="150dp"
+      android:maxHeight="160dp"
+      android:layout_marginTop="0dp"
+      android:background="#07000000"
+      android:scrollbars="vertical"
+      android:textColor="#ffbcaa0d"
+      android:textAppearance="?android:attr/textAppearanceSmall"
+      android:id="@+id/textViewAllPossibleWords" />
+
+
+  <TextView
+      android:text="You win! :)"
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      android:layout_marginTop="30dp"
+      android:textColor="@android:color/holo_purple"
+      android:textAppearance="?android:attr/textAppearanceLarge"
+      android:layout_centerHorizontal="true"
+      android:id="@+id/textViewYouWin" />
+
+  <TextView
+      android:text="Match draw!!"
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      android:textColor="@android:color/holo_purple"
+      android:textAppearance="?android:attr/textAppearanceLarge"
+      android:layout_marginTop="30dp"
+      android:layout_alignLeft="@+id/textViewYouWin"
+      android:layout_alignStart="@+id/textViewYouWin"
+      android:id="@+id/textViewMatchDraw" />
+
+  <TextView
+      android:text="Your Score: "
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      android:id="@+id/textView30"
+      android:textAppearance="?android:attr/textAppearanceLarge"
+      android:textColor="#ffbcaa0d"
+      android:textStyle="bold"
+      android:layout_marginTop="5dp"
+      android:layout_below="@+id/tvPlayerWinLose"
+      android:layout_alignParentLeft="true"
+      android:layout_alignParentStart="true" />
 
 
 </RelativeLayout>
