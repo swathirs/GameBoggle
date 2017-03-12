@@ -45,6 +45,8 @@ public class MultiplayerScore extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_multiplayer_score_screen);
 
+        listOfHighScores = new ScoreList(getApplicationContext()); // ScoreList object, to check if player reaches a new high score
+
         // Possible words
         allWordsDispTextView = (TextView) findViewById(R.id.textViewAllPossibleWords);
         allWordsArrayList = new ArrayList<String>();
