@@ -45,6 +45,8 @@ public class MultiplayerScore extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_multiplayer_score_screen);
 
+        playerName = (EditText) findViewById(R.id.editText_Name);
+
         // Possible words
         allWordsDispTextView = (TextView) findViewById(R.id.textViewAllPossibleWords);
         allWordsArrayList = new ArrayList<String>();
@@ -98,14 +100,26 @@ public class MultiplayerScore extends AppCompatActivity {
             dispLoseTextView.setVisibility(View.INVISIBLE);
         }
 
-        // check is player's score qualifies for new high score
+       /* // check is player's score qualifies for new high score
         difficulty = 4;  // default, multiplayer single round basic
 
         if (getGameMode == 1)
             difficulty = 6;  // multiplayer cut throat
 
         if (getRounds == 1) // is multiplayer multi-round basic
-            difficulty = 5;
+            difficulty = 5;  */
+
+
+        if(getGameMode == 1 && getRounds == 0)
+            difficulty = 6; //  multiplayer cut throat
+        if(getGameMode == 0 && getRounds == 1)
+            difficulty = 5; // is multiplayer multi-round basic
+        if(getGameMode == 0 && getRounds == 0)
+            difficulty =4; // is multiplayer single-round basic
+
+        listOfHighScores = new ScoreList(getApplicationContext()); // ScoreList object, to check if player reaches a new high score
+
+
 
         hasHighScore = listOfHighScores.checkNewHighScore(difficulty, getScore);
 
