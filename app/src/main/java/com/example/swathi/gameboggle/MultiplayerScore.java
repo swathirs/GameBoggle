@@ -121,6 +121,10 @@ public class MultiplayerScore extends AppCompatActivity {
             submitNameButton = (Button) findViewById(R.id.btnSubmitNameID);
             submitNameButton.setVisibility(View.INVISIBLE);
         }
+        else { // player has high score, hide play again button
+            playAgainBtn = (Button) findViewById(R.id.btnNextRoundID);
+            playAgainBtn.setVisibility(View.INVISIBLE);
+        }
 
         addListenerOnButton();
     }
