@@ -83,9 +83,9 @@ public class MultiplayerNormal extends AppCompatActivity {
 
     private CountDownTimerActivity countDownTimer;
     private CountDownTimerActivity opponentTimer;
-    private  long opponentStartTime = 120; //120
+    private  long opponentStartTime = 60; //120
 
-    private  long startTime = 120; //120
+    private  long startTime = 60; //120
     private final long interval = 1 * 1000;
 
 
@@ -593,7 +593,7 @@ public class MultiplayerNormal extends AppCompatActivity {
                         }
                         cans = cans.concat("2");
                         Log.d("Debug2", cans);
-                        Toast.makeText(getApplicationContext(), cans, Toast.LENGTH_LONG).show();
+                       // Toast.makeText(getApplicationContext(), cans, Toast.LENGTH_LONG).show();
                         sendAnswerstoClient = new ConnectedThread(writerServerSocket);
                         sendAnswerstoClient.write(cans.getBytes());
                     }
@@ -637,7 +637,7 @@ public class MultiplayerNormal extends AppCompatActivity {
                         opponentTimer.start();
 
                         Log.d("Debug","In message_read");
-                        Toast.makeText(getApplicationContext(), temp, Toast.LENGTH_LONG).show();
+                       // Toast.makeText(getApplicationContext(), temp, Toast.LENGTH_LONG).show();
 
                     }
                     else if(recv.startsWith("3") == true){
@@ -1584,6 +1584,7 @@ public class MultiplayerNormal extends AppCompatActivity {
         startActivity(intent);
 
     }
+
 
 
 
