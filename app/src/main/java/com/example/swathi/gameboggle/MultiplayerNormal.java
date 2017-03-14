@@ -579,10 +579,8 @@ public class MultiplayerNormal extends AppCompatActivity {
                         b14.setText(letters.get(13));
                         b15.setText(letters.get(14));
                         b16.setText(letters.get(15));
-
                         countDownTimer.start();
                         opponentTimer.start();
-
                         touchview.setVisibility(View.VISIBLE);
 
                         ArrayList<String> squares = board.getSquares();
