@@ -60,7 +60,7 @@ public class ThirdScreen extends AppCompatActivity {
 
 
     private CountDownTimer countDownTimer;
-    private final long startTime = 60 * 1000; //60  * 1000
+    private final long startTime = 180 * 1000; //60  * 1000
     private final long interval = 1 * 1000;
 
     // Fields specific for the shake detector feature

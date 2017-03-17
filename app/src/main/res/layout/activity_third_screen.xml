@@ -261,8 +261,7 @@
         android:layout_alignTop="@+id/tvTimerThirdScreen"
         android:layout_toRightOf="@+id/tvTimerThirdScreen"
         android:layout_toEndOf="@+id/tvTimerThirdScreen"
-        android:layout_marginLeft="23dp"
-        android:layout_marginStart="23dp"
+
         android:id="@+id/textView_Timer" />
 
         <TextView

@@ -83,9 +83,9 @@ public class MultiplayerNormal extends AppCompatActivity {
 
     private CountDownTimerActivity countDownTimer;
     private CountDownTimerActivity opponentTimer;
-    private  long opponentStartTime = 60; //120
+    private  long opponentStartTime = 180; //120
 
-    private  long startTime = 60; //120
+    private  long startTime = 180; //120
     private final long interval = 1 * 1000;
 
 
