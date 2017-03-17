@@ -60,7 +60,7 @@ public class ThirdScreen extends AppCompatActivity {
 
 
     private CountDownTimer countDownTimer;
-    private final long startTime = 60 * 1000;
+    private final long startTime = 180 * 1000; //60  * 1000
     private final long interval = 1 * 1000;
 
     // Fields specific for the shake detector feature
@@ -763,6 +763,13 @@ public class ThirdScreen extends AppCompatActivity {
         TextView scoretxt = (TextView) findViewById(R.id.tvRoundScoreID);
         scoretxt.setText(Integer.toString(score));
 
+    }
+    /**
+     * onBackPressed() -- do nothing,
+     * disable to users ability to go back to previous game results or screens
+     * */
+    @Override
+    public void onBackPressed() {
     }
 
 

@@ -61,6 +61,16 @@ public class ScoreScreen extends AppCompatActivity {
         allValidWordsListText.setText(fetchValidWordsList.toString());
         allValidWordsListText.setMovementMethod(new ScrollingMovementMethod());
 
+        /*
+        *  // Possible words
+        allWordsDispTextView = (TextView) findViewById(R.id.textViewAllPossibleWords);
+        allWordsArrayList = new ArrayList<String>();
+        allWordsArrayList = (ArrayList<String>) getIntent().getSerializableExtra("AllPossibleWords");
+        allWordsDispTextView.setText(allWordsArrayList.toString());
+        allWordsDispTextView.setMovementMethod(new ScrollingMovementMethod());
+        for (int j = 0; j < allWordsArrayList.size(); j++) {
+            Log.d("ValidWords", allWordsArrayList.get(j));
+        }*/
 
         // check is player's score qualifies for new high score
         System.out.println(" ** SCORE IS:   " + roundScore + " qualifies: " + listOfHighScores.checkNewHighScore(difficulty, roundScore));
@@ -122,6 +132,14 @@ public class ScoreScreen extends AppCompatActivity {
     private void addPlayerToHighScores() {
         String name = playerName.getText().toString();
         listOfHighScores.addHighScore(difficulty, roundScore, name);
+    }
+
+    /**
+     * onBackPressed() -- do nothing,
+     * disable to users ability to go back to previous game results or screens
+     * */
+    @Override
+    public void onBackPressed() {
     }
 
 }
