@@ -83,22 +83,41 @@ public class MultiplayerScore extends AppCompatActivity {
         dispWinTextView = (TextView)findViewById(R.id.textViewYouWin);
         dispDrawText = (TextView)findViewById(R.id.textViewMatchDraw);
         getWinVal = getIntent().getExtras().getInt("Win");
-        if(getScore < getOpponentScore){
-            dispLoseTextView.setVisibility(View.VISIBLE);
-            dispWinTextView.setVisibility(View.INVISIBLE);
-            dispDrawText.setVisibility(View.INVISIBLE);
 
+        if(getRounds == 1){
+            if(getWinVal == 1)
+            {
+                dispWinTextView.setVisibility(View.VISIBLE);
+                dispLoseTextView.setVisibility(View.INVISIBLE);
+                dispDrawText.setVisibility(View.INVISIBLE);
+            }
+            else
+            {
+                dispLoseTextView.setVisibility(View.VISIBLE);
+                dispWinTextView.setVisibility(View.INVISIBLE);
+                dispDrawText.setVisibility(View.INVISIBLE);
+            }
         }
-        else if (getScore > getOpponentScore){
-            dispWinTextView.setVisibility(View.VISIBLE);
-            dispLoseTextView.setVisibility(View.INVISIBLE);
-            dispDrawText.setVisibility(View.INVISIBLE);
+        else
+        {
+            if(getScore < getOpponentScore){
+                dispLoseTextView.setVisibility(View.VISIBLE);
+                dispWinTextView.setVisibility(View.INVISIBLE);
+                dispDrawText.setVisibility(View.INVISIBLE);
+
+            }
+            else if (getScore > getOpponentScore){
+                dispWinTextView.setVisibility(View.VISIBLE);
+                dispLoseTextView.setVisibility(View.INVISIBLE);
+                dispDrawText.setVisibility(View.INVISIBLE);
+            }
+            else{
+                dispDrawText.setVisibility(View.VISIBLE);
+                dispWinTextView.setVisibility(View.INVISIBLE);
+                dispLoseTextView.setVisibility(View.INVISIBLE);
+            }
         }
-        else{
-            dispDrawText.setVisibility(View.VISIBLE);
-            dispWinTextView.setVisibility(View.INVISIBLE);
-            dispLoseTextView.setVisibility(View.INVISIBLE);
-        }
+
 
        /* // check is player's score qualifies for new high score
         difficulty = 4;  // default, multiplayer single round basic
@@ -162,6 +181,14 @@ public class MultiplayerScore extends AppCompatActivity {
                 startActivity(intent);
             }
         });
+    }
+
+    /**
+     * onBackPressed() -- do nothing,
+     * disable to users ability to go back to previous game results or screens
+     * */
+    @Override
+    public void onBackPressed() {
     }
 
 
