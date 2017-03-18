@@ -1,5 +1,4 @@
 # GameBoggle
-This project is licensed under the "MIT License". Please see the file LICENSE in this distribution for license terms.
 
 Boggle Game is a timed word game developed for Android where players try to find as many connected words as possible from a random set of letters. The board is shaken to get 16 random letters. Players have three minutes (shown by the countdown timer) to find as many words as they can in the grid, according to the following rules:
 
