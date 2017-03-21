@@ -10,6 +10,11 @@
     android:paddingTop="@dimen/activity_vertical_margin"
     tools:context="com.example.swathi.gameboggle.ThirdScreen">
 
+    <com.example.swathi.gameboggle.GameLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:id="@+id/game">
+
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -19,60 +24,7 @@
         android:visibility="invisible"
         android:background="#b620b6cc" />
 
-    <Button
-        android:layout_width="64dp"
-        android:layout_height="64dp"
-        android:id="@+id/button1"
-        android:layout_marginTop="64dp"
-        android:backgroundTintMode="src_in"
-        android:background="@drawable/buttonnoselectborder"
-        android:textStyle="bold"
-        android:textColor="#fffdff0b"
-        android:textSize="@dimen/abc_text_size_display_1_material"
-        android:layout_below="@+id/textView"
-        android:layout_toLeftOf="@+id/SolveButton"
-        android:layout_toStartOf="@+id/SolveButton" />
-
-    <Button
-
-        android:layout_width="64dp"
-        android:layout_height="64dp"
-        android:id="@+id/button2"
-        android:background="@drawable/buttonnoselectborder"
-        android:textSize="@dimen/abc_text_size_display_1_material"
-        android:textColor="#fffdff0b"
-        android:textStyle="bold"
-        android:layout_alignTop="@+id/button1"
-        android:layout_alignLeft="@+id/SolveButton"
-        android:layout_alignStart="@+id/SolveButton" />
-
-    <Button
-
-        android:layout_width="64dp"
-        android:layout_height="64dp"
-        android:id="@+id/button3"
-        android:background="@drawable/buttonnoselectborder"
-        android:textStyle="bold"
-        android:textSize="@dimen/abc_text_size_display_1_material"
-        android:textColor="#fffdff0b"
-        android:layout_above="@+id/button7"
-        android:layout_toRightOf="@+id/button2"
-        android:layout_toEndOf="@+id/button2" />
-
-    <Button
-
-        android:layout_width="64dp"
-        android:layout_height="64dp"
-        android:id="@+id/button4"
-        android:background="@drawable/buttonnoselectborder"
-        android:textColor="#fffdff0b"
-        android:textSize="@dimen/abc_text_size_display_1_material"
-        android:textStyle="bold"
-        android:layout_below="@+id/textViewShake2Start"
-        android:layout_toRightOf="@+id/button3"
-        android:layout_toEndOf="@+id/button3" />
-
-    <Button
+        <Button
 
         android:layout_width="64dp"
         android:layout_height="64dp"
@@ -83,7 +35,8 @@
         android:background="@drawable/buttonnoselectborder"
         android:textStyle="bold"
         android:textColor="#fffdff0b"
-        android:textSize="@dimen/abc_text_size_display_1_material" />
+        android:textSize="@dimen/abc_text_size_display_1_material"
+        android:onClick="press5" />
 
     <Button
 
@@ -96,7 +49,8 @@
         android:background="@drawable/buttonnoselectborder"
         android:textSize="@dimen/abc_text_size_display_1_material"
         android:textColor="#fffdff0b"
-        android:textStyle="bold" />
+        android:textStyle="bold"
+        android:onClick="press6" />
 
     <Button
 
@@ -109,7 +63,8 @@
         android:background="@drawable/buttonnoselectborder"
         android:textStyle="bold"
         android:textSize="@dimen/abc_text_size_display_1_material"
-        android:textColor="#fffdff0b" />
+        android:textColor="#fffdff0b"
+        android:onClick="press7" />
 
     <Button
 
@@ -122,7 +77,8 @@
         android:background="@drawable/buttonnoselectborder"
         android:textStyle="bold"
         android:textColor="#fffdff0b"
-        android:textSize="@dimen/abc_text_size_display_1_material" />
+        android:textSize="@dimen/abc_text_size_display_1_material"
+        android:onClick="press8" />
 
     <Button
 
@@ -135,7 +91,8 @@
         android:background="@drawable/buttonnoselectborder"
         android:textStyle="bold"
         android:textSize="@dimen/abc_text_size_display_1_material"
-        android:textColor="#fffdff0b" />
+        android:textColor="#fffdff0b"
+        android:onClick="press9" />
 
     <Button
 
@@ -148,7 +105,8 @@
         android:background="@drawable/buttonnoselectborder"
         android:textStyle="bold"
         android:textSize="@dimen/abc_text_size_display_1_material"
-        android:textColor="#fffdff0b" />
+        android:textColor="#fffdff0b"
+        android:onClick="press10" />
 
     <Button
 
@@ -161,7 +119,8 @@
         android:background="@drawable/buttonnoselectborder"
         android:textStyle="bold"
         android:textSize="@dimen/abc_text_size_display_1_material"
-        android:textColor="#fffdff0b" />
+        android:textColor="#fffdff0b"
+        android:onClick="press11" />
 
     <Button
 
@@ -174,7 +133,8 @@
         android:background="@drawable/buttonnoselectborder"
         android:textStyle="bold"
         android:textSize="@dimen/abc_text_size_display_1_material"
-        android:textColor="#fffdff0b" />
+        android:textColor="#fffdff0b"
+        android:onClick="press12" />
 
     <Button
 
@@ -187,7 +147,8 @@
         android:background="@drawable/buttonnoselectborder"
         android:textStyle="bold"
         android:textSize="@dimen/abc_text_size_display_1_material"
-        android:textColor="#fffdff0b" />
+        android:textColor="#fffdff0b"
+        android:onClick="press13" />
 
     <Button
 
@@ -200,7 +161,8 @@
         android:background="@drawable/buttonnoselectborder"
         android:textStyle="bold"
         android:textSize="@dimen/abc_text_size_display_1_material"
-        android:textColor="#fffdff0b" />
+        android:textColor="#fffdff0b"
+        android:onClick="press14" />
 
     <Button
 
@@ -213,7 +175,8 @@
         android:background="@drawable/buttonnoselectborder"
         android:textStyle="bold"
         android:textSize="@dimen/abc_text_size_display_1_material"
-        android:textColor="#fffdff0b" />
+        android:textColor="#fffdff0b"
+        android:onClick="press15" />
 
     <Button
 
@@ -226,17 +189,46 @@
         android:background="@drawable/buttonnoselectborder"
         android:textStyle="bold"
         android:textSize="@dimen/abc_text_size_display_1_material"
-        android:textColor="#fffdff0b" />
+        android:textColor="#fffdff0b"
+        android:onClick="press16" />
 
-    <TextView
+    <Button
+        android:layout_width="64dp"
+        android:layout_height="64dp"
+        android:id="@+id/button3"
+        android:background="@drawable/buttonnoselectborder"
+        android:textStyle="bold"
+        android:textSize="@dimen/abc_text_size_display_1_material"
+        android:textColor="#fffdff0b"
+        android:onClick="press3"
+        android:layout_alignBottom="@+id/button4"
+        android:layout_toRightOf="@+id/button2"
+        android:layout_toEndOf="@+id/button2"
+        android:layout_alignTop="@+id/button2" />
+
+
+    <Button
+
+        android:layout_width="64dp"
+        android:layout_height="64dp"
+        android:id="@+id/button4"
+        android:background="@drawable/buttonnoselectborder"
+        android:textColor="#fffdff0b"
+        android:textSize="@dimen/abc_text_size_display_1_material"
+        android:textStyle="bold"
+        android:onClick="press4"
+        android:layout_above="@+id/button8"
+        android:layout_toRightOf="@+id/button3"
+        android:layout_toEndOf="@+id/button3" />
+
+        <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceSmall"
         android:id="@+id/Entry"
         android:textStyle="bold|italic"
         android:textSize="20dp"
-        android:layout_alignParentBottom="true"
-        android:textColor="#ffbcaa0d"
+            android:textColor="#ffbcaa0d"
         android:typeface="monospace"
         android:layout_alignRight="@+id/textViewShake2Start"
         android:layout_alignEnd="@+id/textViewShake2Start"
@@ -248,43 +240,160 @@
         android:scrollbars = "vertical"/>
 
     <TextView
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:id="@+id/textViewShake2Start"
+        android:gravity="center"
+        android:textSize="30dp"
+        android:text="Shake 2 Start"
+        android:layout_alignParentTop="true"
+        android:textColor="@android:color/holo_orange_dark"
+        android:textStyle="normal|bold"
+        android:fontFamily="serif" />
+
+
+        <TextView
+        android:text=""
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceLarge"
-        android:id="@+id/textView"
-        android:layout_alignRight="@+id/textViewShake2Start"
-        android:layout_alignEnd="@+id/textViewShake2Start"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
-        android:gravity="center"
-        android:textStyle="bold"
-        android:textSize="50dp"
-        android:textColor="#e0e0e0e0" />
+        android:layout_alignTop="@+id/tvTimerThirdScreen"
+        android:layout_toRightOf="@+id/tvTimerThirdScreen"
+        android:layout_toEndOf="@+id/tvTimerThirdScreen"
 
-    <TextView
-        android:layout_width="fill_parent"
-        android:layout_height="150dp"
+        android:id="@+id/textView_Timer" />
+
+        <TextView
+        android:text=""
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignTop="@+id/tvScoreThirdScreen"
+        android:textStyle="bold"
+        android:textSize="22sp"
+        android:textColor="#ffffff"
         android:textAppearance="?android:attr/textAppearanceLarge"
-        android:id="@+id/textViewShake2Start"
-        android:layout_above="@+id/button2"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
-        android:layout_centerInParent="true"
-        android:textSize="30dp"
-        android:text="Shake 2 Start" />
+        android:layout_toRightOf="@+id/tvScoreThirdScreen"
+        android:layout_toEndOf="@+id/tvScoreThirdScreen"
+        android:id="@+id/tvRoundScoreID" />
 
-    <Button
-        style="?android:attr/buttonStyleSmall"
-        android:layout_width="120dp"
-        android:layout_height="60dp"
-        android:text="Submit"
-        android:id="@+id/submitButton"
-        android:clickable="true"
+        <TextView
+            android:text="TextView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/textView23"
+            android:layout_below="@+id/button2"
+            android:layout_toRightOf="@+id/button1"
+            android:layout_toEndOf="@+id/button1" />
+
+        <TextView
+        android:text="TextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/textView22"
+            android:layout_below="@+id/textView23"
+            android:layout_toRightOf="@+id/button5"
+            android:layout_toEndOf="@+id/button5" />
+
+        <Button
+            android:text="Undo"
+            android:layout_width="120dp"
+            android:layout_height="60dp"
+            android:id="@+id/undo"
+            android:onClick="undo"
+            android:background="@android:color/holo_blue_light"
+            android:textSize="16sp"
+
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
+            android:layout_below="@+id/Entry"
+            android:layout_toStartOf="@+id/button14"
+            android:layout_toLeftOf="@+id/button14" />
+
+        <Button
+            style="?android:attr/buttonStyleSmall"
+            android:layout_width="120dp"
+            android:layout_height="60dp"
+            android:text="Submit"
+            android:id="@+id/submitButton"
+            android:clickable="true"
+            android:textStyle="bold"
+            android:textSize="16sp"
+            android:textColor="#ffffff"
+            android:onClick="pressSubmit"
+            android:background="@android:color/holo_orange_dark"
+
+            android:layout_alignBottom="@+id/undo"
+            android:layout_alignParentRight="true"
+            android:layout_alignParentEnd="true"
+            android:layout_below="@+id/Entry"
+            android:layout_toEndOf="@+id/SolveButton"
+            android:layout_toRightOf="@+id/SolveButton" />
+
+        <TextView
+            android:text="Score: "
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:id="@+id/tvScoreThirdScreen"
+            android:layout_below="@+id/textViewShake2Start"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
+            android:textColor="@color/colorAccent"
+            android:textStyle="normal|bold"
+            android:fontFamily="sans-serif" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:id="@+id/tvTimerThirdScreen"
+            android:textStyle="bold"
+            android:textColor="@android:color/holo_orange_light"
+            android:text="Time remaining:"
+            android:layout_below="@+id/tvScoreThirdScreen"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
+            android:layout_marginTop="10dp"
+            android:fontFamily="sans-serif"
+            android:textSize="22sp" />
+
+        <TextView
+            android:text=" "
+            android:layout_width="256dp"
+            android:layout_height="256dp"
+            android:id="@+id/boardAligner"
+            android:layout_centerVertical="true"
+            android:layout_centerHorizontal="true" />
+
+        <Button
+            android:layout_width="64dp"
+            android:layout_height="64dp"
+            android:id="@+id/button1"
+            android:backgroundTintMode="src_in"
+            android:background="@drawable/buttonnoselectborder"
+            android:textStyle="bold"
+            android:textColor="#fffdff0b"
+            android:textSize="@dimen/abc_text_size_display_1_material"
+            android:onClick="press1"
+            android:layout_alignTop="@+id/boardAligner"
+            android:layout_alignLeft="@+id/boardAligner"
+            android:layout_alignStart="@+id/boardAligner" />
+
+        <Button
+
+        android:layout_width="64dp"
+        android:layout_height="64dp"
+        android:id="@+id/button2"
+        android:background="@drawable/buttonnoselectborder"
+        android:textSize="@dimen/abc_text_size_display_1_material"
+        android:textColor="#fffdff0b"
         android:textStyle="bold"
-        android:textSize="@dimen/abc_text_size_body_1_material"
-        android:textColor="#f4fbfd24"
-        android:layout_alignBaseline="@+id/Entry"
-        android:layout_alignBottom="@+id/Entry"
-        android:layout_centerHorizontal="true" />
+            android:onClick="press2"
+            android:layout_alignTop="@+id/boardAligner"
+            android:layout_toRightOf="@+id/button1"
+            android:layout_toEndOf="@+id/button1" />
+
+    </com.example.swathi.gameboggle.GameLayout>
 
 </RelativeLayout>

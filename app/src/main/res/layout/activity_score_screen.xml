@@ -1,0 +1,203 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools" android:layout_width="match_parent"
+    android:layout_height="match_parent" android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingTop="@dimen/activity_vertical_margin"
+    android:paddingBottom="@dimen/activity_vertical_margin"
+    tools:context="com.example.swathi.gameboggle.ScoreScreen">
+
+
+  <!--  <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:text="Round number: "
+        android:id="@+id/tvRN"
+        android:textColor="#ffbcaa0d"
+        android:textStyle="bold"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true" />
+    <TextView
+        android:text=""
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:layout_alignBottom="@+id/tvRN"
+        android:layout_toRightOf="@+id/tvRN"
+        android:layout_toEndOf="@+id/tvRN"
+        android:textColor="#ffbcaa0d"
+        android:textStyle="bold"
+        android:layout_marginLeft="14dp"
+        android:layout_marginStart="14dp"
+        android:id="@+id/tvRoundNumberID" /> -->
+
+  <TextView
+      android:text=""
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      android:textAppearance="?android:attr/textAppearanceLarge"
+      android:textColor="#ffbcaa0d"
+      android:textStyle="bold"
+      android:id="@+id/tvScoreForThisRoundID"
+      android:layout_toRightOf="@+id/tvScore"
+      android:layout_toEndOf="@+id/tvScore"
+      android:layout_marginLeft="15dp"
+      android:layout_marginStart="15dp"
+      android:layout_alignBottom="@+id/tvScore" />
+  <TextView
+      android:text="Words you got correct:"
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      android:layout_marginTop="5dp"
+      android:id="@+id/tvYGC"
+      android:textAppearance="?android:attr/textAppearanceLarge"
+      android:textColor="@android:color/holo_orange_dark"
+      android:textStyle="bold"
+      android:layout_below="@+id/tvScore"
+      android:layout_alignParentLeft="true"
+      android:layout_alignParentStart="true"
+      android:textSize="18dp" />
+
+
+  <TextView
+      android:text=""
+      android:layout_width="match_parent"
+      android:layout_height="wrap_content"
+      android:layout_marginTop="20dp"
+      android:width="400dp"
+      android:height="150dp"
+      android:maxHeight="160dp"
+      android:scrollbars="vertical"
+      android:textColor="@android:color/holo_orange_light"
+      android:visibility="visible"
+      android:background="#07000000"
+      android:id="@+id/tvListOfPossibleWordsID"
+      android:layout_below="@+id/textViewFoundWordsID"
+      android:layout_alignParentLeft="true"
+      android:layout_alignParentStart="true"
+      android:textAppearance="?android:attr/textAppearanceSmall"/>
+
+  <!--   <TextView
+      android:text=""
+      android:layout_width="match_parent"
+      android:layout_height="wrap_content"
+      android:layout_below="@+id/textView55"
+      android:layout_alignParentLeft="true"
+      android:layout_alignParentStart="true"
+      android:width="400dp"
+      android:height="150dp"
+      android:maxHeight="160dp"
+      android:layout_marginTop="0dp"
+      android:background="#07000000"
+      android:scrollbars="vertical"
+      android:textColor="#ffbcaa0d"
+      android:textAppearance="?android:attr/textAppearanceSmall"
+      android:id="@+id/textViewAllPossibleWords" /> -->
+
+
+  <TextView
+      android:text=""
+      android:layout_width="match_parent"
+      android:layout_height="wrap_content"
+      android:height="75dp"
+      android:maxHeight="75dp"
+      android:textColor="@android:color/holo_orange_light"
+      android:enabled="false"
+      android:visibility="visible"
+      android:background="#07000000"
+      android:textStyle="bold"
+      android:id="@+id/textViewFoundWordsID"
+      android:layout_below="@+id/tvYGC"
+      android:layout_alignParentLeft="true"
+      android:layout_alignParentStart="true" />
+
+  <TextView
+      android:text="You got a New High Score!"
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      android:id="@+id/textView_highScoreMsg"
+      android:textColor="@color/colorAccent"
+      android:fontFamily="sans-serif"
+      android:textStyle="normal|bold|italic"
+      android:textAlignment="viewStart"
+      android:layout_below="@+id/tvListOfPossibleWordsID"
+      android:layout_marginTop="30dp"
+      android:layout_alignParentLeft="true"
+      android:layout_alignParentStart="true"
+      android:textSize="18sp" />
+
+  <Button
+      style="?android:attr/buttonStyleSmall"
+      android:layout_width="120dp"
+      android:layout_height="40dp"
+      android:text="Play again"
+      android:id="@+id/btnNextRoundID"
+      android:clickable="true"
+      android:textColor="#ffffff"
+      android:textStyle="bold"
+      android:layout_alignParentBottom="true"
+      android:background="@android:color/holo_blue_light"
+      android:layout_alignParentLeft="true"
+      android:layout_alignParentStart="true"
+      android:layout_alignParentRight="true"
+      android:layout_alignParentEnd="true" />
+
+  <EditText
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      android:inputType="textPersonName"
+      android:ems="10"
+      android:id="@+id/editText_Name"
+      android:hint="Enter your name"
+      android:textStyle="italic"
+      android:textSize="14sp"
+      android:layout_below="@+id/textView_highScoreMsg"
+      android:layout_alignParentLeft="true"
+      android:layout_alignParentStart="true"
+      android:layout_marginTop="20dp"
+      android:layout_alignRight="@+id/textView_highScoreMsg"
+      android:layout_alignEnd="@+id/textView_highScoreMsg" />
+
+  <Button
+      style="?android:attr/buttonStyleSmall"
+      android:layout_width="80dp"
+      android:layout_height="40dp"
+      android:text="Submit"
+      android:id="@+id/btnSubmitNameID"
+      android:clickable="true"
+      android:textColor="#ffffff"
+      android:textStyle="bold"
+      android:background="@android:color/holo_orange_dark"
+      android:layout_alignBottom="@+id/editText_Name"
+      android:layout_alignParentRight="true"
+      android:layout_alignParentEnd="true" />
+
+  <TextView
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      android:textAppearance="?android:attr/textAppearanceLarge"
+      android:text="Your score: "
+      android:id="@+id/tvScore"
+      android:textStyle="bold"
+      android:textColor="@color/colorAccent"
+      android:textSize="22dp"
+      android:layout_alignParentTop="true"
+      android:layout_alignParentLeft="true"
+      android:layout_alignParentStart="true" />
+
+  <TextView
+      android:text="All possible words:"
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      android:id="@+id/tvVWD"
+      android:textAppearance="?android:attr/textAppearanceLarge"
+      android:textColor="@android:color/holo_orange_dark"
+      android:textStyle="bold"
+      android:textSize="18dp"
+      android:layout_below="@+id/textViewFoundWordsID"
+      android:layout_alignParentLeft="true"
+      android:layout_alignParentStart="true" />
+
+
+</RelativeLayout>

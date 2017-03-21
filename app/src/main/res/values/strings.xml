@@ -2,16 +2,45 @@
     <string name="app_name">GameBoggle</string>
     <string name="back">Back</string>
 
+    <string name="help_scoring">The score of each valid word is counted based on its length,
+    1 point for 3 or 4 letter words, 2 points for 5 letter words, 3 points for 6 letter words, 5 points for 7 letter words, and
+    10 points for words of 8 or more letters.</string>
     <string name="help_text">Players have 3 minutes to select as many words of 3 or more letters as they can.
     Repeated words are not allowed. The words must be formed from sequentially adjacent cubes.
     A cube is adjacent to another if they are horizontal, vertical or diagonal neighbors.
     Words can be in singular, plural or other derived forms. Names and abbreviations are not valid.
-    Each cube letter can be used only once in a single word. The score of each valid word is counted based on its length,
-    1 point for 3 or 4 letter words, 2 points for 5 letter words, 3 points for 6 letter words, 5 points for 7 letter words, and
-    11 points for words of 8 or more letters.</string>
-    <string name="select_difficulty_level">Select the difficulty level:</string>
+    Each cube letter can be used only once in a single word. </string>
+    <string name="help_text_multiplayer">
+        \t\t\tIn Multiplayer mode, both players share the same board.
+        In "Single Round Basic," the player with the highest score wins.
+        In "Multi Round Basic," players race against the clock. Each player has
+        ability to stop the timer once they have picked at least five valid words. After both players
+        have stopped their timer a new bard is generated and game play continues.
+        Points earned for each round are added to the timer. The first player to run out of time loses.
+        \n\t\t\t
+        In "Cutthroat" mode, players race against the clock AND each other.
+        Players play on the same board at the same time. If a word has already been found by
+        one player, then the other player is blocked from finding that word with same sequence
+        of dice. When time is up, the player with higher score wins.
+    </string>
+    <string name="select_difficulty_level">Choose the difficulty level:</string>
     <string name="select_number_rounds">Select the number of rounds:</string>
     <string name="boggle">Boggle</string>
     <string name="multiplayer">Multiplayer</string>
     <string name="single_player">Single Player</string>
+    <string name="Easy">Easy</string>
+    <string name="Normal">Normal</string>
+    <string name="Difficult">Difficult</string>
+    <string name="level">Level</string>
+    <string name="mode">Mode</string>
+    <string name="rank">Rank</string>
+    <string name="name">Name</string>
+    <string name="score">Score</string>
+    <string name="_1">1</string>
+    <string name="_2">2</string>
+    <string name="_3">3</string>
+    <string name="_4">4</string>
+    <string name="_5">5</string>
+    <string name="Basic">Basic</string>
+    <string name="Cutthroat">Cutthroat</string>
 </resources>

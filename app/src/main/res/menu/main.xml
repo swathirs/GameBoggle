@@ -1,0 +1,22 @@
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools" tools:context=".MainActivity">
+
+    <!-- Help Icon -->
+    <item
+        android:id="@+id/action_highScores"
+        android:icon="@drawable/ic_grade_black_24dp"
+        android:title=""
+
+        app:showAsAction="always"/>
+    <item
+        android:id="@+id/action_helpInstructions"
+        android:icon="@drawable/ic_help_black_24dp"
+        android:title=""
+
+        app:showAsAction="ifRoom"/>
+
+
+    <!-- High Scores Icon -->
+
+</menu>
